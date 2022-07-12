@@ -16,8 +16,8 @@ NUMERO     : ENTERO (ENTERO)*;
 // clase puede ser un class IDENTIFICADOR como "class Comic", "class Comic inherits <otra clase>"
 // "class Main que puede o no puede tener un inherit a una o varias librerias
 // estas opciones de clase tambien tienes una declaracionClase que se explica a continuacion
-clase   :   'class' IDENTIFICADOR declaracionClase
-        |   'class' IDENTIFICADOR 'inherits' IDENTIFICADOR declaracionClase
+clase   :   'class' IDENTIFICADOR '{' (declaracionClase) '};'
+        |   'class' IDENTIFICADOR 'inherits' IDENTIFICADOR '{' (declaracionClase) '};'
         |   'class Main' ('inherits')? (librerias)* '{' (declaracionClase) '};'
         ;
 

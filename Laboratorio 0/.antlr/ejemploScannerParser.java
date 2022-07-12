@@ -31,7 +31,7 @@ public class ejemploScannerParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'class'", "'inherits'", "'class Main'", "'{'", "'};'", "'IO'", 
+			null, "'class'", "'{'", "'};'", "'inherits'", "'class Main'", "'IO'", 
 			"'Object'", "'}'", "':'", "';'", "'<-'", "'Int'", "'String'"
 		};
 	}
@@ -118,7 +118,7 @@ public class ejemploScannerParser extends Parser {
 		enterRule(_localctx, 0, RULE_clase);
 		int _la;
 		try {
-			setState(36);
+			setState(42);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
@@ -129,61 +129,73 @@ public class ejemploScannerParser extends Parser {
 				setState(15);
 				match(IDENTIFICADOR);
 				setState(16);
+				match(T__1);
+				{
+				setState(17);
 				declaracionClase();
+				}
+				setState(18);
+				match(T__2);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(17);
-				match(T__0);
-				setState(18);
-				match(IDENTIFICADOR);
-				setState(19);
-				match(T__1);
 				setState(20);
-				match(IDENTIFICADOR);
+				match(T__0);
 				setState(21);
+				match(IDENTIFICADOR);
+				setState(22);
+				match(T__3);
+				setState(23);
+				match(IDENTIFICADOR);
+				setState(24);
+				match(T__1);
+				{
+				setState(25);
 				declaracionClase();
+				}
+				setState(26);
+				match(T__2);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(22);
-				match(T__2);
-				setState(24);
+				setState(28);
+				match(T__4);
+				setState(30);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if (_la==T__1) {
+				if (_la==T__3) {
 					{
-					setState(23);
-					match(T__1);
+					setState(29);
+					match(T__3);
 					}
 				}
 
-				setState(29);
+				setState(35);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5 || _la==T__6) {
 					{
 					{
-					setState(26);
+					setState(32);
 					librerias();
 					}
 					}
-					setState(31);
+					setState(37);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(32);
-				match(T__3);
+				setState(38);
+				match(T__1);
 				{
-				setState(33);
+				setState(39);
 				declaracionClase();
 				}
-				setState(34);
-				match(T__4);
+				setState(40);
+				match(T__2);
 				}
 				break;
 			}
@@ -213,7 +225,7 @@ public class ejemploScannerParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(38);
+			setState(44);
 			_la = _input.LA(1);
 			if ( !(_la==T__5 || _la==T__6) ) {
 			_errHandler.recoverInline(this);
@@ -263,39 +275,39 @@ public class ejemploScannerParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(40);
-			match(T__3);
-			setState(44);
+			setState(46);
+			match(T__1);
+			setState(50);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(41);
+					setState(47);
 					declaracionVariable();
 					}
 					} 
 				}
-				setState(46);
+				setState(52);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
-			setState(50);
+			setState(56);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==IDENTIFICADOR || _la==NUMERO) {
 				{
 				{
-				setState(47);
+				setState(53);
 				declaracionOperacion();
 				}
 				}
-				setState(52);
+				setState(58);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(53);
+			setState(59);
 			match(T__7);
 			}
 		}
@@ -327,13 +339,13 @@ public class ejemploScannerParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(55);
+			setState(61);
 			match(IDENTIFICADOR);
-			setState(56);
+			setState(62);
 			match(T__8);
-			setState(57);
+			setState(63);
 			tipoVariable();
-			setState(58);
+			setState(64);
 			match(T__9);
 			}
 		}
@@ -364,28 +376,28 @@ public class ejemploScannerParser extends Parser {
 		DeclaracionOperacionContext _localctx = new DeclaracionOperacionContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_declaracionOperacion);
 		try {
-			setState(68);
+			setState(74);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(60);
+				setState(66);
 				objeto();
-				setState(61);
+				setState(67);
 				match(T__10);
-				setState(62);
+				setState(68);
 				match(IDENTIFICADOR);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(64);
+				setState(70);
 				objeto();
-				setState(65);
+				setState(71);
 				match(T__10);
-				setState(66);
+				setState(72);
 				match(NUMERO);
 				}
 				break;
@@ -418,7 +430,7 @@ public class ejemploScannerParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70);
+			setState(76);
 			_la = _input.LA(1);
 			if ( !(_la==IDENTIFICADOR || _la==NUMERO) ) {
 			_errHandler.recoverInline(this);
@@ -455,7 +467,7 @@ public class ejemploScannerParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72);
+			setState(78);
 			_la = _input.LA(1);
 			if ( !(_la==T__11 || _la==T__12) ) {
 			_errHandler.recoverInline(this);
@@ -479,26 +491,27 @@ public class ejemploScannerParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21M\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21S\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\2\3\2\3\2\3\2\3\2"+
-		"\3\2\3\2\3\2\5\2\33\n\2\3\2\7\2\36\n\2\f\2\16\2!\13\2\3\2\3\2\3\2\3\2"+
-		"\5\2\'\n\2\3\3\3\3\3\4\3\4\7\4-\n\4\f\4\16\4\60\13\4\3\4\7\4\63\n\4\f"+
-		"\4\16\4\66\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3"+
-		"\6\3\6\5\6G\n\6\3\7\3\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\5\3\2\b\t\3"+
-		"\2\20\21\3\2\16\17\2L\2&\3\2\2\2\4(\3\2\2\2\6*\3\2\2\2\b9\3\2\2\2\nF\3"+
-		"\2\2\2\fH\3\2\2\2\16J\3\2\2\2\20\21\7\3\2\2\21\22\7\20\2\2\22\'\5\6\4"+
-		"\2\23\24\7\3\2\2\24\25\7\20\2\2\25\26\7\4\2\2\26\27\7\20\2\2\27\'\5\6"+
-		"\4\2\30\32\7\5\2\2\31\33\7\4\2\2\32\31\3\2\2\2\32\33\3\2\2\2\33\37\3\2"+
-		"\2\2\34\36\5\4\3\2\35\34\3\2\2\2\36!\3\2\2\2\37\35\3\2\2\2\37 \3\2\2\2"+
-		" \"\3\2\2\2!\37\3\2\2\2\"#\7\6\2\2#$\5\6\4\2$%\7\7\2\2%\'\3\2\2\2&\20"+
-		"\3\2\2\2&\23\3\2\2\2&\30\3\2\2\2\'\3\3\2\2\2()\t\2\2\2)\5\3\2\2\2*.\7"+
-		"\6\2\2+-\5\b\5\2,+\3\2\2\2-\60\3\2\2\2.,\3\2\2\2./\3\2\2\2/\64\3\2\2\2"+
-		"\60.\3\2\2\2\61\63\5\n\6\2\62\61\3\2\2\2\63\66\3\2\2\2\64\62\3\2\2\2\64"+
-		"\65\3\2\2\2\65\67\3\2\2\2\66\64\3\2\2\2\678\7\n\2\28\7\3\2\2\29:\7\20"+
-		"\2\2:;\7\13\2\2;<\5\16\b\2<=\7\f\2\2=\t\3\2\2\2>?\5\f\7\2?@\7\r\2\2@A"+
-		"\7\20\2\2AG\3\2\2\2BC\5\f\7\2CD\7\r\2\2DE\7\21\2\2EG\3\2\2\2F>\3\2\2\2"+
-		"FB\3\2\2\2G\13\3\2\2\2HI\t\3\2\2I\r\3\2\2\2JK\t\4\2\2K\17\3\2\2\2\b\32"+
-		"\37&.\64F";
+		"\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\5\2!\n\2\3\2\7\2$\n\2\f\2\16\2\'"+
+		"\13\2\3\2\3\2\3\2\3\2\5\2-\n\2\3\3\3\3\3\4\3\4\7\4\63\n\4\f\4\16\4\66"+
+		"\13\4\3\4\7\49\n\4\f\4\16\4<\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6"+
+		"\3\6\3\6\3\6\3\6\3\6\3\6\5\6M\n\6\3\7\3\7\3\b\3\b\3\b\2\2\t\2\4\6\b\n"+
+		"\f\16\2\5\3\2\b\t\3\2\20\21\3\2\16\17\2R\2,\3\2\2\2\4.\3\2\2\2\6\60\3"+
+		"\2\2\2\b?\3\2\2\2\nL\3\2\2\2\fN\3\2\2\2\16P\3\2\2\2\20\21\7\3\2\2\21\22"+
+		"\7\20\2\2\22\23\7\4\2\2\23\24\5\6\4\2\24\25\7\5\2\2\25-\3\2\2\2\26\27"+
+		"\7\3\2\2\27\30\7\20\2\2\30\31\7\6\2\2\31\32\7\20\2\2\32\33\7\4\2\2\33"+
+		"\34\5\6\4\2\34\35\7\5\2\2\35-\3\2\2\2\36 \7\7\2\2\37!\7\6\2\2 \37\3\2"+
+		"\2\2 !\3\2\2\2!%\3\2\2\2\"$\5\4\3\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&"+
+		"\3\2\2\2&(\3\2\2\2\'%\3\2\2\2()\7\4\2\2)*\5\6\4\2*+\7\5\2\2+-\3\2\2\2"+
+		",\20\3\2\2\2,\26\3\2\2\2,\36\3\2\2\2-\3\3\2\2\2./\t\2\2\2/\5\3\2\2\2\60"+
+		"\64\7\4\2\2\61\63\5\b\5\2\62\61\3\2\2\2\63\66\3\2\2\2\64\62\3\2\2\2\64"+
+		"\65\3\2\2\2\65:\3\2\2\2\66\64\3\2\2\2\679\5\n\6\28\67\3\2\2\29<\3\2\2"+
+		"\2:8\3\2\2\2:;\3\2\2\2;=\3\2\2\2<:\3\2\2\2=>\7\n\2\2>\7\3\2\2\2?@\7\20"+
+		"\2\2@A\7\13\2\2AB\5\16\b\2BC\7\f\2\2C\t\3\2\2\2DE\5\f\7\2EF\7\r\2\2FG"+
+		"\7\20\2\2GM\3\2\2\2HI\5\f\7\2IJ\7\r\2\2JK\7\21\2\2KM\3\2\2\2LD\3\2\2\2"+
+		"LH\3\2\2\2M\13\3\2\2\2NO\t\3\2\2O\r\3\2\2\2PQ\t\4\2\2Q\17\3\2\2\2\b %"+
+		",\64:L";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
