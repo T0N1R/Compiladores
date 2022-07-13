@@ -19,11 +19,17 @@ PARENTESIS      :       '('
                 |       ')'
                 ;
 
+start   :       (clase)*
+        ;
+
 // clase puede ser un class ID como "class Comic", "class Comic inherits <otra clase>"
 // "class Main que puede o no puede tener un inherit a una o varias librerias
 // estas opciones de clase tambien tienes una declaracionClase que se explica a continuacion
-clase   :       'class' ID  '{'  (contenidoClase)   '};'
-        |       'class Main inherits IO {'(declaracionVariable)'main(): Object {'(declaracionOperacion)'};'
+clase   :       'class Main inherits IO {'(declaraciones)'main(): Object {'(declaracionOperacion)'};'
+        |       'class' ID  '{'  (contenidoClase)   '};'
+        ;
+
+clases  :       'class' ID  '{'  (contenidoClase)   '};'
         ;
 
 contenidoClase  :       (definirVariables)*
@@ -35,8 +41,11 @@ definirVariables        :       ID ':' tipoVariable ';'
                         ;
 
 // declaracion de variable ejemplo "hoxpox : Comic;" o "hoxpox : Int;"
-declaracionVariable     :       ID ':' tipoVariable ';'
-                        ;
+// tambien pueden definirse otras clases
+declaraciones   :       ID ':' tipoVariable ';'
+                |       (clases)*
+                |       (definirVariables)*
+                ;
 
 // se realizan operaciones hacia un objeto
 declaracionOperacion    :       '{' ID '<-'  '"' (ID) '"' ';' '}'

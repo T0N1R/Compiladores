@@ -3,3 +3,10 @@ class Comic {
    ax : String <- "hola";
 
 };
+
+class Main inherits IO {
+  hoxpox : String ;
+  main(): Object {
+  {hoxpox <- "hola" ;}
+  };
+};
