@@ -19,6 +19,7 @@ class Main inherits IO {
   main(): Object {
     {
     hoxpox <- (new Comic);
+    hoxpox.set_var("house_of_x_powers_of_x");
     }
   };
 };

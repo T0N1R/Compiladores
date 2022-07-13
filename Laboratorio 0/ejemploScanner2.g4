@@ -61,12 +61,14 @@ declaraciones   :       ID ':' tipoVariable ';'
                 ;
 
 // se realizan operaciones hacia un objeto
-declaracionOperacion    :       ID '<-'  '"' (ID) '"' ';'
+declaracionOperacion    :       ID '<-'  '"' ID '"' ';'
                         |       ID '<-'  ID ';'
                         |       ID '<-' NUM ';'
                         |       ID '<-' '"";'
                         |       'self;'
                         |       ID '<-' '(' 'new' ID ');'
+                        |       ID '.' ID '(' '"' (ID)? '"' ');'
+                        |       ID '.' ID '(' (NUM)* ');' 
                         ;
 
 tipoVariable    :       'Int'
