@@ -18,8 +18,6 @@ CHAR_LITERAL    :       ('"' ( LETTER ) '"') | (APOSTROPHE ( LETTER ) APOSTROPHE
 PARENTESIS      :       '('
                 |       ')'
                 ;
-SELF    :       'self'
-        ;
 
 start   :       (clase)*
         ;
@@ -31,9 +29,16 @@ clase   :       'class' ID  '{'  (contenidoClase)   '};'
         |       'class' ID 'inherits' (ID) '{'  (contenidoClase)   '};'
         ;
 
-declaracionMetodo       :       ID '():' tipoVariable '{' (declaracionOperacion)* '};'
-                        |       ID '(' ID ':' tipoVariable (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (declaracionOperacion)* '};'
-                        |       ID '():' tipoVariable '{' ID '};'
+declaracionMetodo       :       ID '():' tipoVariable '{' ID '};'
+                        |       ID '():' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
+                        |       ID '(' ID ':' tipoVariable (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
+                        |       '():'
+                        ;
+
+// cuando se aplica un metodo
+parametrosParaMetodo    :       '();'
+                        |       '() ;'
+                        |       '(' (ID|NUM) (',' ID | ',' NUM)* ');'
                         ;
 
 clases  :       'class' ID  '{'  (contenidoClase)   '};'
@@ -43,6 +48,7 @@ contenidoClase  :       (definirVariables)* (declaracionMetodo)*
                 ;
 
 definirVariables        :       ID ':' tipoVariable ';'
+                        |       ID ':' ID ';'
                         |       ID ':' tipoVariable '<-' '"";'
                         |       ID ':' 'String' '<-'  '"' (ID) '"' ';'
                         ;
@@ -55,10 +61,12 @@ declaraciones   :       ID ':' tipoVariable ';'
                 ;
 
 // se realizan operaciones hacia un objeto
-declaracionOperacion    :       '{' ID '<-'  '"' (ID) '"' ';' '}'
-                        |       '{' ID '<-'  ID ';' '}'
-                        |       '{' ID '<-' NUM ';' '}'
-                        |       '{' ID '<-' '"";' '}'
+declaracionOperacion    :       ID '<-'  '"' (ID) '"' ';'
+                        |       ID '<-'  ID ';'
+                        |       ID '<-' NUM ';'
+                        |       ID '<-' '"";'
+                        |       'self;'
+                        |       ID '<-' '(' 'new' ID ');'
                         ;
 
 tipoVariable    :       'Int'

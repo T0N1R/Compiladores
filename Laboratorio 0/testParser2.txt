@@ -1,19 +1,24 @@
 class Comic {
 
-    name : String;
-    rating : Int;
-    author : String;
-    ax : String <- "hola";
+   var : String <- "";
+   value(): String { var };
 
-    comicName(): String { name };
-    comicRating(): Int { rating };
-    comicAuthor(): String { author };
+   set_var(name : String) : SELF_TYPE {
+      {
+         var <- name;
+         self;
+      }
+   };
 
 };
 
 class Main inherits IO {
-  hoxpox : String ;
+  
+  hoxpox : Comic;
+  
   main(): Object {
-  {hoxpox <- "hola" ;}
+    {
+    hoxpox <- (new Comic);
+    }
   };
 };
