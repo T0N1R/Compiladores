@@ -1,6 +1,13 @@
 class Comic {
 
-   ax : String <- "hola";
+    name : String;
+    rating : Int;
+    author : String;
+    ax : String <- "hola";
+
+    comicName(): String { name };
+    comicRating(): Int { rating };
+    comicAuthor(): String { author };
 
 };
 

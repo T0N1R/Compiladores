@@ -1,6 +1,6 @@
 grammar ejemploScanner2;
 
-fragment LETTER: ('A'..'Z' | 'a' .. 'z') ; 
+fragment LETTER: ('A'..'Z' | 'a' .. 'z' | '_') ; 
 
 fragment DIGIT: '0' .. '9';
 
@@ -18,6 +18,8 @@ CHAR_LITERAL    :       ('"' ( LETTER ) '"') | (APOSTROPHE ( LETTER ) APOSTROPHE
 PARENTESIS      :       '('
                 |       ')'
                 ;
+SELF    :       'self'
+        ;
 
 start   :       (clase)*
         ;
@@ -25,14 +27,19 @@ start   :       (clase)*
 // clase puede ser un class ID como "class Comic", "class Comic inherits <otra clase>"
 // "class Main que puede o no puede tener un inherit a una o varias librerias
 // estas opciones de clase tambien tienes una declaracionClase que se explica a continuacion
-clase   :       'class Main inherits IO {'(declaraciones)'main(): Object {'(declaracionOperacion)'};'
-        |       'class' ID  '{'  (contenidoClase)   '};'
+clase   :       'class' ID  '{'  (contenidoClase)   '};'
+        |       'class' ID 'inherits' (ID) '{'  (contenidoClase)   '};'
         ;
+
+declaracionMetodo       :       ID '():' tipoVariable '{' (declaracionOperacion)* '};'
+                        |       ID '(' ID ':' tipoVariable (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (declaracionOperacion)* '};'
+                        |       ID '():' tipoVariable '{' ID '};'
+                        ;
 
 clases  :       'class' ID  '{'  (contenidoClase)   '};'
         ;
 
-contenidoClase  :       (definirVariables)*
+contenidoClase  :       (definirVariables)* (declaracionMetodo)*
                 ;
 
 definirVariables        :       ID ':' tipoVariable ';'
@@ -54,6 +61,8 @@ declaracionOperacion    :       '{' ID '<-'  '"' (ID) '"' ';' '}'
                         |       '{' ID '<-' '"";' '}'
                         ;
 
-tipoVariable    :   'Int'
-                |   'String'
+tipoVariable    :       'Int'
+                |       'String'
+                |       'SELF_TYPE'
+                |       'Object'
                 ;
