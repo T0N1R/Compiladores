@@ -20,6 +20,7 @@ class Main inherits IO {
     {
     hoxpox <- (new Comic);
     hoxpox.set_var("house_of_x_powers_of_x");
+    out_string(hoxpox.value());
     }
   };
 };

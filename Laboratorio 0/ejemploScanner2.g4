@@ -68,7 +68,8 @@ declaracionOperacion    :       ID '<-'  '"' ID '"' ';'
                         |       'self;'
                         |       ID '<-' '(' 'new' ID ');'
                         |       ID '.' ID '(' '"' (ID)? '"' ');'
-                        |       ID '.' ID '(' (NUM)* ');' 
+                        |       ID '.' ID '(' (NUM)* ');'
+                        |       ID '(' (ID '.' ID '(' (NUM)* ')')* ');'
                         ;
 
 tipoVariable    :       'Int'
