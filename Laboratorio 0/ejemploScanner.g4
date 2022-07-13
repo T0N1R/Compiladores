@@ -7,7 +7,6 @@ fragment DIGIT: '0' .. '9';
 
 ID                  : LETTER (LETTER|DIGIT)*;
 NUM                 : DIGIT (DIGIT)*;
-CHAR                : LETTER;
 
 // \t = tab
 // \r = carriage  return

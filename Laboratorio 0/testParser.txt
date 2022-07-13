@@ -1,6 +1,6 @@
 class Main inherits IO {
-  hoxpox : Int ;
+  hoxpox : String ;
   main(): Object {
-  {hoxpox <- 1 ;}
+  {hoxpox <- "hola" ;}
   };
 };
