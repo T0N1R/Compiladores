@@ -7,8 +7,14 @@ fragment DIGIT: '0' .. '9';
 
 ID                  : LETTER (LETTER|DIGIT)*;
 NUM                 : DIGIT (DIGIT)*;
-STRING  :       '"' ('A'..'Z' | 'a' .. 'z' | ' ' | '0'..'9' | '.' | ',' | '\\')* '"' 
+STRING  :       '"' ('A'..'Z' | 'a' .. 'z' | ' ' | '0'..'9' | '.' | ',' | '\\' | '\n')* '"' 
         ;
+
+COMENTARIO      :       '(*' (ID | NUM | '*' | '-' | '.' | ',' | ':' | '(' | ')' | APOSTROPHE | STRING | ' ' | '\\n' | ' * ' | '\t' | '\r' | '\n')* '*)' -> skip
+                ;
+
+LCOMENTARIO     :       '--' (ID | NUM | '*' | '-' | '.' | ',' | ':' | '(' | ')' | APOSTROPHE | STRING | ' ' | '\\n' | ' * ' )* -> skip
+                ;
 
 // \t = tab
 // \r = carriage  return
@@ -22,7 +28,7 @@ PARENTESIS      :       '('
                 ;
 
 
-start   :       (clase)*
+start   :       (COMENTARIO | clase)*
         ;
 
 // clase puede ser un class ID como "class Comic", "class Comic inherits <otra clase>"
@@ -32,12 +38,17 @@ clase   :       'class' ID  '{'  (contenidoClase)   '};'
         |       'class' ID 'inherits' (ID) '{'  (contenidoClase)   '};'
         ;
 
-declaracionMetodo       :       ID '(' ')' ':' tipoVariable '{' ID '};'
-                        |       ID '(' ')' ':' tipoVariable '{'  (declaracionOperacion)*  '};'
-                        |       ID '(' ')' ':' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
-                        |       ID '(' ID ':' tipoVariable (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
-                        |       'main() :' tipoVariable '{'  (declaracionOperacion)*  '};'
-                        |       'main():' tipoVariable '{'  (declaracionOperacion)*  '};'
+declaracionMetodo       :       ID '(' ')' ':' (tipoVariable | ID) '{' ID '};'
+                        |       ID '(' ')' ':' (tipoVariable | ID) '{'  (declaracionOperacion)*  '};'
+                        |       ID '(' ')' ':' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
+                        |       ID '(' ID ':' (tipoVariable | ID) (',' ID ':' (tipoVariable | ID))* ')' ':' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
+                        |       ID '(' ID ':' (tipoVariable | ID) (',' ID ':' (tipoVariable | ID))* ')' ':' (tipoVariable | ID) '{' (declaracionOperacion)* '};'
+                        |       'main() :' (tipoVariable | ID) '{'  (declaracionOperacion)*  '};'
+                        |       'main():' (tipoVariable | ID) '{'  (declaracionOperacion)*  '};'
+                        |       'main() :' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
+                        |       'main():' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
+                        |       ID '(' ')' ':' (tipoVariable | ID) ';'
+                        |       ID '(' ')' ':' (tipoVariable | ID) '{' '{' (declaracionOperacion ';')* '}' '};'
                         ;
 
 // cuando se aplica un metodo
@@ -67,21 +78,44 @@ declaraciones   :       ID ':' tipoVariable ';'
                 ;
 
 // se realizan operaciones hacia un objeto
-declaracionOperacion    :       ID '<-'  STRING ';'
+declaracionOperacion    :       ID '();'
+                        |       ID '(' ID ')' ';'
+                        |       ID '(' ID ')'
+                        |       ID '(' (STRING | NUM) ')' ';'
+                        |       ID '(' (STRING | NUM) ')'
+                        |       ID '<-'  STRING ';'
                         |       ID '<-'  ID ';'
                         |       ID '<-' NUM ';'
                         |       ID '<-' '"";'
+                        |       ID '(' NUM ');'
+                        |       'abort();'
+                        |       (NUM | ID) ';'
                         |       'self;'
-                        |       ID '<-' '(' 'new' ID ');'
+                        |       ID '<-' '(' declaracionEspecial (tipoVariable | ID) ');'
                         |       ID '.' ID '(' '"' (ID)? '"' ');'
                         |       ID '.' ID '(' (NUM)* ');'
+                        |       ID '.' ID '(' (NUM)* ')'
                         |       ID '(' (ID '.' ID '(' (NUM)* ')')* ');'
-                        |       ID '(' STRING ')' (';')?
-                        |       ID '(' ('(' (ID)* ')' ('.' ID '()')* ')') ')' (';' | '.')?
+                        |       'out_string("\\n");'
+                        |       'out_string(" ");'
+                        |       ID '(' (ID | NUM | tipoVariable) (',' ID | ',' NUM | ',' tipoVariable)* (')' | ');')
+                        |       ID '(' ('(' declaracionEspecial (tipoVariable | ID) ')' ('.' ID '(' ((STRING | NUM) (',' (STRING | NUM) )* )* ')')* ) ');'
+                        |       ID '(' ('(' declaracionEspecial (tipoVariable | ID) ')' ('.' ID '(' ((STRING | NUM) (',' (STRING | NUM) )* )* ')')* ) ')'
+                        |       '(' (declaracionEspecial)? (tipoVariable | ID) ')'
+                        |       declaracionOperacion ('.' declaracionOperacion)+
+                        |       ID '<-' (declaracionEspecial)? ID ('.' ID '(' (STRING | NUM) ')')*
+                        |       'if' declaracionOperacion 'then' declaracionOperacion 'else' '{' (declaracionOperacion)* '}' 'fi'
+                        |       'while' '(' ID declaracionOperacion ')' 'loop' '{' (declaracionOperacion)* '}'
                         ;
 
 tipoVariable    :       'Int'
                 |       'String'
                 |       'SELF_TYPE'
                 |       'Object'
+                |       'self'
+                |       'Bool'
                 ;
+
+declaracionEspecial     :       'new'
+                        |       'isvoid'
+                        ;

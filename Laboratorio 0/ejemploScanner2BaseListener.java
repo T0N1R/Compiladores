@@ -130,6 +130,18 @@ public class ejemploScanner2BaseListener implements ejemploScanner2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTipoVariable(ejemploScanner2Parser.TipoVariableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracionEspecial(ejemploScanner2Parser.DeclaracionEspecialContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracionEspecial(ejemploScanner2Parser.DeclaracionEspecialContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

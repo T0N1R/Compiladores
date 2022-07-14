@@ -106,4 +106,14 @@ public interface ejemploScanner2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTipoVariable(ejemploScanner2Parser.TipoVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ejemploScanner2Parser#declaracionEspecial}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracionEspecial(ejemploScanner2Parser.DeclaracionEspecialContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ejemploScanner2Parser#declaracionEspecial}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracionEspecial(ejemploScanner2Parser.DeclaracionEspecialContext ctx);
 }
