@@ -1,0 +1,6 @@
+class Main inherits IO {
+  hoxpox : String ;
+  main(): Object {
+  {hoxpox <- "hola" ;}
+  };
+};
