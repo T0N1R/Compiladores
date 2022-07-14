@@ -7,6 +7,8 @@ fragment DIGIT: '0' .. '9';
 
 ID                  : LETTER (LETTER|DIGIT)*;
 NUM                 : DIGIT (DIGIT)*;
+STRING  :       '"' ('A'..'Z' | 'a' .. 'z' | ' ' | '0'..'9' | '.' | ',' | '\\')* '"' 
+        ;
 
 // \t = tab
 // \r = carriage  return
@@ -19,6 +21,7 @@ PARENTESIS      :       '('
                 |       ')'
                 ;
 
+
 start   :       (clase)*
         ;
 
@@ -29,16 +32,19 @@ clase   :       'class' ID  '{'  (contenidoClase)   '};'
         |       'class' ID 'inherits' (ID) '{'  (contenidoClase)   '};'
         ;
 
-declaracionMetodo       :       ID '():' tipoVariable '{' ID '};'
-                        |       ID '():' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
+declaracionMetodo       :       ID '(' ')' ':' tipoVariable '{' ID '};'
+                        |       ID '(' ')' ':' tipoVariable '{'  (declaracionOperacion)*  '};'
+                        |       ID '(' ')' ':' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
                         |       ID '(' ID ':' tipoVariable (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' '{' (declaracionOperacion)* '}' '};'
-                        |       '():'
+                        |       'main() :' tipoVariable '{'  (declaracionOperacion)*  '};'
+                        |       'main():' tipoVariable '{'  (declaracionOperacion)*  '};'
                         ;
 
 // cuando se aplica un metodo
 parametrosParaMetodo    :       '();'
                         |       '() ;'
-                        |       '(' (ID|NUM) (',' ID | ',' NUM)* ');'
+                        |       '(' (ID|NUM) (',' ID | ',' NUM)* ')'
+                        |       ID '(' STRING ')'
                         ;
 
 clases  :       'class' ID  '{'  (contenidoClase)   '};'
@@ -61,7 +67,7 @@ declaraciones   :       ID ':' tipoVariable ';'
                 ;
 
 // se realizan operaciones hacia un objeto
-declaracionOperacion    :       ID '<-'  '"' ID '"' ';'
+declaracionOperacion    :       ID '<-'  STRING ';'
                         |       ID '<-'  ID ';'
                         |       ID '<-' NUM ';'
                         |       ID '<-' '"";'
@@ -70,6 +76,8 @@ declaracionOperacion    :       ID '<-'  '"' ID '"' ';'
                         |       ID '.' ID '(' '"' (ID)? '"' ');'
                         |       ID '.' ID '(' (NUM)* ');'
                         |       ID '(' (ID '.' ID '(' (NUM)* ')')* ');'
+                        |       ID '(' STRING ')' (';')?
+                        |       ID '(' ('(' (ID)* ')' ('.' ID '()')* ')') ')' (';' | '.')?
                         ;
 
 tipoVariable    :       'Int'
