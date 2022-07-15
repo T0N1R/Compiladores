@@ -91,7 +91,7 @@ declaracionOperacion    :       ID '();'
                         |       ID '<-' NUM ';'
                         |       ID '<-' '"";'
                         |       ID '(' NUM ');'
-                        |       ID '<-' (STRING | NUM) operador (STRING | NUM)
+                        |       ID '<-' (STRING | NUM | ID) operador (STRING | NUM | ID) (operador (STRING | NUM | ID))* ';'
                         |       'abort();'
                         |       (NUM | ID) ';'
                         |       'self;'
