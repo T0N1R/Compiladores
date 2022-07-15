@@ -1,6 +1,6 @@
 grammar ejemploScanner2;
 
-fragment LETTER: ('A'..'Z' | 'a' .. 'z' | '_') ; 
+fragment LETTER: ('A'..'Z' | 'a' .. 'z' | '_' | '@' | '!' | '~') ; 
 
 fragment DIGIT: '0' .. '9';
 
@@ -39,6 +39,7 @@ clase   :       'class' ID  '{'  (contenidoClase)   '};'
         ;
 
 declaracionMetodo       :       ID '(' ')' ':' (tipoVariable | ID) '{' ID '};'
+                        |       '(' ID ID ':' tipoVariable ID '{' declaracionOperacion  '}' ')'
                         |       ID '(' ')' ':' (tipoVariable | ID) '{'  (declaracionOperacion)*  '};'
                         |       ID '(' ')' ':' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
                         |       ID '(' ID ':' (tipoVariable | ID) (',' ID ':' (tipoVariable | ID))* ')' ':' (tipoVariable | ID) '{' '{' (declaracionOperacion)* '}' '};'
@@ -68,6 +69,7 @@ definirVariables        :       ID ':' tipoVariable ';'
                         |       ID ':' ID ';'
                         |       ID ':' tipoVariable '<-' '"";'
                         |       ID ':' 'String' '<-'  '"' (ID) '"' ';'
+                        |       ID ':' tipoVariable '<-'  (STRING | NUM) ';'
                         ;
 
 // declaracion de variable ejemplo "hoxpox : Comic;" o "hoxpox : Int;"
@@ -83,14 +85,17 @@ declaracionOperacion    :       ID '();'
                         |       ID '(' ID ')'
                         |       ID '(' (STRING | NUM) ')' ';'
                         |       ID '(' (STRING | NUM) ')'
+                        |       ID '(' (STRING | NUM) operador (STRING | NUM) (')' | ');')
                         |       ID '<-'  STRING ';'
                         |       ID '<-'  ID ';'
                         |       ID '<-' NUM ';'
                         |       ID '<-' '"";'
                         |       ID '(' NUM ');'
+                        |       ID '<-' (STRING | NUM | ID) operador (STRING | NUM | ID) (operador (STRING | NUM | ID))* ';'
                         |       'abort();'
                         |       (NUM | ID) ';'
                         |       'self;'
+                        |       'self'
                         |       ID '<-' '(' declaracionEspecial (tipoVariable | ID) ');'
                         |       ID '.' ID '(' '"' (ID)? '"' ');'
                         |       ID '.' ID '(' (NUM)* ');'
@@ -106,7 +111,17 @@ declaracionOperacion    :       ID '();'
                         |       ID '<-' (declaracionEspecial)? ID ('.' ID '(' (STRING | NUM) ')')*
                         |       'if' declaracionOperacion 'then' declaracionOperacion 'else' '{' (declaracionOperacion)* '}' 'fi'
                         |       'while' '(' ID declaracionOperacion ')' 'loop' '{' (declaracionOperacion)* '}'
+                        |       'if' (ID | NUM) operador (ID | NUM) 'then' (declaracionOperacion | ID) 'else' declaracionOperacion ('fi')*
                         ;
+
+operador        :       '+'
+                |       '-'
+                |       '*'
+                |       '/'
+                |       '<='
+                |       '<'
+                |       '>'
+                ;
 
 tipoVariable    :       'Int'
                 |       'String'
