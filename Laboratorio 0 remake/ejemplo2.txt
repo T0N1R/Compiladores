@@ -1,0 +1,3 @@
+class Sally inherits Silly {
+    id : TipoAlgo <- 5;
+};
