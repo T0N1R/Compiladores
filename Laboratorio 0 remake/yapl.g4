@@ -1,7 +1,7 @@
 grammar yapl;
 
 // cualquier letra mayuscula o minuscula
-fragment LETRA: ('A'..'Z' | 'a'..'z');
+fragment LETRA: ('A'..'Z' | 'a'..'z' | '_');
 
 // Letra mayuscula
 fragment MAYUSCULA: 'A'..'Z';
@@ -9,7 +9,6 @@ fragment MAYUSCULA: 'A'..'Z';
 fragment MINUSCULA: 'a'..'z';
 
 fragment DIGIT: '0' .. '9';
-
 
 ID                  : LETRA (LETRA|DIGIT)*;
 MINID               : MINUSCULA (LETRA|DIGIT)*;
@@ -19,7 +18,7 @@ NUM                 : DIGIT (DIGIT)*;
 // tipo con mayuscula
 tipoVariable    :   ID
                 |   'SELF_TYPE'
-        ;
+                ;
 
 STRING  :       '"' (ID | ' ' | NUM | '.' | ',' | '\\' | '\n')* '"' 
         ;
@@ -87,17 +86,24 @@ declararAtributo    :   nombreAtributo ':' tipoVariable ';'
                     ;
 
 inicializar     :       'new' tipoVariable
+                |       'isvoid' self
                 ;
 
-
-
-metodo  :       nombreAtributo asignacion metodo
+metodo  :       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable '{' metodo '};'
+        |       '{' metodo '}'
+        |       metodo asignacion metodo
+        |       nombreAtributo asignacion metodo
         |       nombreAtributo operacion metodo (';')?
         |       metodo operacion metodo
         |       metodo operacion (nombreAtributo | STRING | NUM) (';')?
         |       nombreAtributo operacion nombreAtributo (';')?
         |       nombreAtributo ';'
-        |       nombreAtributo '.' nombreMetodo '(' (STRING | NUM | ID | inicializar)* (',' (STRING | NUM | ID | inicializar))* ')' (';')?
+        |       nombreMetodo '(' (STRING | NUM | ID | inicializar | metodo)* (',' (STRING | NUM | ID | inicializar | metodo))* ')' (';')?
+        |       nombreMetodo '(' (ID ':' tipoVariable)* (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (metodo)* '}' (';')?
+        |       nombreMetodo '(' (ID ':' tipoVariable)* (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (metodo)* '};'
+        |       '(' inicializar ')'
+        |       metodo '@' metodo
+        |       (nombreMetodo | tipoVariable) '.' nombreMetodo '(' (STRING | NUM | ID | inicializar | metodo)* (',' (STRING | NUM | ID | inicializar | metodo))* ')' (';')?
         |       '(' inicializar ')' '.' nombreMetodo '(' (STRING | NUM | ID | inicializar)* (',' (STRING | NUM | ID | inicializar))* ')' (';')?
         ;
 

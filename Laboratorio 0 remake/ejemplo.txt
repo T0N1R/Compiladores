@@ -22,6 +22,7 @@ class Main inherits IO {
 
   (new Cons).init(1, new List)
 
+  (isvoid self).type_name()
 
 
 };
