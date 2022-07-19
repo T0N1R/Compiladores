@@ -7,5 +7,6 @@ class Sally inherits Silly {
 
   main("hola");
 
-  avar <- (new C)@B.method5("hola");
+  avar <- (new C).method5("hola");
+  out_string(metodo(2));
 };

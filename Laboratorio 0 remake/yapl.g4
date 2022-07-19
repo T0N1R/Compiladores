@@ -89,12 +89,17 @@ inicializar     :       'new' tipoVariable
                 |       'isvoid' self
                 ;
 
-metodo  :       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable '{' metodo '};'
+metodo  :       nombreMetodo '(' metodo ')' ';'
+        |       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable '{' metodo '};'
         |       '{' metodo '}'
+        |       '(' metodo ')' (';')?
         |       metodo asignacion metodo
         |       nombreAtributo asignacion metodo
         |       nombreAtributo operacion metodo (';')?
         |       metodo operacion metodo
+        |       metodo '<' metodo (';')?
+        |       metodo '>' metodo (';')?
+        |       metodo '=' metodo (';')?
         |       metodo operacion (nombreAtributo | STRING | NUM) (';')?
         |       nombreAtributo operacion nombreAtributo (';')?
         |       nombreAtributo ';'
@@ -104,6 +109,7 @@ metodo  :       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreA
         |       '(' inicializar ')'
         |       metodo '@' metodo
         |       (nombreMetodo | tipoVariable) '.' nombreMetodo '(' (STRING | NUM | ID | inicializar | metodo)* (',' (STRING | NUM | ID | inicializar | metodo))* ')' (';')?
+        |       '(' inicializar ')' '.' metodo
         |       '(' inicializar ')' '.' nombreMetodo '(' (STRING | NUM | ID | inicializar)* (',' (STRING | NUM | ID | inicializar))* ')' (';')?
         ;
 
