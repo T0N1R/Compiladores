@@ -93,6 +93,7 @@ metodo  :       nombreMetodo '(' metodo ')' ('.' metodo)* ';'
         |       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable ('{' (metodo)* '};' | '{' '{' (metodo)* '}' '};')
         |       '{' metodo '}'
         |       '(' metodo ')' (';')?
+        |       'let' ID ':' tipoVariable 'in' ( (metodo)* | '{' (metodo)* '}')
         |       metodo asignacion metodo
         |       nombreAtributo asignacion metodo
         |       nombreAtributo operacion metodo (';')?
