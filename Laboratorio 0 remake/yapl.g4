@@ -20,7 +20,7 @@ tipoVariable    :   ID
                 |   'SELF_TYPE'
                 ;
 
-STRING  :       '"' (ID | ' ' | NUM | '.' | ',' | '\\' | '\n')* '"' 
+STRING  :       '"' (ID | ' ' | NUM | '.' | ',' | '\\' | '\n' | '!' | APOSTROPHE)* '"' 
         ;
 
 // \t = tab
@@ -81,29 +81,32 @@ declararAtributo    :   nombreAtributo ':' tipoVariable ';'
                     |   self (';')?
                     |   nombreAtributo ':' tipoVariable asignacion (nombreAtributo | STRING | NUM) ';'
                     |   nombreAtributo ':' tipoVariable '{' (nombreAtributo) '}' ';'
-                    |   nombreAtributo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable '{' (declararAtributo | metodo)* '}' (';')?
-                    |   nombreAtributo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable '{' (declararAtributo | metodo)* '};'
                     ;
 
 inicializar     :       'new' tipoVariable
                 |       'isvoid' self
                 ;
 
-metodo  :       nombreMetodo '(' metodo ')' ('.' metodo)* ';'
-        |       nombreMetodo '(' (nombreAtributo ':' tipoVariable)* (',' nombreAtributo ':' tipoVariable)* ')' ':' tipoVariable ('{' (metodo)* '};' | '{' '{' (metodo)* '}' '};')
+metodo  :       nombreMetodo '(' metodo ')' ('.' metodo)* (';')?
+        |       nombreMetodo '(' (ID ':' tipoVariable)* (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (declararAtributo | metodo | ID)* '}' (';')?
+        |       nombreMetodo '(' (ID ':' tipoVariable)* (',' ID ':' tipoVariable)* ')' ':' tipoVariable '{' (declararAtributo | metodo | ID)* '};'
+        |       self
+        |       nombreMetodo '(' (ID ':' tipoVariable)* (',' ID ':' tipoVariable)* ')' ':' tipoVariable ('{' (metodo)* '};' | '{' '{' (metodo)* '}' '};')
         |       '{' metodo '}'
         |       '(' metodo ')' (';')?
-        |       'let' ID ':' tipoVariable 'in' ( (metodo)* | '{' (metodo)* '}')
-        |       metodo asignacion metodo
-        |       nombreAtributo asignacion metodo
+        |       'let' ID ':' tipoVariable 'in' ( (metodo)* | '{' (metodo)* '}' | '(' (metodo)* ')' )
+        |       'let' ID ':' tipoVariable '<-' (NUM | STRING) 'in' ( (metodo)* | '{' (metodo)* '}' | '(' (metodo)* ')' )
+        |       metodo asignacion metodo (';')?
+        |       nombreAtributo asignacion metodo (';')?
         |       nombreAtributo operacion metodo (';')?
-        |       metodo operacion metodo
-        |       metodo '<' metodo (';')?
-        |       metodo '>' metodo (';')?
-        |       metodo '=' metodo (';')?
+        |       metodo operacion metodo (';')?
+        |       '~' (nombreMetodo | metodo) (';')?
+        |       ID '<' (metodo | NUM | ID) (';')?
+        |       ID '>' (metodo | NUM | ID) (';')?
+        |       ID '=' (metodo | NUM | ID) (';')?
         |       'not' metodo (';')?
-        |       'if' metodo 'then' metodo 'else' metodo 'fi' (';')?
-        |       'while' metodo 'loop' metodo 'pool' (';')?
+        |       'if' (metodo)* 'then' (metodo)* 'else' (metodo)* 'fi' (';')?
+        |       'while' (metodo)* 'loop' (metodo)* 'pool' (';')?
         |       metodo operacion (nombreAtributo | STRING | NUM) (';')?
         |       nombreAtributo operacion nombreAtributo (';')?
         |       nombreAtributo ';'
