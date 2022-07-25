@@ -1,0 +1,12 @@
+class Sally inherits Silly {
+    id : TipoAlgo <- 5;
+
+    (new Cons).init(1, new List)
+
+  (isvoid self).type_name()
+
+  main("hola");
+
+  avar <- (new C).method5("hola");
+  out_string(metodo(2));
+};
