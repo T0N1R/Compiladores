@@ -1,6 +1,6 @@
 class Main inherits IO {
-  
-  a : Int;
+  b <- a ;
+  a : Bling;
   b : Int;
   c : Int;
   
