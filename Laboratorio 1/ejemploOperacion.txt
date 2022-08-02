@@ -1,15 +1,7 @@
 class Main inherits IO {
-  b <- a ;
-  a : Bling;
+  a : Int;
   b : Int;
-  c : Int;
-  
-  main(): Object {
-    {
-      b <- 1 ;
-      c <- 2 ;
-      a <- 0 ;
-      a <- a + b * c ;
-    }
-  };
+  c : Ble;
+  d : Int;
+
 };
