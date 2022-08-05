@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by Proy1Parser.
 class Proy1Listener(ParseTreeListener):
 
+    # Enter a parse tree produced by Proy1Parser#tipoVariable.
+    def enterTipoVariable(self, ctx:Proy1Parser.TipoVariableContext):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#tipoVariable.
+    def exitTipoVariable(self, ctx:Proy1Parser.TipoVariableContext):
+        pass
+
+
     # Enter a parse tree produced by Proy1Parser#start.
     def enterStart(self, ctx:Proy1Parser.StartContext):
         pass
@@ -23,15 +32,6 @@ class Proy1Listener(ParseTreeListener):
 
     # Exit a parse tree produced by Proy1Parser#test_main.
     def exitTest_main(self, ctx:Proy1Parser.Test_mainContext):
-        pass
-
-
-    # Enter a parse tree produced by Proy1Parser#tipoVariable.
-    def enterTipoVariable(self, ctx:Proy1Parser.TipoVariableContext):
-        pass
-
-    # Exit a parse tree produced by Proy1Parser#tipoVariable.
-    def exitTipoVariable(self, ctx:Proy1Parser.TipoVariableContext):
         pass
 
 
@@ -68,6 +68,15 @@ class Proy1Listener(ParseTreeListener):
 
     # Exit a parse tree produced by Proy1Parser#punto.
     def exitPunto(self, ctx:Proy1Parser.PuntoContext):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#semicolon.
+    def enterSemicolon(self, ctx:Proy1Parser.SemicolonContext):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#semicolon.
+    def exitSemicolon(self, ctx:Proy1Parser.SemicolonContext):
         pass
 
 
@@ -116,15 +125,6 @@ class Proy1Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Proy1Parser#tipo_correcto_2.
-    def enterTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
-        pass
-
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_2.
-    def exitTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
-        pass
-
-
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_3.
     def enterTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
         pass
@@ -167,6 +167,15 @@ class Proy1Listener(ParseTreeListener):
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_7.
     def exitTipo_correcto_7(self, ctx:Proy1Parser.Tipo_correcto_7Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_8.
+    def enterTipo_correcto_8(self, ctx:Proy1Parser.Tipo_correcto_8Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_8.
+    def exitTipo_correcto_8(self, ctx:Proy1Parser.Tipo_correcto_8Context):
         pass
 
 
