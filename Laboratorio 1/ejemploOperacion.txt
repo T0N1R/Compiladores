@@ -1,7 +1,19 @@
 class Main inherits IO {
+  
   a : Int;
   b : Int;
-  c : Ble;
-  d : Int;
-
+  c : Int;
+  d : String;
+  e : Bool;
+  
+  main(): Object {
+    {
+      b <- 1 ;
+      c <- 2 ;
+      a <- 0 ;
+      d <- "hola";
+      a <- b;
+      e <- true;
+    }
+  };
 };

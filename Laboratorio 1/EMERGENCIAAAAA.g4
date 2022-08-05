@@ -1,23 +1,12 @@
 grammar Proy1;
 
-// cualquier letra mayuscula o minuscula
 fragment LETRA: ('A'..'Z' | 'a'..'z' | '_');
 
 fragment DIGIT: '0' .. '9';
 
 ID  :   LETRA (LETRA|DIGIT)*;
 NUM :   DIGIT (DIGIT)*;
-
-tipoVariable    :   ID
-                |   'SELF_TYPE'
-                ;
-
-STRING  :       '"' (ID | ' ' | NUM | '.' | ',' | '\\' | '\n' | '!' | APOSTROPHE)* '"' 
-        ;
-
-// \t = tab
-// \r = carriage  return
-// \n = newline
+CHAR    :   LETRA;
 DELIMITER       :       [ \t\r\n]+ -> skip;
 QUOTES          :       '"';
 APOSTROPHE      :       '\'';
@@ -32,11 +21,18 @@ COMENTARIO      :       '(*' (ID | NUM | '?' | '=' | '/' | '<' | '>' | '*' | '-'
 LCOMENTARIO     :       '--' (ID | NUM | '?' | '=' | '/' | '<' | '>' | '*' | '-' | '.' | ',' | ':' | '(' | ')' | APOSTROPHE | STRING | ' ' | '\\n' | ' * ' | ';' )* -> skip
                 ;
 
+STRING  :       '"' (ID | ' ' | NUM | '.' | ',' | '\\' | '\n' | '!' | APOSTROPHE)* '"' 
+        ;
+
 start   :       (clase)*
         ;
 
 clase   :       'class' ID ('inherits' tipoVariable)? '{' feature_clases '};' # test_main
         ;
+
+tipoVariable    :   ID
+                |   'SELF_TYPE'
+                ;
 
 feature_clases  :   (declararAtributo | metodo)*
                 ;
@@ -69,12 +65,12 @@ operacion       :       '+'
                 |       '<='
                 ;
 
-expr    :   ID 
-        |   STRING 
+expr    :   ID
+        |   STRING
         |   declararAtributo
         |   metodo
-        |   bool 
-        |   NUM
+        |   bool (';')?
+        |   NUM 
         |   self
         ;
 
@@ -82,13 +78,13 @@ inicializar     :       'new' tipoVariable
                 |       'isvoid' self
                 ;
 
-declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (';')?       #tipo_correcto_1
-                    |   ID '<-' inicializar (punto metodo)* (';')?    #tipo_correcto_3
-                    |   ID '<-' metodo (operacion metodo)* (';')?     #tipo_correcto_4
-                    |   ID '<-' ID (operacion metodo)* (semicolon)?   #tipo_correcto_5
-                    |   ID '<-' expr (semicolon)?                     #tipo_correcto_6
-                    |   ID '<-' '{' expr '};'                         #tipo_correcto_7
-                    |   self                                          #tipo_correcto_8
+declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (';')?         #tipo_correcto_1
+                    |   ID '<-' ID (';')?                               #tipo_correcto_2
+                    |   ID '<-' inicializar (punto metodo)* (';')?      #tipo_correcto_3
+                    |   ID '<-' ID (operacion metodo)* (';')?           #tipo_correcto_4
+                    |   ID '<-' expr (semicolon)?                       #tipo_correcto_5
+                    |   ID '<-' '{' expr '};'                           #tipo_correcto_6
+                    |   self                                            #tipo_correcto_7
                     ;
 
 metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':' tipoVariable '{' ('{')?  (expr)*  ('}')? ('}' | '};')

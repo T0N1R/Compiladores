@@ -19,3 +19,13 @@ class TablaSimbolos():
                 return True
             
         return False
+    
+    def obtener_objeto(self, id):
+        for d in self._simbolos:
+            if id == d['id']:
+                return d
+            
+    def editar_valor_en_tabla(self, id_object, valor):
+        for d in self._simbolos:
+            if id_object == d['id']:
+                d['valor'] = valor

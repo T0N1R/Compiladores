@@ -1,4 +1,4 @@
-// Generated from newYapl.g4 by ANTLR 4.10.1
+// Generated from Proy1.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class newYaplParser extends Parser {
+public class Proy1Parser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.10.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -90,7 +90,7 @@ public class newYaplParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "newYapl.g4"; }
+	public String getGrammarFileName() { return "Proy1.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -101,24 +101,24 @@ public class newYaplParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public newYaplParser(TokenStream input) {
+	public Proy1Parser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	public static class TipoVariableContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(newYaplParser.ID, 0); }
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
 		public TipoVariableContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_tipoVariable; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterTipoVariable(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipoVariable(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitTipoVariable(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipoVariable(this);
 		}
 	}
 
@@ -165,11 +165,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_start; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterStart(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterStart(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitStart(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitStart(this);
 		}
 	}
 
@@ -208,24 +208,32 @@ public class newYaplParser extends Parser {
 	}
 
 	public static class ClaseContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(newYaplParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(newYaplParser.ID, i);
-		}
-		public Feature_clasesContext feature_clases() {
-			return getRuleContext(Feature_clasesContext.class,0);
-		}
 		public ClaseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_clase; }
+	 
+		public ClaseContext() { }
+		public void copyFrom(ClaseContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class Test_mainContext extends ClaseContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public Feature_clasesContext feature_clases() {
+			return getRuleContext(Feature_clasesContext.class,0);
+		}
+		public TipoVariableContext tipoVariable() {
+			return getRuleContext(TipoVariableContext.class,0);
+		}
+		public Test_mainContext(ClaseContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterClase(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTest_main(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitClase(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTest_main(this);
 		}
 	}
 
@@ -234,6 +242,7 @@ public class newYaplParser extends Parser {
 		enterRule(_localctx, 4, RULE_clase);
 		int _la;
 		try {
+			_localctx = new Test_mainContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(34);
@@ -248,7 +257,7 @@ public class newYaplParser extends Parser {
 				setState(36);
 				match(T__2);
 				setState(37);
-				match(ID);
+				tipoVariable();
 				}
 			}
 
@@ -290,11 +299,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_feature_clases; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterFeature_clases(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterFeature_clases(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitFeature_clases(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitFeature_clases(this);
 		}
 	}
 
@@ -351,11 +360,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_bool; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterBool(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterBool(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitBool(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitBool(this);
 		}
 	}
 
@@ -396,11 +405,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_coma; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterComa(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterComa(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitComa(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitComa(this);
 		}
 	}
 
@@ -432,11 +441,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_punto; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterPunto(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterPunto(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitPunto(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitPunto(this);
 		}
 	}
 
@@ -468,11 +477,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_self; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterSelf(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterSelf(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitSelf(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitSelf(this);
 		}
 	}
 
@@ -514,11 +523,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_operacion; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterOperacion(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterOperacion(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitOperacion(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitOperacion(this);
 		}
 	}
 
@@ -553,8 +562,8 @@ public class newYaplParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
-		public TerminalNode ID() { return getToken(newYaplParser.ID, 0); }
-		public TerminalNode STRING() { return getToken(newYaplParser.STRING, 0); }
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public TerminalNode STRING() { return getToken(Proy1Parser.STRING, 0); }
 		public DeclararAtributoContext declararAtributo() {
 			return getRuleContext(DeclararAtributoContext.class,0);
 		}
@@ -564,7 +573,7 @@ public class newYaplParser extends Parser {
 		public BoolContext bool() {
 			return getRuleContext(BoolContext.class,0);
 		}
-		public TerminalNode NUM() { return getToken(newYaplParser.NUM, 0); }
+		public TerminalNode NUM() { return getToken(Proy1Parser.NUM, 0); }
 		public SelfContext self() {
 			return getRuleContext(SelfContext.class,0);
 		}
@@ -574,11 +583,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_expr; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterExpr(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterExpr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitExpr(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitExpr(this);
 		}
 	}
 
@@ -721,11 +730,11 @@ public class newYaplParser extends Parser {
 		@Override public int getRuleIndex() { return RULE_inicializar; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterInicializar(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterInicializar(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitInicializar(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitInicializar(this);
 		}
 	}
 
@@ -770,16 +779,71 @@ public class newYaplParser extends Parser {
 	}
 
 	public static class DeclararAtributoContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(newYaplParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(newYaplParser.ID, i);
+		public DeclararAtributoContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
 		}
-		public TipoVariableContext tipoVariable() {
-			return getRuleContext(TipoVariableContext.class,0);
+		@Override public int getRuleIndex() { return RULE_declararAtributo; }
+	 
+		public DeclararAtributoContext() { }
+		public void copyFrom(DeclararAtributoContext ctx) {
+			super.copyFrom(ctx);
 		}
+	}
+	public static class Tipo_correcto_8Context extends DeclararAtributoContext {
+		public SelfContext self() {
+			return getRuleContext(SelfContext.class,0);
+		}
+		public Tipo_correcto_8Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_8(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_8(this);
+		}
+	}
+	public static class Tipo_correcto_7Context extends DeclararAtributoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
+		public Tipo_correcto_7Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_7(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_7(this);
+		}
+	}
+	public static class Tipo_correcto_4Context extends DeclararAtributoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public List<MetodoContext> metodo() {
+			return getRuleContexts(MetodoContext.class);
+		}
+		public MetodoContext metodo(int i) {
+			return getRuleContext(MetodoContext.class,i);
+		}
+		public List<OperacionContext> operacion() {
+			return getRuleContexts(OperacionContext.class);
+		}
+		public OperacionContext operacion(int i) {
+			return getRuleContext(OperacionContext.class,i);
+		}
+		public Tipo_correcto_4Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_4(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_4(this);
+		}
+	}
+	public static class Tipo_correcto_3Context extends DeclararAtributoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
 		public InicializarContext inicializar() {
 			return getRuleContext(InicializarContext.class,0);
 		}
@@ -795,26 +859,89 @@ public class newYaplParser extends Parser {
 		public MetodoContext metodo(int i) {
 			return getRuleContext(MetodoContext.class,i);
 		}
+		public Tipo_correcto_3Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_3(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_3(this);
+		}
+	}
+	public static class Tipo_correcto_6Context extends DeclararAtributoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Tipo_correcto_6Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_6(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_6(this);
+		}
+	}
+	public static class Tipo_correcto_5Context extends DeclararAtributoContext {
+		public List<TerminalNode> ID() { return getTokens(Proy1Parser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(Proy1Parser.ID, i);
+		}
 		public List<OperacionContext> operacion() {
 			return getRuleContexts(OperacionContext.class);
 		}
 		public OperacionContext operacion(int i) {
 			return getRuleContext(OperacionContext.class,i);
 		}
-		public SelfContext self() {
-			return getRuleContext(SelfContext.class,0);
+		public List<MetodoContext> metodo() {
+			return getRuleContexts(MetodoContext.class);
 		}
-		public DeclararAtributoContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
+		public MetodoContext metodo(int i) {
+			return getRuleContext(MetodoContext.class,i);
 		}
-		@Override public int getRuleIndex() { return RULE_declararAtributo; }
+		public Tipo_correcto_5Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterDeclararAtributo(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_5(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitDeclararAtributo(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_5(this);
+		}
+	}
+	public static class Tipo_correcto_2Context extends DeclararAtributoContext {
+		public List<TerminalNode> ID() { return getTokens(Proy1Parser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(Proy1Parser.ID, i);
+		}
+		public Tipo_correcto_2Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_2(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_2(this);
+		}
+	}
+	public static class Tipo_correcto_1Context extends DeclararAtributoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public TipoVariableContext tipoVariable() {
+			return getRuleContext(TipoVariableContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Tipo_correcto_1Context(DeclararAtributoContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterTipo_correcto_1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitTipo_correcto_1(this);
 		}
 	}
 
@@ -828,6 +955,7 @@ public class newYaplParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,22,_ctx) ) {
 			case 1:
+				_localctx = new Tipo_correcto_1Context(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(94);
@@ -861,6 +989,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new Tipo_correcto_2Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(104);
@@ -882,6 +1011,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new Tipo_correcto_3Context(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(110);
@@ -921,6 +1051,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 4:
+				_localctx = new Tipo_correcto_4Context(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(124);
@@ -960,6 +1091,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 5:
+				_localctx = new Tipo_correcto_5Context(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(138);
@@ -999,6 +1131,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 6:
+				_localctx = new Tipo_correcto_6Context(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(152);
@@ -1020,6 +1153,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 7:
+				_localctx = new Tipo_correcto_7Context(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(158);
@@ -1035,6 +1169,7 @@ public class newYaplParser extends Parser {
 				}
 				break;
 			case 8:
+				_localctx = new Tipo_correcto_8Context(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(164);
@@ -1055,9 +1190,9 @@ public class newYaplParser extends Parser {
 	}
 
 	public static class MetodoContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(newYaplParser.ID); }
+		public List<TerminalNode> ID() { return getTokens(Proy1Parser.ID); }
 		public TerminalNode ID(int i) {
-			return getToken(newYaplParser.ID, i);
+			return getToken(Proy1Parser.ID, i);
 		}
 		public List<TipoVariableContext> tipoVariable() {
 			return getRuleContexts(TipoVariableContext.class);
@@ -1092,25 +1227,25 @@ public class newYaplParser extends Parser {
 		public InicializarContext inicializar() {
 			return getRuleContext(InicializarContext.class,0);
 		}
-		public TerminalNode STRING() { return getToken(newYaplParser.STRING, 0); }
+		public TerminalNode STRING() { return getToken(Proy1Parser.STRING, 0); }
 		public List<OperacionContext> operacion() {
 			return getRuleContexts(OperacionContext.class);
 		}
 		public OperacionContext operacion(int i) {
 			return getRuleContext(OperacionContext.class,i);
 		}
-		public TerminalNode NUM() { return getToken(newYaplParser.NUM, 0); }
+		public TerminalNode NUM() { return getToken(Proy1Parser.NUM, 0); }
 		public MetodoContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_metodo; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).enterMetodo(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).enterMetodo(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof newYaplListener ) ((newYaplListener)listener).exitMetodo(this);
+			if ( listener instanceof Proy1Listener ) ((Proy1Listener)listener).exitMetodo(this);
 		}
 	}
 
@@ -2152,9 +2287,9 @@ public class newYaplParser extends Parser {
 		"\u0002\u0000\u001d\u001c\u0001\u0000\u0000\u0000\u001e!\u0001\u0000\u0000"+
 		"\u0000\u001f\u001d\u0001\u0000\u0000\u0000\u001f \u0001\u0000\u0000\u0000"+
 		" \u0003\u0001\u0000\u0000\u0000!\u001f\u0001\u0000\u0000\u0000\"#\u0005"+
-		"\u0002\u0000\u0000#&\u0005(\u0000\u0000$%\u0005\u0003\u0000\u0000%\'\u0005"+
-		"(\u0000\u0000&$\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000\'("+
-		"\u0001\u0000\u0000\u0000()\u0005\u0004\u0000\u0000)*\u0003\u0006\u0003"+
+		"\u0002\u0000\u0000#&\u0005(\u0000\u0000$%\u0005\u0003\u0000\u0000%\'\u0003"+
+		"\u0000\u0000\u0000&$\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000"+
+		"\'(\u0001\u0000\u0000\u0000()\u0005\u0004\u0000\u0000)*\u0003\u0006\u0003"+
 		"\u0000*+\u0005\u0005\u0000\u0000+\u0005\u0001\u0000\u0000\u0000,/\u0003"+
 		"\u0016\u000b\u0000-/\u0003\u0018\f\u0000.,\u0001\u0000\u0000\u0000.-\u0001"+
 		"\u0000\u0000\u0000/2\u0001\u0000\u0000\u00000.\u0001\u0000\u0000\u0000"+

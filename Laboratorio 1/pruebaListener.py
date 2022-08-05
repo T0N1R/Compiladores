@@ -6,6 +6,7 @@ from Proy1Lexer import Proy1Lexer
 from Proy1Parser import Proy1Parser
 from Proy1Listener import Proy1Listener
 from TablaSimbolos import TablaSimbolos
+from funcionesVerificacion import *
 
 class MyListener(Proy1Listener):
     
@@ -26,7 +27,8 @@ class MyListener(Proy1Listener):
                 print("correcto")
             else:
                 print("Clase Main no puede heredar de esta clase (las clases básicas son Int, String, Bool, IO)")
-             
+            
+            
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
     def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
         print("correcto 1")
@@ -60,41 +62,93 @@ class MyListener(Proy1Listener):
             
         print('---------------------------------------')
 
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
-    def exitTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
-        print("correcto 2")
-        
-        id = ctx.ID()
-        
-        if self._tabla_simbolos.id_en_tabla(id[0].getText()):
-            print("Tabla ya está en tabla de simbolos")
-        else:
-            print("Nuevo id para la tabla")
-            self._tabla_simbolos.agregar_simbolo('tipoAlgo', id[0].getText(), None, None, None, id[1].getText())
-            print(self._tabla_simbolos._simbolos)
-            print("SE AGREGO A LA TABLA")
-        print('---------------------------------------')
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_3.
     def exitTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
         print("correcto 3")
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_4.
     def exitTipo_correcto_4(self, ctx:Proy1Parser.Tipo_correcto_4Context):
         print("correcto 4")
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_5.
     def exitTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
         print("correcto 5")
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+        
+        """if self._tabla_simbolos.id_en_tabla(expr):
+                print("esta en tabla de simbolos, obtener su valor")
+                
+                expr_object = self._tabla_simbolos.obtener_objeto(expr)
+                
+                if id_object['tipo'] == expr_object['tipo']:
+                    print("Valido, ambos tienen el mismo tipo")
+                    
+                else:
+                    print('No Valido, tienen tipos distintos')
+            
+            else:
+                #Verificar que se asigna un Int a una variable Int
+                if check_int(expr):
+                    print("el valor es Int")
+                else:
+                    print("el valor no es Int")"""
+                    
+        print('---------------------------------------')
+        
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_6.
     def exitTipo_correcto_6(self, ctx:Proy1Parser.Tipo_correcto_6Context):
         print("correcto 6")
-    
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+        
+        id = ctx.ID().getText()
+        
+        expr = ctx.expr().getText()
+        
+        print(id, expr)
+        
+        # verificar si la variable ya fue inicializada
+        if self._tabla_simbolos.id_en_tabla(id):
+            
+            id_object = self._tabla_simbolos.obtener_objeto(id)
+            
+            #Verificar que se asigna un Int a una variable String
+            if '"' in expr and id_object['tipo'] == 'String':
+                print("el valor es String")
+                self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
+            
+            #Verificar que se asigna un Int a una variable Int
+            if check_int(expr) and id_object['tipo'] == 'Int':
+                print("el valor es Int")
+                self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
+                
+            if expr in ['true', 'false'] and id_object['tipo'] == 'Bool':
+                print("el valor es Bool")
+                self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
+            
+            
+                
+        else:
+            print("variable no ha sido definida")
+            
+        for x in self._tabla_simbolos._simbolos:
+            print(x)
+            
+        print('---------------------------------------')
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_7.
     def exitTipo_correcto_7(self, ctx:Proy1Parser.Tipo_correcto_7Context):
         print("correcto 7")
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_8.
+    def exitTipo_correcto_8(self, ctx:Proy1Parser.Tipo_correcto_8Context):
+        print("correcto 8")
+        
+
         
 class ErrorHandler(ErrorListener):
     def __init__(self):

@@ -3,6 +3,7 @@ class Main inherits IO {
   a : Int;
   b : Int;
   c : Int;
+  d : String;
   
   main(): Object {
     {
@@ -10,6 +11,7 @@ class Main inherits IO {
       c <- 2 ;
       a <- 0 ;
       a <- a + b * c ;
+      d <- "s";
     }
   };
 };
