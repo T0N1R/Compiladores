@@ -8,26 +8,45 @@ from Proy1Listener import Proy1Listener
 from TablaSimbolos import TablaSimbolos
 from funcionesVerificacion import *
 
+from tkinter import *
+from tkinter import filedialog
+from tkinter import font
 class MyListener(Proy1Listener):
     
     def __init__(self):
         self._tabla_simbolos = TablaSimbolos()
+        
+        self._tabla_simbolos.agregar_simbolo("Int", "Int", None, None, None, None, None)
+        self._tabla_simbolos.agregar_simbolo("String", "String", None, None, None, None, None)
+        self._tabla_simbolos.agregar_simbolo("Bool", "Bool", None, None, None, None, None)
     
-    def exitTest_main(self, ctx):
+    def enterTest_main(self, ctx):
         print("entre test main")
         class_name = ctx.ID().getText()
         print(class_name)
         
-        inhty = ctx.tipoVariable().getText()
+        inhty = "vacio"
+        if ctx.tipoVariable():
+            inhty = ctx.tipoVariable().getText()
+        
+            print(f"inherits: {inhty}")
             
         allowed_for_main = ["Int", "String", "Bool", "IO"]
         
         if class_name == "Main":
             if inhty in allowed_for_main:
-                print("correcto")
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, inhty)
+                self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             else:
                 print("Clase Main no puede heredar de esta clase (las clases básicas son Int, String, Bool, IO)")
             
+        else:
+            if inhty == "vacio":
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, None)
+                self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
+            else:
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, inhty)
+                self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
     def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
@@ -50,9 +69,21 @@ class MyListener(Proy1Listener):
         # si no ha sido inicializada, se verifica el tipo de variable y se agrega a la tabla de simbolos
         else:
             if asigned_type in allowed_types:
-                print("tipo de variable correcto")
-                self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, None)
-                print("SE AGREGO A LA TABLA")
+                
+                clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+                
+                if asigned_type == 'String':
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, "", clase_padre['id'])
+                    print("SE AGREGO A LA TABLA")
+                    
+                if asigned_type == 'Int':
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, 0, clase_padre['id'])
+                    print("SE AGREGO A LA TABLA")
+                    
+                if asigned_type == 'Bool':
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, False, clase_padre['id'])
+                    print("SE AGREGO A LA TABLA")
+                
                 for x in self._tabla_simbolos._simbolos:
                     print(x)
             
@@ -124,6 +155,25 @@ class MyListener(Proy1Listener):
                 print("el valor es Int")
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
                 
+            # Verificar que se asigna un Int 0 o 1 para una variable Bool
+            if check_int(expr) and id_object['tipo'] == 'Bool':
+                print("usando Int para definir un Bool")
+                if expr == "1":
+                    self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 'true')
+                
+                if expr == "0":
+                    self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 'false')
+                    
+            # Verificar que se asigna true/false para una variable Int
+            if expr in ['true', 'false'] and id_object['tipo'] == 'Int':
+                print("el valor es Bool")
+                if expr == "true":
+                    self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 1)
+                    
+                if expr == "false":
+                    self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 0)
+                
+            # Verificar que se asigna true/false a una variable Bool
             if expr in ['true', 'false'] and id_object['tipo'] == 'Bool':
                 print("el valor es Bool")
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
@@ -163,8 +213,34 @@ class ErrorHandler(ErrorListener):
 
     def tieneErrores(self):
         return self.errores
-                
-if __name__ == "__main__":
+    
+# COMANDO PARA EL TEXT EDITOR
+
+# borrar todo el texto que estaba
+def limpiar_editor():
+    my_text.delete("1.0", END)
+    
+# agregar el contenido de un .txt o un .g4
+def abrir_archivo():
+    # limpiar texto
+    my_text.delete("1.0", END)
+    text_file = filedialog.askopenfilename(initialdir="C:/Users/toni/Desktop/COMPIS/git/Compiladores/Laboratorio 1/", filetypes=(("Text Files", "*.txt"), ("G4 Files", "*.g4")))
+    
+    # abrir texto
+    text_file = open(text_file, 'r')
+    stuff = text_file.read()
+    
+    # agregar archivo a el editor de texto
+    my_text.insert(END, stuff)
+    
+    text_file.close()
+    
+def ejecutar():
+    
+    with open('ejecutar.txt', 'w') as f:
+        data = my_text.get("1.0", END)
+        f.write(data)
+        
     ### Carga inicial de archivo
     input = FileStream('ejemploOperacion.txt')
     lexer = Proy1Lexer(input)
@@ -187,5 +263,63 @@ if __name__ == "__main__":
         printerDecaf = MyListener()
         walker = ParseTreeWalker()
         walker.walk(printerDecaf, tree)
+    
+        
+    
+root = Tk()
+root.title('Text Editor')
+root.geometry("1200x660")
+
+my_frame = Frame(root)
+my_frame.pack(pady=5)
+
+text_scroll = Scrollbar(my_frame)
+text_scroll.pack(side=RIGHT, fill=Y)
+
+my_text = Text(my_frame, width=97, height=25, font=("Helvetica", 16), selectbackground="yellow", selectforeground="black", undo=True, yscrollcommand=text_scroll.set)
+my_text.pack()
+
+text_scroll.config(command=my_text.yview)
+
+my_menu = Menu(root)
+root.config(menu=my_menu)
+
+file_menu = Menu(my_menu)
+my_menu.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="New", command=limpiar_editor)
+file_menu.add_command(label="Open", command=abrir_archivo)
+file_menu.add_separator()
+file_menu.add_command(label="Execute", command=ejecutar)
+file_menu.add_separator()
+file_menu.add_command(label="Exit", command=root.quit)
+
+
+
+root.mainloop()
+
+                
+"""if __name__ == "__main__":
+    ### Carga inicial de archivo
+    input = FileStream('ejemploOperacion.txt')
+    lexer = Proy1Lexer(input)
+    stream = CommonTokenStream(lexer)
+    parser = Proy1Parser(stream)
+    ### Se define un handle de errores para manejarlo de mejor manera
+    errores = ErrorHandler()
+    parser.removeErrorListeners()
+    parser.addErrorListener(errores)
+    ### Se obtiene el arbol que genero el parser
+    tree = parser.start()
+    printerDecaf = None
+    tablesResumen = []
+
+    ### En caso no haya errores lexicos se procede con el
+    ### analisis semantico
+    if not errores.tieneErrores():
+        ### Se obtiene el printer y walker para poder hacer el
+        ### recorrido por el arbol
+        printerDecaf = MyListener()
+        walker = ParseTreeWalker()
+        walker.walk(printerDecaf, tree)"""
 
 

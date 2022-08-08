@@ -1,16 +1,19 @@
 class TablaSimbolos():
     def __init__(self):
         self._simbolos = []
+        # posicion en el array de simbolos de la clase donde estamos
+        self.current_class = 0
         self._offset = 0
     
-    def agregar_simbolo(self, tipo, id, size, offset, isParameter, valor):
+    def agregar_simbolo(self, tipo, id, size, offset, isParameter, valor, padre):
         self._simbolos.append({
             'tipo': tipo,
             'id': id,
             'size': size,
             'offset': offset,
             'isParameter': isParameter,
-            'valor': valor
+            'valor': valor,
+            'padre': padre
         })
         
     def id_en_tabla(self, id):
