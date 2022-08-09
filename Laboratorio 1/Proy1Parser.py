@@ -1378,18 +1378,21 @@ class Proy1Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self, i:int=None):
-            if i is None:
-                return self.getTokens(Proy1Parser.ID)
-            else:
-                return self.getToken(Proy1Parser.ID, i)
 
-        def tipoVariable(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(Proy1Parser.TipoVariableContext)
-            else:
-                return self.getTypedRuleContext(Proy1Parser.TipoVariableContext,i)
+        def getRuleIndex(self):
+            return Proy1Parser.RULE_metodo
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Metodo5Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def expr(self, i:int=None):
             if i is None:
@@ -1398,6 +1401,85 @@ class Proy1Parser ( Parser ):
                 return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
 
 
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo5" ):
+                listener.enterMetodo5(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo5" ):
+                listener.exitMetodo5(self)
+
+
+    class Metodo4Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo4" ):
+                listener.enterMetodo4(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo4" ):
+                listener.exitMetodo4(self)
+
+
+    class Metodo3Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def inicializar(self):
+            return self.getTypedRuleContext(Proy1Parser.InicializarContext,0)
+
+        def expr(self):
+            return self.getTypedRuleContext(Proy1Parser.ExprContext,0)
+
+        def punto(self):
+            return self.getTypedRuleContext(Proy1Parser.PuntoContext,0)
+
+        def metodo(self):
+            return self.getTypedRuleContext(Proy1Parser.MetodoContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo3" ):
+                listener.enterMetodo3(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo3" ):
+                listener.exitMetodo3(self)
+
+
+    class Metodo2Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+        def punto(self):
+            return self.getTypedRuleContext(Proy1Parser.PuntoContext,0)
+
+        def metodo(self):
+            return self.getTypedRuleContext(Proy1Parser.MetodoContext,0)
+
         def coma(self, i:int=None):
             if i is None:
                 return self.getTypedRuleContexts(Proy1Parser.ComaContext)
@@ -1405,12 +1487,65 @@ class Proy1Parser ( Parser ):
                 return self.getTypedRuleContext(Proy1Parser.ComaContext,i)
 
 
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo2" ):
+                listener.enterMetodo2(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo2" ):
+                listener.exitMetodo2(self)
+
+
+    class Metodo1Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self, i:int=None):
+            if i is None:
+                return self.getTokens(Proy1Parser.ID)
+            else:
+                return self.getToken(Proy1Parser.ID, i)
+        def tipoVariable(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.TipoVariableContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.TipoVariableContext,i)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+        def coma(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ComaContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ComaContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo1" ):
+                listener.enterMetodo1(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo1" ):
+                listener.exitMetodo1(self)
+
+
+    class Metodo9Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
         def punto(self, i:int=None):
             if i is None:
                 return self.getTypedRuleContexts(Proy1Parser.PuntoContext)
             else:
                 return self.getTypedRuleContext(Proy1Parser.PuntoContext,i)
-
 
         def metodo(self, i:int=None):
             if i is None:
@@ -1418,13 +1553,25 @@ class Proy1Parser ( Parser ):
             else:
                 return self.getTypedRuleContext(Proy1Parser.MetodoContext,i)
 
-
-        def inicializar(self):
-            return self.getTypedRuleContext(Proy1Parser.InicializarContext,0)
-
-
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
         def STRING(self):
             return self.getToken(Proy1Parser.STRING, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo9" ):
+                listener.enterMetodo9(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo9" ):
+                listener.exitMetodo9(self)
+
+
+    class Metodo11Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def operacion(self, i:int=None):
             if i is None:
@@ -1432,21 +1579,245 @@ class Proy1Parser ( Parser ):
             else:
                 return self.getTypedRuleContext(Proy1Parser.OperacionContext,i)
 
-
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
         def NUM(self):
             return self.getToken(Proy1Parser.NUM, 0)
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
 
-        def getRuleIndex(self):
-            return Proy1Parser.RULE_metodo
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterMetodo" ):
-                listener.enterMetodo(self)
+            if hasattr( listener, "enterMetodo11" ):
+                listener.enterMetodo11(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitMetodo" ):
-                listener.exitMetodo(self)
+            if hasattr( listener, "exitMetodo11" ):
+                listener.exitMetodo11(self)
 
+
+    class Metodo8Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo8" ):
+                listener.enterMetodo8(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo8" ):
+                listener.exitMetodo8(self)
+
+
+    class Metodo12Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
+        def expr(self):
+            return self.getTypedRuleContext(Proy1Parser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo12" ):
+                listener.enterMetodo12(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo12" ):
+                listener.exitMetodo12(self)
+
+
+    class Metodo7Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo7" ):
+                listener.enterMetodo7(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo7" ):
+                listener.exitMetodo7(self)
+
+
+    class Metodo6Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo6" ):
+                listener.enterMetodo6(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo6" ):
+                listener.exitMetodo6(self)
+
+
+    class Metodo10Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
+        def tipoVariable(self):
+            return self.getTypedRuleContext(Proy1Parser.TipoVariableContext,0)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo10" ):
+                listener.enterMetodo10(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo10" ):
+                listener.exitMetodo10(self)
+
+
+    class Metodo15Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
+        def punto(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.PuntoContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.PuntoContext,i)
+
+        def metodo(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.MetodoContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.MetodoContext,i)
+
+        def inicializar(self):
+            return self.getTypedRuleContext(Proy1Parser.InicializarContext,0)
+
+        def expr(self):
+            return self.getTypedRuleContext(Proy1Parser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo15" ):
+                listener.enterMetodo15(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo15" ):
+                listener.exitMetodo15(self)
+
+
+    class Metodo16Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def ID(self):
+            return self.getToken(Proy1Parser.ID, 0)
+        def metodo(self):
+            return self.getTypedRuleContext(Proy1Parser.MetodoContext,0)
+
+        def tipoVariable(self):
+            return self.getTypedRuleContext(Proy1Parser.TipoVariableContext,0)
+
+        def expr(self):
+            return self.getTypedRuleContext(Proy1Parser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo16" ):
+                listener.enterMetodo16(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo16" ):
+                listener.exitMetodo16(self)
+
+
+    class Metodo13Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo13" ):
+                listener.enterMetodo13(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo13" ):
+                listener.exitMetodo13(self)
+
+
+    class Metodo14Context(MetodoContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a Proy1Parser.MetodoContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Proy1Parser.ExprContext)
+            else:
+                return self.getTypedRuleContext(Proy1Parser.ExprContext,i)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterMetodo14" ):
+                listener.enterMetodo14(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitMetodo14" ):
+                listener.exitMetodo14(self)
 
 
 
@@ -1460,6 +1831,7 @@ class Proy1Parser ( Parser ):
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,68,self._ctx)
             if la_ == 1:
+                localctx = Proy1Parser.Metodo1Context(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 149
                 self.match(Proy1Parser.ID)
@@ -1537,6 +1909,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 2:
+                localctx = Proy1Parser.Metodo2Context(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 184
                 self.match(Proy1Parser.ID)
@@ -1588,6 +1961,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 3:
+                localctx = Proy1Parser.Metodo3Context(self, localctx)
                 self.enterOuterAlt(localctx, 3)
                 self.state = 209
                 self.match(Proy1Parser.T__24)
@@ -1639,6 +2013,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 4:
+                localctx = Proy1Parser.Metodo4Context(self, localctx)
                 self.enterOuterAlt(localctx, 4)
                 self.state = 229
                 self.match(Proy1Parser.T__28)
@@ -1699,6 +2074,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 5:
+                localctx = Proy1Parser.Metodo5Context(self, localctx)
                 self.enterOuterAlt(localctx, 5)
                 self.state = 259
                 self.match(Proy1Parser.T__32)
@@ -1737,6 +2113,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 6:
+                localctx = Proy1Parser.Metodo6Context(self, localctx)
                 self.enterOuterAlt(localctx, 6)
                 self.state = 277
                 self.match(Proy1Parser.T__3)
@@ -1755,6 +2132,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 7:
+                localctx = Proy1Parser.Metodo7Context(self, localctx)
                 self.enterOuterAlt(localctx, 7)
                 self.state = 285
                 self.match(Proy1Parser.T__3)
@@ -1773,6 +2151,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 8:
+                localctx = Proy1Parser.Metodo8Context(self, localctx)
                 self.enterOuterAlt(localctx, 8)
                 self.state = 293
                 self.match(Proy1Parser.T__24)
@@ -1802,6 +2181,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 9:
+                localctx = Proy1Parser.Metodo9Context(self, localctx)
                 self.enterOuterAlt(localctx, 9)
                 self.state = 307
                 _la = self._input.LA(1)
@@ -1838,6 +2218,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 10:
+                localctx = Proy1Parser.Metodo10Context(self, localctx)
                 self.enterOuterAlt(localctx, 10)
                 self.state = 321
                 self.match(Proy1Parser.T__35)
@@ -1927,6 +2308,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 11:
+                localctx = Proy1Parser.Metodo11Context(self, localctx)
                 self.enterOuterAlt(localctx, 11)
                 self.state = 359
                 _la = self._input.LA(1)
@@ -1964,6 +2346,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 12:
+                localctx = Proy1Parser.Metodo12Context(self, localctx)
                 self.enterOuterAlt(localctx, 12)
                 self.state = 373
                 self.match(Proy1Parser.T__37)
@@ -1992,6 +2375,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 13:
+                localctx = Proy1Parser.Metodo13Context(self, localctx)
                 self.enterOuterAlt(localctx, 13)
                 self.state = 381
                 self.match(Proy1Parser.T__32)
@@ -2037,6 +2421,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 14:
+                localctx = Proy1Parser.Metodo14Context(self, localctx)
                 self.enterOuterAlt(localctx, 14)
                 self.state = 401
                 self.match(Proy1Parser.T__32)
@@ -2091,6 +2476,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 15:
+                localctx = Proy1Parser.Metodo15Context(self, localctx)
                 self.enterOuterAlt(localctx, 15)
                 self.state = 425
                 self.match(Proy1Parser.T__24)
@@ -2150,6 +2536,7 @@ class Proy1Parser ( Parser ):
                 pass
 
             elif la_ == 16:
+                localctx = Proy1Parser.Metodo16Context(self, localctx)
                 self.enterOuterAlt(localctx, 16)
                 self.state = 449
                 self.match(Proy1Parser.T__24)

@@ -35,17 +35,17 @@ class MyListener(Proy1Listener):
         
         if class_name == "Main":
             if inhty in allowed_for_main:
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, inhty)
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             else:
                 print("Clase Main no puede heredar de esta clase (las clases básicas son Int, String, Bool, IO)")
             
         else:
             if inhty == "vacio":
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, None)
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, None)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             else:
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, None, None, inhty)
+                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
@@ -73,19 +73,19 @@ class MyListener(Proy1Listener):
                 clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
                 
                 if asigned_type == 'String':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, "", clase_padre['id'])
-                    print("SE AGREGO A LA TABLA")
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', "empty string", clase_padre['id'])
+                    #print("SE AGREGO A LA TABLA")
                     
                 if asigned_type == 'Int':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, 0, clase_padre['id'])
-                    print("SE AGREGO A LA TABLA")
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', 0, clase_padre['id'])
+                    #print("SE AGREGO A LA TABLA")
                     
                 if asigned_type == 'Bool':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, None, False, clase_padre['id'])
-                    print("SE AGREGO A LA TABLA")
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', False, clase_padre['id'])
+                    #print("SE AGREGO A LA TABLA")
                 
-                for x in self._tabla_simbolos._simbolos:
-                    print(x)
+                """for x in self._tabla_simbolos._simbolos:
+                    print(x)"""
             
             else:
                 print("este tipo de variable no es permitido")
@@ -183,8 +183,8 @@ class MyListener(Proy1Listener):
         else:
             print("variable no ha sido definida")
             
-        for x in self._tabla_simbolos._simbolos:
-            print(x)
+        """for x in self._tabla_simbolos._simbolos:
+            print(x)"""
             
         print('---------------------------------------')
 
@@ -197,6 +197,187 @@ class MyListener(Proy1Listener):
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_8.
     def exitTipo_correcto_8(self, ctx:Proy1Parser.Tipo_correcto_8Context):
         print("correcto 8")
+        
+    """# Enter a parse tree produced by Proy1Parser#metodo.
+    def enterMetodo(self, ctx:Proy1Parser.MetodoContext):
+        print("**********************")
+        print("metodo")
+        print(ctx.ID()[0].getText())
+            
+        print("**********************")
+    """
+        
+    # Enter a parse tree produced by Proy1Parser#metodo1.
+    def enterMetodo1(self, ctx:Proy1Parser.Metodo1Context):
+        print("**********************")
+        print("metodo1")
+        
+        # obtener los id de metodo
+        # si el len es 0, tenemos idMetodo(), si no hay uno o mas parametros
+        id_context = ctx.ID()
+        tipoVariable_context = ctx.tipoVariable()
+        
+        print(f"los ids: {len(id_context)}")
+        print(f"los tipoVariables: {len(tipoVariable_context)}")
+        
+        # si tenemos 1 id y 1 tipo variable, tenemos nombre del metodo y el valor que regresa
+        if len(id_context) == 1 and len(tipoVariable_context) == 1:
+            id_metodo = id_context[0].getText()
+            tipoMetodo = tipoVariable_context[0].getText()
+            
+            
+            clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+
+            
+            self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
+        
+            print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %('TIPO', 'ID', 'SIZE', 'OFFSET', 'DEFINICION', 'VALOR', 'PADRE', 'AMBITO'))
+            print("-----------------------------------------------------------------------------------------------------------------------------")
+            for x in self._tabla_simbolos._simbolos:
+                print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %(x['tipo'], x['id'], x['size'], x['offset'], x['definicion'], x['valor'], x['padre'], x['ambito']))
+        
+        print("**********************")
+        
+        
+
+    # Exit a parse tree produced by Proy1Parser#metodo1.
+    def exitMetodo1(self, ctx:Proy1Parser.Metodo1Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo2.
+    def enterMetodo2(self, ctx:Proy1Parser.Metodo2Context):
+        print("metodo2")
+
+    # Exit a parse tree produced by Proy1Parser#metodo2.
+    def exitMetodo2(self, ctx:Proy1Parser.Metodo2Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo3.
+    def enterMetodo3(self, ctx:Proy1Parser.Metodo3Context):
+        print("metodo3")
+
+    # Exit a parse tree produced by Proy1Parser#metodo3.
+    def exitMetodo3(self, ctx:Proy1Parser.Metodo3Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo4.
+    def enterMetodo4(self, ctx:Proy1Parser.Metodo4Context):
+        print("metodo4")
+
+    # Exit a parse tree produced by Proy1Parser#metodo4.
+    def exitMetodo4(self, ctx:Proy1Parser.Metodo4Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo5.
+    def enterMetodo5(self, ctx:Proy1Parser.Metodo5Context):
+        print("metodo5")
+
+    # Exit a parse tree produced by Proy1Parser#metodo5.
+    def exitMetodo5(self, ctx:Proy1Parser.Metodo5Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo6.
+    def enterMetodo6(self, ctx:Proy1Parser.Metodo6Context):
+        print("metodo6")
+
+    # Exit a parse tree produced by Proy1Parser#metodo6.
+    def exitMetodo6(self, ctx:Proy1Parser.Metodo6Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo7.
+    def enterMetodo7(self, ctx:Proy1Parser.Metodo7Context):
+        print("metodo7")
+
+    # Exit a parse tree produced by Proy1Parser#metodo7.
+    def exitMetodo7(self, ctx:Proy1Parser.Metodo7Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo8.
+    def enterMetodo8(self, ctx:Proy1Parser.Metodo8Context):
+        print("metodo8")
+
+    # Exit a parse tree produced by Proy1Parser#metodo8.
+    def exitMetodo8(self, ctx:Proy1Parser.Metodo8Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo9.
+    def enterMetodo9(self, ctx:Proy1Parser.Metodo9Context):
+        print("metodo9")
+
+    # Exit a parse tree produced by Proy1Parser#metodo9.
+    def exitMetodo9(self, ctx:Proy1Parser.Metodo9Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo10.
+    def enterMetodo10(self, ctx:Proy1Parser.Metodo10Context):
+        print("metodo10")
+
+    # Exit a parse tree produced by Proy1Parser#metodo10.
+    def exitMetodo10(self, ctx:Proy1Parser.Metodo10Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo11.
+    def enterMetodo11(self, ctx:Proy1Parser.Metodo11Context):
+        print("metodo11")
+
+    # Exit a parse tree produced by Proy1Parser#metodo11.
+    def exitMetodo11(self, ctx:Proy1Parser.Metodo11Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo12.
+    def enterMetodo12(self, ctx:Proy1Parser.Metodo12Context):
+        print("metodo12")
+
+    # Exit a parse tree produced by Proy1Parser#metodo12.
+    def exitMetodo12(self, ctx:Proy1Parser.Metodo12Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo13.
+    def enterMetodo13(self, ctx:Proy1Parser.Metodo13Context):
+        print("metodo13")
+
+    # Exit a parse tree produced by Proy1Parser#metodo13.
+    def exitMetodo13(self, ctx:Proy1Parser.Metodo13Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo14.
+    def enterMetodo14(self, ctx:Proy1Parser.Metodo14Context):
+        print("metodo14")
+
+    # Exit a parse tree produced by Proy1Parser#metodo14.
+    def exitMetodo14(self, ctx:Proy1Parser.Metodo14Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo15.
+    def enterMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        print("metodo15")
+
+    # Exit a parse tree produced by Proy1Parser#metodo15.
+    def exitMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo16.
+    def enterMetodo16(self, ctx:Proy1Parser.Metodo16Context):
+        print("metodo16")
+
+    # Exit a parse tree produced by Proy1Parser#metodo16.
+    def exitMetodo16(self, ctx:Proy1Parser.Metodo16Context):
+        pass
         
 
         
@@ -266,7 +447,7 @@ def ejecutar():
     
         
     
-root = Tk()
+"""root = Tk()
 root.title('Text Editor')
 root.geometry("1200x660")
 
@@ -295,10 +476,10 @@ file_menu.add_command(label="Exit", command=root.quit)
 
 
 
-root.mainloop()
+root.mainloop()"""
 
                 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     ### Carga inicial de archivo
     input = FileStream('ejemploOperacion.txt')
     lexer = Proy1Lexer(input)
@@ -320,6 +501,6 @@ root.mainloop()
         ### recorrido por el arbol
         printerDecaf = MyListener()
         walker = ParseTreeWalker()
-        walker.walk(printerDecaf, tree)"""
+        walker.walk(printerDecaf, tree)
 
 

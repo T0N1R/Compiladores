@@ -1,0 +1,24 @@
+class Testing {
+  q : String;
+};
+
+
+class Main inherits IO {
+  
+  a : Int;
+  b : Int;
+  c : Int;
+  d : String;
+  e : Int;
+  
+  main(): Object {
+    {
+      b <- 1 ;
+      c <- 2 ;
+      a <- 0 ;
+      d <- "hola";
+      a <- b;
+      e <- true;
+    }
+  };
+};

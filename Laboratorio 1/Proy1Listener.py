@@ -179,12 +179,147 @@ class Proy1Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Proy1Parser#metodo.
-    def enterMetodo(self, ctx:Proy1Parser.MetodoContext):
+    # Enter a parse tree produced by Proy1Parser#metodo1.
+    def enterMetodo1(self, ctx:Proy1Parser.Metodo1Context):
         pass
 
-    # Exit a parse tree produced by Proy1Parser#metodo.
-    def exitMetodo(self, ctx:Proy1Parser.MetodoContext):
+    # Exit a parse tree produced by Proy1Parser#metodo1.
+    def exitMetodo1(self, ctx:Proy1Parser.Metodo1Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo2.
+    def enterMetodo2(self, ctx:Proy1Parser.Metodo2Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo2.
+    def exitMetodo2(self, ctx:Proy1Parser.Metodo2Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo3.
+    def enterMetodo3(self, ctx:Proy1Parser.Metodo3Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo3.
+    def exitMetodo3(self, ctx:Proy1Parser.Metodo3Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo4.
+    def enterMetodo4(self, ctx:Proy1Parser.Metodo4Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo4.
+    def exitMetodo4(self, ctx:Proy1Parser.Metodo4Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo5.
+    def enterMetodo5(self, ctx:Proy1Parser.Metodo5Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo5.
+    def exitMetodo5(self, ctx:Proy1Parser.Metodo5Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo6.
+    def enterMetodo6(self, ctx:Proy1Parser.Metodo6Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo6.
+    def exitMetodo6(self, ctx:Proy1Parser.Metodo6Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo7.
+    def enterMetodo7(self, ctx:Proy1Parser.Metodo7Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo7.
+    def exitMetodo7(self, ctx:Proy1Parser.Metodo7Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo8.
+    def enterMetodo8(self, ctx:Proy1Parser.Metodo8Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo8.
+    def exitMetodo8(self, ctx:Proy1Parser.Metodo8Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo9.
+    def enterMetodo9(self, ctx:Proy1Parser.Metodo9Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo9.
+    def exitMetodo9(self, ctx:Proy1Parser.Metodo9Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo10.
+    def enterMetodo10(self, ctx:Proy1Parser.Metodo10Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo10.
+    def exitMetodo10(self, ctx:Proy1Parser.Metodo10Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo11.
+    def enterMetodo11(self, ctx:Proy1Parser.Metodo11Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo11.
+    def exitMetodo11(self, ctx:Proy1Parser.Metodo11Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo12.
+    def enterMetodo12(self, ctx:Proy1Parser.Metodo12Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo12.
+    def exitMetodo12(self, ctx:Proy1Parser.Metodo12Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo13.
+    def enterMetodo13(self, ctx:Proy1Parser.Metodo13Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo13.
+    def exitMetodo13(self, ctx:Proy1Parser.Metodo13Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo14.
+    def enterMetodo14(self, ctx:Proy1Parser.Metodo14Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo14.
+    def exitMetodo14(self, ctx:Proy1Parser.Metodo14Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo15.
+    def enterMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo15.
+    def exitMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        pass
+
+
+    # Enter a parse tree produced by Proy1Parser#metodo16.
+    def enterMetodo16(self, ctx:Proy1Parser.Metodo16Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#metodo16.
+    def exitMetodo16(self, ctx:Proy1Parser.Metodo16Context):
         pass
 
 

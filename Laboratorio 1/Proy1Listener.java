@@ -79,6 +79,16 @@ public interface Proy1Listener extends ParseTreeListener {
 	 */
 	void exitPunto(Proy1Parser.PuntoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Proy1Parser#semicolon}.
+	 * @param ctx the parse tree
+	 */
+	void enterSemicolon(Proy1Parser.SemicolonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Proy1Parser#semicolon}.
+	 * @param ctx the parse tree
+	 */
+	void exitSemicolon(Proy1Parser.SemicolonContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Proy1Parser#self}.
 	 * @param ctx the parse tree
 	 */
@@ -130,18 +140,6 @@ public interface Proy1Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTipo_correcto_1(Proy1Parser.Tipo_correcto_1Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code tipo_correcto_2}
-	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
-	 * @param ctx the parse tree
-	 */
-	void enterTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code tipo_correcto_2}
-	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
-	 * @param ctx the parse tree
-	 */
-	void exitTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx);
 	/**
 	 * Enter a parse tree produced by the {@code tipo_correcto_3}
 	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
@@ -215,13 +213,195 @@ public interface Proy1Listener extends ParseTreeListener {
 	 */
 	void exitTipo_correcto_8(Proy1Parser.Tipo_correcto_8Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link Proy1Parser#metodo}.
+	 * Enter a parse tree produced by the {@code metodo1}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
 	 * @param ctx the parse tree
 	 */
-	void enterMetodo(Proy1Parser.MetodoContext ctx);
+	void enterMetodo1(Proy1Parser.Metodo1Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link Proy1Parser#metodo}.
+	 * Exit a parse tree produced by the {@code metodo1}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
 	 * @param ctx the parse tree
 	 */
-	void exitMetodo(Proy1Parser.MetodoContext ctx);
+	void exitMetodo1(Proy1Parser.Metodo1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo2}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo2(Proy1Parser.Metodo2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo2}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo2(Proy1Parser.Metodo2Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo3}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo3(Proy1Parser.Metodo3Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo3}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo3(Proy1Parser.Metodo3Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo4}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo4(Proy1Parser.Metodo4Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo4}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo4(Proy1Parser.Metodo4Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo5}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo5(Proy1Parser.Metodo5Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo5}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo5(Proy1Parser.Metodo5Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo6}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo6(Proy1Parser.Metodo6Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo6}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo6(Proy1Parser.Metodo6Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo7}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo7(Proy1Parser.Metodo7Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo7}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo7(Proy1Parser.Metodo7Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo8}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo8(Proy1Parser.Metodo8Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo8}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo8(Proy1Parser.Metodo8Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo9}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo9(Proy1Parser.Metodo9Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo9}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo9(Proy1Parser.Metodo9Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo10}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo10(Proy1Parser.Metodo10Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo10}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo10(Proy1Parser.Metodo10Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo11}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo11(Proy1Parser.Metodo11Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo11}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo11(Proy1Parser.Metodo11Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo12}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo12(Proy1Parser.Metodo12Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo12}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo12(Proy1Parser.Metodo12Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo13}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo13(Proy1Parser.Metodo13Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo13}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo13(Proy1Parser.Metodo13Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo14}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo14(Proy1Parser.Metodo14Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo14}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo14(Proy1Parser.Metodo14Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo15}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo15(Proy1Parser.Metodo15Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo15}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo15(Proy1Parser.Metodo15Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code metodo16}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void enterMetodo16(Proy1Parser.Metodo16Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code metodo16}
+	 * labeled alternative in {@link Proy1Parser#metodo}.
+	 * @param ctx the parse tree
+	 */
+	void exitMetodo16(Proy1Parser.Metodo16Context ctx);
 }

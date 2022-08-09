@@ -988,6 +988,72 @@ public class Proy1Parser extends Parser {
 	}
 
 	public static class MetodoContext extends ParserRuleContext {
+		public MetodoContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_metodo; }
+	 
+		public MetodoContext() { }
+		public void copyFrom(MetodoContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class Metodo5Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo5Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo4Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo4Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo3Context extends MetodoContext {
+		public InicializarContext inicializar() {
+			return getRuleContext(InicializarContext.class,0);
+		}
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public PuntoContext punto() {
+			return getRuleContext(PuntoContext.class,0);
+		}
+		public MetodoContext metodo() {
+			return getRuleContext(MetodoContext.class,0);
+		}
+		public Metodo3Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo2Context extends MetodoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public PuntoContext punto() {
+			return getRuleContext(PuntoContext.class,0);
+		}
+		public MetodoContext metodo() {
+			return getRuleContext(MetodoContext.class,0);
+		}
+		public List<ComaContext> coma() {
+			return getRuleContexts(ComaContext.class);
+		}
+		public ComaContext coma(int i) {
+			return getRuleContext(ComaContext.class,i);
+		}
+		public Metodo2Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo1Context extends MetodoContext {
 		public List<TerminalNode> ID() { return getTokens(Proy1Parser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(Proy1Parser.ID, i);
@@ -1010,6 +1076,91 @@ public class Proy1Parser extends Parser {
 		public ComaContext coma(int i) {
 			return getRuleContext(ComaContext.class,i);
 		}
+		public Metodo1Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo9Context extends MetodoContext {
+		public List<PuntoContext> punto() {
+			return getRuleContexts(PuntoContext.class);
+		}
+		public PuntoContext punto(int i) {
+			return getRuleContext(PuntoContext.class,i);
+		}
+		public List<MetodoContext> metodo() {
+			return getRuleContexts(MetodoContext.class);
+		}
+		public MetodoContext metodo(int i) {
+			return getRuleContext(MetodoContext.class,i);
+		}
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public TerminalNode STRING() { return getToken(Proy1Parser.STRING, 0); }
+		public Metodo9Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo11Context extends MetodoContext {
+		public List<OperacionContext> operacion() {
+			return getRuleContexts(OperacionContext.class);
+		}
+		public OperacionContext operacion(int i) {
+			return getRuleContext(OperacionContext.class,i);
+		}
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public TerminalNode NUM() { return getToken(Proy1Parser.NUM, 0); }
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo11Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo8Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo8Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo12Context extends MetodoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Metodo12Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo7Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo7Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo6Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo6Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo10Context extends MetodoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public TipoVariableContext tipoVariable() {
+			return getRuleContext(TipoVariableContext.class,0);
+		}
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo10Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo15Context extends MetodoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
 		public List<PuntoContext> punto() {
 			return getRuleContexts(PuntoContext.class);
 		}
@@ -1025,18 +1176,41 @@ public class Proy1Parser extends Parser {
 		public InicializarContext inicializar() {
 			return getRuleContext(InicializarContext.class,0);
 		}
-		public TerminalNode STRING() { return getToken(Proy1Parser.STRING, 0); }
-		public List<OperacionContext> operacion() {
-			return getRuleContexts(OperacionContext.class);
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
 		}
-		public OperacionContext operacion(int i) {
-			return getRuleContext(OperacionContext.class,i);
+		public Metodo15Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo16Context extends MetodoContext {
+		public TerminalNode ID() { return getToken(Proy1Parser.ID, 0); }
+		public MetodoContext metodo() {
+			return getRuleContext(MetodoContext.class,0);
 		}
-		public TerminalNode NUM() { return getToken(Proy1Parser.NUM, 0); }
-		public MetodoContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
+		public TipoVariableContext tipoVariable() {
+			return getRuleContext(TipoVariableContext.class,0);
 		}
-		@Override public int getRuleIndex() { return RULE_metodo; }
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public Metodo16Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo13Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo13Context(MetodoContext ctx) { copyFrom(ctx); }
+	}
+	public static class Metodo14Context extends MetodoContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public Metodo14Context(MetodoContext ctx) { copyFrom(ctx); }
 	}
 
 	public final MetodoContext metodo() throws RecognitionException {
@@ -1049,6 +1223,7 @@ public class Proy1Parser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,68,_ctx) ) {
 			case 1:
+				_localctx = new Metodo1Context(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(149);
@@ -1144,6 +1319,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new Metodo2Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(184);
@@ -1209,6 +1385,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new Metodo3Context(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(209);
@@ -1286,6 +1463,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 4:
+				_localctx = new Metodo4Context(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(229);
@@ -1367,6 +1545,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 5:
+				_localctx = new Metodo5Context(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(259);
@@ -1416,6 +1595,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 6:
+				_localctx = new Metodo6Context(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(277);
@@ -1439,6 +1619,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 7:
+				_localctx = new Metodo7Context(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(285);
@@ -1462,6 +1643,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 8:
+				_localctx = new Metodo8Context(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(293);
@@ -1501,6 +1683,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 9:
+				_localctx = new Metodo9Context(_localctx);
 				enterOuterAlt(_localctx, 9);
 				{
 				setState(307);
@@ -1548,6 +1731,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 10:
+				_localctx = new Metodo10Context(_localctx);
 				enterOuterAlt(_localctx, 10);
 				{
 				setState(321);
@@ -1661,6 +1845,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 11:
+				_localctx = new Metodo11Context(_localctx);
 				enterOuterAlt(_localctx, 11);
 				{
 				setState(359);
@@ -1710,6 +1895,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 12:
+				_localctx = new Metodo12Context(_localctx);
 				enterOuterAlt(_localctx, 12);
 				{
 				setState(373);
@@ -1743,6 +1929,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 13:
+				_localctx = new Metodo13Context(_localctx);
 				enterOuterAlt(_localctx, 13);
 				{
 				setState(381);
@@ -1802,6 +1989,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 14:
+				_localctx = new Metodo14Context(_localctx);
 				enterOuterAlt(_localctx, 14);
 				{
 				setState(401);
@@ -1871,6 +2059,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 15:
+				_localctx = new Metodo15Context(_localctx);
 				enterOuterAlt(_localctx, 15);
 				{
 				setState(425);
@@ -1956,6 +2145,7 @@ public class Proy1Parser extends Parser {
 				}
 				break;
 			case 16:
+				_localctx = new Metodo16Context(_localctx);
 				enterOuterAlt(_localctx, 16);
 				{
 				setState(449);
