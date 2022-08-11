@@ -1,15 +1,19 @@
-class Testing {
-  q : String;
-};
+class A {
 
+   var : Int <- 0;
+   value() : Int { var };
 
-class Main inherits IO {
-  
-  a : Int;
-  
-  main(): Object {
-    {
-      a <- 1 ;
-    }
-  };
+   set_var(num : Int) : SELF_TYPE {
+      {
+         var <- num;
+         self;
+      }
+   };
+
+   method1(num : Int) : SELF_TYPE {  -- same
+      self
+   };
+
+   
+
 };

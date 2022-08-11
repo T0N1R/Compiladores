@@ -19,6 +19,13 @@ class MyListener(Proy1Listener):
         self._tabla_simbolos.agregar_simbolo("Int", "Int", None, None, None, None, None)
         self._tabla_simbolos.agregar_simbolo("String", "String", None, None, None, None, None)
         self._tabla_simbolos.agregar_simbolo("Bool", "Bool", None, None, None, None, None)
+        
+    def imprimir_tabla_simbolos(self):
+        print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %('TIPO', 'ID', 'SIZE', 'OFFSET', 'DEFINICION', 'VALOR', 'PADRE', 'EN METODO', 'AMBITO'))
+        print("---------------------------------------------------------------------------------------------------------------------------------------")
+        for x in self._tabla_simbolos._simbolos:
+            print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %(x['tipo'], x['id'], x['size'], x['offset'], x['definicion'], x['valor'], x['padre'], x['en_metodo'], x['ambito']))
+        
     
     def enterTest_main(self, ctx):
         print("entre test main")
@@ -89,6 +96,9 @@ class MyListener(Proy1Listener):
             
             else:
                 print("este tipo de variable no es permitido")
+                
+                
+        self.imprimir_tabla_simbolos()
             
             
         print('---------------------------------------')
@@ -107,6 +117,76 @@ class MyListener(Proy1Listener):
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_5.
     def exitTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
         print("correcto 5")
+        
+        id_context = ctx.ID()
+        operacion_context = ctx.operacion()
+        metodo_context = ctx.metodo()
+        
+        if len(operacion_context) == 0 and len(metodo_context) == 0:
+            print(f"variable: {id_context[0].getText()}")
+            print(f"variable que se asigna a la variable: {id_context[1].getText()}")
+            
+            # DETECTAR si la variable a la que vamos a asignar sí existe en la tabla de simbolos
+            # primero miramos si es una variable privada para el metodo en el que estamos (si estamos en metodo) y luego chequear si es global
+            
+            posible_asignable = id_context[0].getText()            
+            tabla_posibles_Vs = self._tabla_simbolos.return_same_ids(posible_asignable)
+            
+            v_que_se_asigna = id_context[1].getText()      
+            tabla_posibles_asignable = self._tabla_simbolos.return_same_ids(v_que_se_asigna)
+            
+            # Chequear que haya alg en la lista
+            if len(tabla_posibles_Vs) > 0:
+                for variable in tabla_posibles_Vs:
+                    # POSIBLE
+                    tipo_del_posible = variable['tipo']
+                    definicion_del_posible = variable['definicion']
+                    en_metodo_del_posible = variable['en_metodo']
+                    ambito_del_posible = variable['ambito']
+                    padre_del_posible = variable['padre']
+                    
+                    #actual
+                    metodo_actual = self._tabla_simbolos._current_method
+                    clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                    
+                    """print("DATOS DEL POSIBLEEEEEEEEEEEEEEEEEEEE")
+                    print(f"tipo_del_posible: {tipo_del_posible}")
+                    print(f"definicion_del_posible: {definicion_del_posible}")
+                    print(f"en_metodo_del_posible: {en_metodo_del_posible}")
+                    print(f"ambito_del_posible: {ambito_del_posible}")
+                    print(f"padre_del_posible: {padre_del_posible}")
+                    
+                    print("DATOS ACTUALESSSSSSSSSSSSSSSS")
+                    print(f"metodo_actual: {metodo_actual}")
+                    print(f"clase_padre_actual: {clase_padre_actual}")"""
+                    
+                    # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+                    if en_metodo_del_posible == metodo_actual:
+                        # SE DEFINIO EN EL MISMO METODO
+                        print("se le puede asignar a la variable por estar en el mismo metodo")
+                        
+                        verificacion_correcto_3_simple(tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
+                    
+                    # VERIFICAR SI EL POSIBLE VARIABLE ES GLOBAL
+                    elif ambito_del_posible == 'global':
+                        print("se le puede asignar a la variable por ser una variable global")
+                        
+                        verificacion_correcto_3_simple(tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
+
+                        
+                    else:
+                        print("ESTA VARIABLE NO HA SIDO ASIGNADA")
+                        
+            
+            # SI HAY ALGO EN LA LISTA AVISAR ERROR
+            else:
+                print("ESTA VARIABLE NO HA SIDO ASIGNADA")
+            
+            print("////////////////////////////////////////////")
+            
+            self._tabla_simbolos.return_same_ids(id_context[1].getText())
+            
+
         
         """if self._tabla_simbolos.id_en_tabla(expr):
                 print("esta en tabla de simbolos, obtener su valor")
@@ -179,6 +259,8 @@ class MyListener(Proy1Listener):
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
             
             
+            self.imprimir_tabla_simbolos()
+            
                 
         else:
             print("variable no ha sido definida")
@@ -222,19 +304,61 @@ class MyListener(Proy1Listener):
         
         # si tenemos 1 id y 1 tipo variable, tenemos nombre del metodo y el valor que regresa
         if len(id_context) == 1 and len(tipoVariable_context) == 1:
+            
             id_metodo = id_context[0].getText()
             tipoMetodo = tipoVariable_context[0].getText()
             
+            # obtener/explorar expr
+            exp_context = ctx.expr()
+            
+            print("exp_context")
+            print(exp_context[0].getChild(0))
+            
             
             clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
-
             
             self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
         
-            print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %('TIPO', 'ID', 'SIZE', 'OFFSET', 'DEFINICION', 'VALOR', 'PADRE', 'AMBITO'))
-            print("-----------------------------------------------------------------------------------------------------------------------------")
-            for x in self._tabla_simbolos._simbolos:
-                print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %(x['tipo'], x['id'], x['size'], x['offset'], x['definicion'], x['valor'], x['padre'], x['ambito']))
+            # definir que estamos en un metodo
+            self._tabla_simbolos._in_method = True
+            self._tabla_simbolos._current_method = id_metodo
+        
+            self.imprimir_tabla_simbolos()
+            
+        # si no hay 1 - 1 es porque hay un parametro en el metodo
+        else:
+            id_metodo = id_context[0].getText()
+            tipoMetodo = tipoVariable_context[len(tipoVariable_context)-1].getText()
+            
+            print(f"nombre del metodo: {id_metodo}")
+            print(f"tipo del metodo: {tipoMetodo}")
+            
+            clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+            
+            self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
+        
+            # definir que estamos en un metodo
+            self._tabla_simbolos._in_method = True
+            self._tabla_simbolos._current_method = id_metodo
+        
+            
+            # agregar argumentos
+            limit = len(tipoVariable_context) - 1
+            start_counter = 1
+            
+            while start_counter <= limit:
+                print("entramos?")
+                id_metodo = id_context[start_counter].getText()
+                tipoMetodo = tipoVariable_context[start_counter - 1].getText()
+                
+                clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+            
+                self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
+                
+                start_counter += 1
+                
+            self.imprimir_tabla_simbolos()
+            
         
         print("**********************")
         
@@ -242,7 +366,9 @@ class MyListener(Proy1Listener):
 
     # Exit a parse tree produced by Proy1Parser#metodo1.
     def exitMetodo1(self, ctx:Proy1Parser.Metodo1Context):
-        pass
+        # definir que salimos del metodo 1
+        self._tabla_simbolos._in_method = False
+        self._tabla_simbolos._current_method = None
 
 
     # Enter a parse tree produced by Proy1Parser#metodo2.
@@ -423,7 +549,7 @@ def ejecutar():
         f.write(data)
         
     ### Carga inicial de archivo
-    input = FileStream('ejemploOperacion.txt')
+    input = FileStream('ejecutar.txt')
     lexer = Proy1Lexer(input)
     stream = CommonTokenStream(lexer)
     parser = Proy1Parser(stream)
@@ -446,8 +572,8 @@ def ejecutar():
         walker.walk(printerDecaf, tree)
     
         
-    
-"""root = Tk()
+"""    
+root = Tk()
 root.title('Text Editor')
 root.geometry("1200x660")
 
@@ -474,11 +600,10 @@ file_menu.add_command(label="Execute", command=ejecutar)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.quit)
 
+root.mainloop()
+"""
 
 
-root.mainloop()"""
-
-                
 if __name__ == "__main__":
     ### Carga inicial de archivo
     input = FileStream('ejemploOperacion.txt')
