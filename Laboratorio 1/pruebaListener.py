@@ -54,6 +54,10 @@ class MyListener(Proy1Listener):
             else:
                 self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
+        
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_1.
+    def enterTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
+        print("enter correcto 1")
             
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
     def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
@@ -103,10 +107,66 @@ class MyListener(Proy1Listener):
             
         print("**********************")
 
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_3.
+    def enterTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
+        print("enter correcto 3")
+
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_3.
     def exitTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
         print("correcto 3")
+
+
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_4.
+    def enterTipo_correcto_4(self, ctx:Proy1Parser.Tipo_correcto_4Context):
+        print("enter correcto 4")
+        
+        id_a_asignar = ctx.ID()
+        print(f"id_a_asignar: {id_a_asignar.getText()}")
+        
+        # verificar si la variable ya fue inicializada en la tabla de simbolos
+        tabla_posibles_id_a_asignar = self._tabla_simbolos.return_same_ids(id_a_asignar.getText())
+        print(f"tabla posible id a asignar: {tabla_posibles_id_a_asignar}")
+        
+        # Chequear que haya algo en la lista
+        if len(tabla_posibles_id_a_asignar) > 0:
+            for variable in tabla_posibles_id_a_asignar:
+                #POSIBLE
+                tipo_del_posible = variable['tipo']
+                en_metodo_del_posible = variable['en_metodo']
+                ambito_del_posible = variable['ambito']
+                
+                #ACTUAL
+                metodo_actual = self._tabla_simbolos._current_method
+                clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                    
+                # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+                if en_metodo_del_posible == metodo_actual:
+                    # SE DEFINIO EN EL MISMO METODO
+                    print("se le puede asignar a la variable por estar en el mismo metodo")
+                    verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
+                    
+                # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
+                elif ambito_del_posible == 'global':
+                    print("se le puede asignar a la variable por ser una variable global")
+                    verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
+
+                # HAY ERROR
+                else:
+                    print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                    self._tabla_simbolos._error_in_current_method = True
+                    self._tabla_simbolos._error_in_code = True
+                    
+        
+        # SI HAY ALGO EN LA LISTA AVISAR ERROR
+        else:
+            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+            self._tabla_simbolos._error_in_current_method = True
+            self._tabla_simbolos._error_in_code = True
+        
+        print("**********************")
+        sys.exit()
+
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_4.
@@ -487,8 +547,8 @@ class MyListener(Proy1Listener):
         
         # si hay algo en let_tipo, se tiene un "let ID : tipoVariable 'in' ( (expr)* | '{' (expr)* '}' | '(' (expr)* ')' ) (';')* "
         if let_tipo is not None:
+            print(f"let_id: {let_id.getText()}")
             print(f"let_tipo: {let_tipo.getText()}")
-            print(f"identificador del let: {let_id.getText()}")
             print(f"let_expr: {let_expr[0].getText()}")
             
             clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
@@ -496,6 +556,7 @@ class MyListener(Proy1Listener):
             # agregar let_id como una variable privada
             self._tabla_simbolos.agregar_simbolo(let_tipo.getText(), let_id.getText(), None, None, 'variable', None, clase_padre['id'])
 
+            self.imprimir_tabla_simbolos()
             
             
         print("**********************")
@@ -521,7 +582,7 @@ class MyListener(Proy1Listener):
         posibles_expr = ctx.expr()
         
         print(f"posibles_operaciones: {posibles_operaciones[0].getText()}")
-        print(f"posibleid en operacion: {posible_id}")
+        print(f"posible id en operacion: {posible_id}")
         print(f"posible_num en operacion: {posible_num}")
         print(f"posibles_expr en operacion: {posibles_expr}")
         
