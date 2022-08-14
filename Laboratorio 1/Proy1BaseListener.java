@@ -147,6 +147,18 @@ public class Proy1BaseListener implements Proy1Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNot(Proy1Parser.NotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNot(Proy1Parser.NotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInicializar(Proy1Parser.InicializarContext ctx) { }
 	/**
 	 * {@inheritDoc}

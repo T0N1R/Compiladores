@@ -101,7 +101,7 @@ class MyListener(Proy1Listener):
         self.imprimir_tabla_simbolos()
             
             
-        print('---------------------------------------')
+        print("**********************")
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_3.
@@ -123,8 +123,8 @@ class MyListener(Proy1Listener):
         metodo_context = ctx.metodo()
         
         if len(operacion_context) == 0 and len(metodo_context) == 0:
-            print(f"variable: {id_context[0].getText()}")
-            print(f"variable que se asigna a la variable: {id_context[1].getText()}")
+            #print(f"variable: {id_context[0].getText()}")
+            #print(f"variable que se asigna a la variable: {id_context[1].getText()}")
             
             # DETECTAR si la variable a la que vamos a asignar sí existe en la tabla de simbolos
             # primero miramos si es una variable privada para el metodo en el que estamos (si estamos en metodo) y luego chequear si es global
@@ -165,24 +165,27 @@ class MyListener(Proy1Listener):
                         # SE DEFINIO EN EL MISMO METODO
                         print("se le puede asignar a la variable por estar en el mismo metodo")
                         
-                        verificacion_correcto_3_simple(tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
+                        verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
                     
                     # VERIFICAR SI EL POSIBLE VARIABLE ES GLOBAL
                     elif ambito_del_posible == 'global':
                         print("se le puede asignar a la variable por ser una variable global")
                         
-                        verificacion_correcto_3_simple(tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
+                        verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
 
                         
                     else:
-                        print("ESTA VARIABLE NO HA SIDO ASIGNADA")
+                        print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                        self._tabla_simbolos._error_in_current_method = True
+                        self._tabla_simbolos._error_in_code = True
                         
             
             # SI HAY ALGO EN LA LISTA AVISAR ERROR
             else:
-                print("ESTA VARIABLE NO HA SIDO ASIGNADA")
+                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
             
-            print("////////////////////////////////////////////")
             
             self._tabla_simbolos.return_same_ids(id_context[1].getText())
             
@@ -206,7 +209,7 @@ class MyListener(Proy1Listener):
                 else:
                     print("el valor no es Int")"""
                     
-        print('---------------------------------------')
+        print("**********************")
         
 
 
@@ -268,7 +271,7 @@ class MyListener(Proy1Listener):
         """for x in self._tabla_simbolos._simbolos:
             print(x)"""
             
-        print('---------------------------------------')
+        print("**********************")
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_7.
@@ -318,9 +321,11 @@ class MyListener(Proy1Listener):
             clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
             
             self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
+            self._tabla_simbolos.agregar_in_method_object(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
         
             # definir que estamos en un metodo
             self._tabla_simbolos._in_method = True
+            self._tabla_simbolos._error_in_current_method = False
             self._tabla_simbolos._current_method = id_metodo
         
             self.imprimir_tabla_simbolos()
@@ -339,6 +344,7 @@ class MyListener(Proy1Listener):
         
             # definir que estamos en un metodo
             self._tabla_simbolos._in_method = True
+            self._tabla_simbolos._error_in_current_method = False
             self._tabla_simbolos._current_method = id_metodo
         
             
@@ -347,7 +353,6 @@ class MyListener(Proy1Listener):
             start_counter = 1
             
             while start_counter <= limit:
-                print("entramos?")
                 id_metodo = id_context[start_counter].getText()
                 tipoMetodo = tipoVariable_context[start_counter - 1].getText()
                 
@@ -366,9 +371,21 @@ class MyListener(Proy1Listener):
 
     # Exit a parse tree produced by Proy1Parser#metodo1.
     def exitMetodo1(self, ctx:Proy1Parser.Metodo1Context):
-        # definir que salimos del metodo 1
-        self._tabla_simbolos._in_method = False
-        self._tabla_simbolos._current_method = None
+        print("exitMetodo1")
+        
+        if self._tabla_simbolos._error_in_current_method:
+            print("ERROR METODO NO VALIDO")
+            self._tabla_simbolos._error_in_code = True
+            #remover_contenido_de_metodo(self)
+            
+        else:
+            # definir que salimos del metodo 1
+            self._tabla_simbolos._in_method = False
+            self._tabla_simbolos._current_method = None
+            self._tabla_simbolos._in_method_object = None
+            
+        print("**********************")
+
 
 
     # Enter a parse tree produced by Proy1Parser#metodo2.
@@ -383,6 +400,19 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo3.
     def enterMetodo3(self, ctx:Proy1Parser.Metodo3Context):
         print("metodo3")
+        
+        print(ctx.getText())
+        
+        inicializar = ctx.inicializar()
+        
+        # Si el contexto de inicializar es None, se tiene una expresión, se deja pasar para que lo jale el siguiente listener
+        if inicializar == None:
+            print("pass al siguiente listener")
+            pass
+        
+        
+        print("**********************")
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo3.
     def exitMetodo3(self, ctx:Proy1Parser.Metodo3Context):
@@ -419,6 +449,8 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo7.
     def enterMetodo7(self, ctx:Proy1Parser.Metodo7Context):
         print("metodo7")
+        print("pasar al siguiente listener")
+        print("**********************")
 
     # Exit a parse tree produced by Proy1Parser#metodo7.
     def exitMetodo7(self, ctx:Proy1Parser.Metodo7Context):
@@ -446,6 +478,31 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo10.
     def enterMetodo10(self, ctx:Proy1Parser.Metodo10Context):
         print("metodo10")
+        
+        # es let ID
+        # let crea una variable privada
+        let_id = ctx.ID()
+        let_tipo = ctx.tipoVariable()
+        let_expr = ctx.expr()
+        
+        # si hay algo en let_tipo, se tiene un "let ID : tipoVariable 'in' ( (expr)* | '{' (expr)* '}' | '(' (expr)* ')' ) (';')* "
+        if let_tipo is not None:
+            print(f"let_tipo: {let_tipo.getText()}")
+            print(f"identificador del let: {let_id.getText()}")
+            print(f"let_expr: {let_expr[0].getText()}")
+            
+            clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+            
+            # agregar let_id como una variable privada
+            self._tabla_simbolos.agregar_simbolo(let_tipo.getText(), let_id.getText(), None, None, 'variable', None, clase_padre['id'])
+
+            
+            
+        print("**********************")
+        
+        
+        
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo10.
     def exitMetodo10(self, ctx:Proy1Parser.Metodo10Context):
@@ -455,6 +512,21 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo11.
     def enterMetodo11(self, ctx:Proy1Parser.Metodo11Context):
         print("metodo11")
+        
+        print(f"expre en metodo11: {ctx.getText()}")
+        
+        posibles_operaciones = ctx.operacion()
+        posible_id = ctx.ID()
+        posible_num = ctx.NUM()
+        posibles_expr = ctx.expr()
+        
+        print(f"posibles_operaciones: {posibles_operaciones[0].getText()}")
+        print(f"posibleid en operacion: {posible_id}")
+        print(f"posible_num en operacion: {posible_num}")
+        print(f"posibles_expr en operacion: {posibles_expr}")
+        
+        # si la operacion es solo sobre una expresion
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo11.
     def exitMetodo11(self, ctx:Proy1Parser.Metodo11Context):

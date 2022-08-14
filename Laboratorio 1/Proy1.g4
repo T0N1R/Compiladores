@@ -78,6 +78,9 @@ expr    :   ID
         |   self
         ;
 
+not     :       'not'
+        ;
+
 inicializar     :       'new' tipoVariable
                 |       'isvoid' self
                 ;
@@ -93,7 +96,7 @@ declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (';')?       #tipo_corr
 
 metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':' tipoVariable '{' ('{')?  (expr)*  ('}')? ('}' | '};')  #metodo1
         |   ID '(' (expr (coma expr)*)? ')' (punto metodo)? (';')*                                                                      #metodo2
-        |   '(' ('not')? (inicializar | expr) ')' (punto metodo)? (';')*                                                                #metodo3
+        |   '(' (not)? (inicializar | expr) ')' (punto metodo)? (';')*                                                                #metodo3
         |   'if' (expr)* 'then' (expr)* 'else' (expr)* ('fi')* (';')?                                                                   #metodo4
         |   'while' (expr)* 'loop' (expr)* 'pool' (';')?                                                                                #metodo5
         |   '{' (expr)* '};'                                                                                                            #metodo6
@@ -105,7 +108,7 @@ metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':'
         |   '~' (ID | expr) (';')?                                                                                                      #metodo12
         |   'while' (expr)* 'loop' ('{')? (expr)* ('}')?                                                                                #metodo13
         |   'while' (expr)* 'loop' ('{')? (expr)* ('}')? 'pool' (';')?                                                                  #metodo14
-        |   '(' ('not')? (inicializar | expr) ')' '@' ID punto metodo (punto metodo)* (';')?                                            #metodo15
+        |   '(' (not)? (inicializar | expr) ')' '@' ID punto metodo (punto metodo)* (';')?                                            #metodo15
         |   '(' 'let' ID ':' (tipoVariable | expr) 'in' metodo ')'                                                                      #metodo16
         ;
 

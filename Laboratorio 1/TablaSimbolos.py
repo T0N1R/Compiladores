@@ -7,7 +7,14 @@ class TablaSimbolos():
         self._in_method = False
         # identificador del nombre del metodo
         self._current_method = None
+        # in method object
+        self._in_method_object = None
+        # offset
         self._offset = 0
+        #
+        self._error_in_current_method = False
+        # error en codigo
+        self._error_in_code = False
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         
@@ -29,6 +36,27 @@ class TablaSimbolos():
             'en_metodo': self._current_method,
             'ambito': current_ambito
         })
+        
+    def agregar_in_method_object(self, tipo, id, size, offset, definicion, valor, padre):
+        
+        current_ambito = ''
+        
+        if self._in_method == True:
+            current_ambito = 'private'
+        else:
+            current_ambito = 'global'
+        
+        self._in_method_object = {
+            'tipo': tipo,
+            'id': id,
+            'size': size,
+            'offset': offset,
+            'definicion': definicion,
+            'valor': valor,
+            'padre': padre,
+            'en_metodo': self._current_method,
+            'ambito': current_ambito
+        }
         
     def id_en_tabla(self, id):
         for d in self._simbolos:
