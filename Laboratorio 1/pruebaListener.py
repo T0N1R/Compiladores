@@ -165,7 +165,7 @@ class MyListener(Proy1Listener):
             self._tabla_simbolos._error_in_code = True
         
         print("**********************")
-        sys.exit()
+        
 
 
 
