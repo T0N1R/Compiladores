@@ -128,3 +128,35 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
             self._tabla_simbolos._error_in_current_method = True
             self._tabla_simbolos._error_in_code = True
             
+            
+# verificar que id ya existe en tabla
+def verificar_en_tabla(self, valor_id):
+    
+    tabla_posibles_valores = self._tabla_simbolos.return_same_ids(valor_id)
+    print(f"tabla_posibles_valores: {tabla_posibles_valores}")
+        
+
+    for variable in tabla_posibles_valores:
+        #POSIBLE
+        tipo_del_posible = variable['tipo']
+        en_metodo_del_posible = variable['en_metodo']
+        ambito_del_posible = variable['ambito']
+        
+        #ACTUAL
+        metodo_actual = self._tabla_simbolos._current_method
+        clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+            
+        # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+        if en_metodo_del_posible == metodo_actual:
+            # SE DEFINIO EN EL MISMO METODO
+            print("CORRECTO, se puede utilizar la variable por estar en el mismo metodo")
+            
+        # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
+        elif ambito_del_posible == 'global':
+            print("CORRECTO, se puede utilizar la variable por ser una variable global")
+
+        # HAY ERROR
+        else:
+            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+            self._tabla_simbolos._error_in_current_method = True
+            self._tabla_simbolos._error_in_code = True

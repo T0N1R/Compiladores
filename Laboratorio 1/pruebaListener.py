@@ -26,6 +26,7 @@ class MyListener(Proy1Listener):
         for x in self._tabla_simbolos._simbolos:
             print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %(x['tipo'], x['id'], x['size'], x['offset'], x['definicion'], x['valor'], x['padre'], x['en_metodo'], x['ambito']))
         
+    # print(f"self._tabla_simbolos._error_in_code: {self._tabla_simbolos._error_in_code}")
     
     def enterTest_main(self, ctx):
         print("entre test main")
@@ -54,6 +55,12 @@ class MyListener(Proy1Listener):
             else:
                 self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
+                
+    # Exit a parse tree produced by Proy1Parser#test_main.
+    def exitTest_main(self, ctx:Proy1Parser.Test_mainContext):
+        print("exitTest_main")
+        print(f"self._tabla_simbolos._error_in_code: {self._tabla_simbolos._error_in_code}")
+        print("**********************")
         
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_1.
     def enterTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
@@ -418,6 +425,7 @@ class MyListener(Proy1Listener):
             self._tabla_simbolos._current_method = None
             self._tabla_simbolos._in_method_object = None
             
+            
         print("**********************")
 
 
@@ -425,6 +433,27 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo2.
     def enterMetodo2(self, ctx:Proy1Parser.Metodo2Context):
         print("metodo2")
+        print(f"metodo2: {ctx.getText()}")
+        
+        print(f"nombre metodo: {ctx.ID()}")
+        print(f"expresiones: {ctx.expr()}")
+        print(f"metodos: {ctx.metodo()}")
+        
+        nombre_metodo = ctx.ID()
+        expresiones = ctx.expr()
+        metodos = ctx.metodo()
+        
+        # solo tenemos la expresion
+        if metodos == None:
+            # verificar que el metodo esta en la tabla de simbolos y que los parametros tambien
+            verificar_en_tabla(self, nombre_metodo.getText())
+            
+            for expresion in expresiones:
+                print(f"expresion: {expresion.getText()}")
+                verificar_en_tabla(self, expresion.getText())
+            
+            
+            
 
     # Exit a parse tree produced by Proy1Parser#metodo2.
     def exitMetodo2(self, ctx:Proy1Parser.Metodo2Context):
@@ -437,12 +466,35 @@ class MyListener(Proy1Listener):
         
         print(ctx.getText())
         
-        inicializar = ctx.inicializar()
+        hay_not = ctx.Not()            
+        posible_inicializar = ctx.inicializar()
+        posible_expr = ctx.expr()
+        posible_metodo = ctx.metodo()
         
-        # Si el contexto de inicializar es None, se tiene una expresión, se deja pasar para que lo jale el siguiente listener
-        if inicializar == None:
-            print("pass al siguiente listener")
-            pass
+        print(f"hay_not: {hay_not}")
+        print(f"posible_inicializar: {posible_inicializar}")
+        print(f"posible_expr: {posible_expr}")
+        print(f"posible_metodo: {posible_metodo}")
+
+        
+        if hay_not == None:
+            # Si el contexto de inicializar es None, se tiene una expresión, se deja pasar para que lo jale el siguiente listener
+            if posible_inicializar == None:
+                print("HAY UNA EXPR")
+                pass
+            
+            if posible_expr == None:
+                print("HAY UNA INICIALIZAR")
+                print(f"el inicializar: {posible_inicializar.getText()}")
+                
+                if posible_metodo != None:
+                    print(f"el metodo: {posible_metodo.getText()}")
+                    print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
+                    #self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
+
+    
+        else:
+            print("TIENE UN NOT")
         
         
         print("**********************")
@@ -665,6 +717,8 @@ class MyListener(Proy1Listener):
                         
                     else:
                         print("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
+                        self._tabla_simbolos._error_in_current_method = True
+                        self._tabla_simbolos._error_in_code = True
         
         # la contunacion de la expresion
         

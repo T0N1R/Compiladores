@@ -119,16 +119,6 @@ public interface Proy1Listener extends ParseTreeListener {
 	 */
 	void exitExpr(Proy1Parser.ExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Proy1Parser#not}.
-	 * @param ctx the parse tree
-	 */
-	void enterNot(Proy1Parser.NotContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Proy1Parser#not}.
-	 * @param ctx the parse tree
-	 */
-	void exitNot(Proy1Parser.NotContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link Proy1Parser#inicializar}.
 	 * @param ctx the parse tree
 	 */

@@ -107,15 +107,6 @@ class Proy1Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Proy1Parser#not.
-    def enterNot(self, ctx:Proy1Parser.NotContext):
-        pass
-
-    # Exit a parse tree produced by Proy1Parser#not.
-    def exitNot(self, ctx:Proy1Parser.NotContext):
-        pass
-
-
     # Enter a parse tree produced by Proy1Parser#inicializar.
     def enterInicializar(self, ctx:Proy1Parser.InicializarContext):
         pass
