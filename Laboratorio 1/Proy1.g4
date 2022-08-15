@@ -85,9 +85,9 @@ inicializar     :       'new' tipoVariable
                 |       'isvoid' self
                 ;
 
-declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (';')?       #tipo_correcto_1
-                    |   ID '<-' inicializar (punto metodo)* (';')?    #tipo_correcto_3
-                    |   ID '<-' metodo (operacion metodo)* (';')?     #tipo_correcto_4
+declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (semicolon)?       #tipo_correcto_1
+                    |   ID '<-' inicializar (punto metodo)* (semicolon)?    #tipo_correcto_3
+                    |   ID '<-' metodo (operacion metodo)* (semicolon)?     #tipo_correcto_4
                     |   ID '<-' ID (operacion metodo)* (semicolon)?   #tipo_correcto_5
                     |   ID '<-' expr (semicolon)?                     #tipo_correcto_6
                     |   ID '<-' '{' expr '};'                         #tipo_correcto_7

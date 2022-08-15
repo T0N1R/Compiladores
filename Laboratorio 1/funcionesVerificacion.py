@@ -16,17 +16,6 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
         ambito_del_asignable = asignable['ambito']
         padre_del_asignable = asignable['padre']
         
-        """print("DATOS DEL ASIGNABLEEEEEEEEEEEEEEEEEEEE")
-        print(f"id_del_asignable: {id_del_asignable}")
-        print(f"tipo_del_asignable: {tipo_del_asignable}")
-        print(f"definicion_del_asignable: {definicion_del_asignable}")
-        print(f"en_metodo_del_asignable: {en_metodo_del_asignable}")
-        print(f"ambito_del_asignable: {ambito_del_asignable}")
-        print(f"padre_del_asignable: {padre_del_asignable}")
-        
-        print("DATOS ACTUALESSSSSSSSSSSSSSSS")
-        print(f"metodo_actual: {metodo_actual}")
-        print(f"clase_padre_actual: {clase_padre_actual}")"""
         
         if en_metodo_del_asignable == metodo_actual:
             #print("esta variable puede asignarse por estar en el mismo metodo")
@@ -34,6 +23,15 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
             # verificar si los 2 tipos variables son del mismo tipo
             if tipo_del_posible == tipo_del_asignable:
                 print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                self._tabla_simbolos._se_asigna_a_variable = True
+                self._tabla_simbolos.tipo_de_asignada = tipo_del_asignable
+                self._variable_asiganda = id_del_asignable
+                
+                print("DATOS DEL ASIGNABLE")
+                print(f"_variable_asiganda: {self._variable_asiganda}")
+                print(f"tipo_de_asignada: {self._tabla_simbolos.tipo_de_asignada}")
+                print(f"_se_asigna_a_variable: {self._tabla_simbolos._se_asigna_a_variable}")
+                
                 self.imprimir_tabla_simbolos()
                 
             else:
@@ -48,6 +46,9 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
              # verificar si los 2 tipos variables son del mismo tipo
             if tipo_del_posible == tipo_del_asignable:
                 print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                self._tabla_simbolos._se_asigna_a_variable = True
+                self._tabla_simbolos.tipo_de_asignada = tipo_del_asignable
+                self._variable_asiganda = id_del_asignable
                 self.imprimir_tabla_simbolos()
                 
             else:
@@ -80,4 +81,50 @@ def remover_contenido_de_metodo(self):
     #self._tabla_simbolos._simbolos = [x for x in tabla_simbolos if not x in lista_a_borrar]
     nueva_tabla = [x for x in tabla_simbolos if not x in lista_a_borrar]
 
-    
+def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible):
+    for asignable in tabla_posibles_asignable:
+        tipo_del_asignable = asignable['tipo']
+        en_metodo_del_asignable = asignable['en_metodo']
+        ambito_del_asignable = asignable['ambito']
+        
+        if en_metodo_del_asignable == metodo_actual:
+            #print("esta variable puede asignarse por estar en el mismo metodo")
+            
+            # verificar si los 2 tipos variables son del mismo tipo
+            if tipo_del_posible == tipo_del_asignable:
+                if self._tabla_simbolos.tipo_de_asignada != None and self._tabla_simbolos._se_asigna_a_variable != False:
+                    if tipo_del_posible == self._tabla_simbolos.tipo_de_asignada:
+                        print("el tipo es el mismo al de la tipo_se_ asignada, se pede hacer")
+                        print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                        return tipo_del_posible
+                        
+                    else:
+                        print("ERROR, no conecuerda con tipo_de_asignada")
+                
+            else:
+                print("ERROR, LAS VARIABLES TIENE DISTINTOS TIPOS")
+                
+                
+            
+        elif ambito_del_asignable == 'global':
+            #print("esta variable puede asignarse por ser una variable global")
+            
+            # verificar si los 2 tipos variables son del mismo tipo
+            if tipo_del_posible == tipo_del_asignable:
+                if self._tabla_simbolos.tipo_de_asignada != None and self._se_asigna_a_variable != False:
+                    if tipo_del_posible == self._tabla_simbolos.tipo_de_asignada:
+                        print("el tipo es el mismo al de la tipo_se_ asignada, se pede hacer")
+                        print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                        return tipo_del_posible
+                        
+                    else:
+                        print("ERROR, no conecuerda con tipo_de_asignada")
+                
+            else:
+                print("ERROR, LAS VARIABLES TIENE DISTINTOS TIPOS")
+            
+        else:
+            print("ERROR, ESTA VARIABLE NO HA SIGO ASIGNADA")
+            self._tabla_simbolos._error_in_current_method = True
+            self._tabla_simbolos._error_in_code = True
+            

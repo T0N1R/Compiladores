@@ -120,6 +120,7 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_4.
     def enterTipo_correcto_4(self, ctx:Proy1Parser.Tipo_correcto_4Context):
         print("enter correcto 4")
+        print(f"contenido correcto 4: {ctx.getText()}")
         
         id_a_asignar = ctx.ID()
         print(f"id_a_asignar: {id_a_asignar.getText()}")
@@ -158,7 +159,7 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos._error_in_code = True
                     
         
-        # SI HAY ALGO EN LA LISTA AVISAR ERROR
+        # SI NO HAY ALGO EN LA LISTA AVISAR ERROR
         else:
             print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
             self._tabla_simbolos._error_in_current_method = True
@@ -171,7 +172,10 @@ class MyListener(Proy1Listener):
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_4.
     def exitTipo_correcto_4(self, ctx:Proy1Parser.Tipo_correcto_4Context):
-        print("correcto 4")
+        print("exit correcto 4")
+        print("RESET A _se_asigna_a_variable Y tipo_de_asignada")
+        self._tabla_simbolos._se_asigna_a_variable = False
+        self._tabla_simbolos.tipo_de_asignada = None
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_5.
@@ -209,16 +213,6 @@ class MyListener(Proy1Listener):
                     metodo_actual = self._tabla_simbolos._current_method
                     clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
                     
-                    """print("DATOS DEL POSIBLEEEEEEEEEEEEEEEEEEEE")
-                    print(f"tipo_del_posible: {tipo_del_posible}")
-                    print(f"definicion_del_posible: {definicion_del_posible}")
-                    print(f"en_metodo_del_posible: {en_metodo_del_posible}")
-                    print(f"ambito_del_posible: {ambito_del_posible}")
-                    print(f"padre_del_posible: {padre_del_posible}")
-                    
-                    print("DATOS ACTUALESSSSSSSSSSSSSSSS")
-                    print(f"metodo_actual: {metodo_actual}")
-                    print(f"clase_padre_actual: {clase_padre_actual}")"""
                     
                     # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
                     if en_metodo_del_posible == metodo_actual:
@@ -248,26 +242,6 @@ class MyListener(Proy1Listener):
             
             
             self._tabla_simbolos.return_same_ids(id_context[1].getText())
-            
-
-        
-        """if self._tabla_simbolos.id_en_tabla(expr):
-                print("esta en tabla de simbolos, obtener su valor")
-                
-                expr_object = self._tabla_simbolos.obtener_objeto(expr)
-                
-                if id_object['tipo'] == expr_object['tipo']:
-                    print("Valido, ambos tienen el mismo tipo")
-                    
-                else:
-                    print('No Valido, tienen tipos distintos')
-            
-            else:
-                #Verificar que se asigna un Int a una variable Int
-                if check_int(expr):
-                    print("el valor es Int")
-                else:
-                    print("el valor no es Int")"""
                     
         print("**********************")
         
@@ -508,9 +482,11 @@ class MyListener(Proy1Listener):
 
     # Enter a parse tree produced by Proy1Parser#metodo7.
     def enterMetodo7(self, ctx:Proy1Parser.Metodo7Context):
-        print("metodo7")
+        """print("metodo7")
         print("pasar al siguiente listener")
-        print("**********************")
+        print("**********************")"""
+        # CORRECTO, PASAR AL SIGUIENTE LISTENER
+        pass
 
     # Exit a parse tree produced by Proy1Parser#metodo7.
     def exitMetodo7(self, ctx:Proy1Parser.Metodo7Context):
@@ -544,6 +520,11 @@ class MyListener(Proy1Listener):
         let_id = ctx.ID()
         let_tipo = ctx.tipoVariable()
         let_expr = ctx.expr()
+        
+        print("++++++++++++++++++++++++++++++++++++")
+        print("LET EXPR")
+        print(let_expr[0].getText())
+        print("++++++++++++++++++++++++++++++++++")
         
         # si hay algo en let_tipo, se tiene un "let ID : tipoVariable 'in' ( (expr)* | '{' (expr)* '}' | '(' (expr)* ')' ) (';')* "
         if let_tipo is not None:
@@ -581,12 +562,118 @@ class MyListener(Proy1Listener):
         posible_num = ctx.NUM()
         posibles_expr = ctx.expr()
         
-        print(f"posibles_operaciones: {posibles_operaciones[0].getText()}")
+        print(f"lista de operaciones: {posibles_operaciones}")
+        print(f"numero de operaciones: {len(posibles_operaciones)}")
         print(f"posible id en operacion: {posible_id}")
         print(f"posible_num en operacion: {posible_num}")
-        print(f"posibles_expr en operacion: {posibles_expr}")
-        
+                        
         # si la operacion es solo sobre una expresion
+        print(f"antes se asigno una variable: {self._tabla_simbolos._se_asigna_a_variable}")
+        print(f"el tipo de variable previamente asignada: {self._tabla_simbolos.tipo_de_asignada}")
+        
+        
+        # si lo que se tiene es un id y no un num
+        if posible_id != None and posible_num == None:
+            # si solo hay una operacion
+            if len(posibles_operaciones) == 1:
+                print(f"valor1: {posible_id}")
+                print(f"valor2: {posibles_expr[0].getText()}")
+                
+                valor1_en_tabla = self._tabla_simbolos.id_en_tabla(posible_id.getText())
+                valor2_en_tabla = self._tabla_simbolos.id_en_tabla(posibles_expr[0].getText())
+                
+                print(f"valor1_en_tabla: {valor1_en_tabla}")
+                print(f"valor2_en_tabla: {valor2_en_tabla}")
+                    
+                if valor1_en_tabla and valor2_en_tabla:
+                    print("AMBOS OBJETOS ESTAN EN TABLA")
+                    
+                    # verificar si la variable ya fue inicializada en la tabla de simbolos
+                    tabla_posibles_valor1 = self._tabla_simbolos.return_same_ids(posible_id.getText())
+                    tabla_posibles_valor2 = self._tabla_simbolos.return_same_ids(posibles_expr[0].getText())
+                    print(f"tabla posible valor1: {tabla_posibles_valor1}")
+                    print(f"tabla posible valor2: {tabla_posibles_valor2}")
+                    
+                    tipo_valor_1 = ""
+                    tipo_valor_2 = ""
+                    
+                    # Chequear que haya algo en la lista
+                    if len(tabla_posibles_valor1) > 0:
+                        for variable in tabla_posibles_valor1:
+                            #POSIBLE
+                            tipo_del_posible = variable['tipo']
+                            en_metodo_del_posible = variable['en_metodo']
+                            ambito_del_posible = variable['ambito']
+                            
+                            #ACTUAL
+                            metodo_actual = self._tabla_simbolos._current_method
+                            clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                                
+                            # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+                            if en_metodo_del_posible == metodo_actual:
+                                # SE DEFINIO EN EL MISMO METODO
+                                print("se le puede asignar a la variable por estar en el mismo metodo")
+                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                
+                            # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
+                            elif ambito_del_posible == 'global':
+                                print("se le puede asignar a la variable por ser una variable global")
+                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
+
+                            # HAY ERROR
+                            else:
+                                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                
+                    # Chequear que haya algo en la lista
+                    if len(tabla_posibles_valor2) > 0:
+                        for variable in tabla_posibles_valor2:
+                            #POSIBLE
+                            tipo_del_posible = variable['tipo']
+                            en_metodo_del_posible = variable['en_metodo']
+                            ambito_del_posible = variable['ambito']
+                            
+                            #ACTUAL
+                            metodo_actual = self._tabla_simbolos._current_method
+                            clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                                
+                            # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+                            if en_metodo_del_posible == metodo_actual:
+                                # SE DEFINIO EN EL MISMO METODO
+                                print("se le puede asignar a la variable por estar en el mismo metodo")
+                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                
+                            # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
+                            elif ambito_del_posible == 'global':
+                                print("se le puede asignar a la variable por ser una variable global")
+                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
+
+                            # HAY ERROR
+                            else:
+                                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                    
+                    
+                    print("/////////////////////")
+                    print(f"tipo de asignada: {self._tabla_simbolos.tipo_de_asignada}")
+                    print(f"tipo_valor_1: {tipo_valor_1}")
+                    print(f"tipo_valor_2: {tipo_valor_2}")
+                    if tipo_valor_1 == self._tabla_simbolos.tipo_de_asignada and tipo_valor_2 == self._tabla_simbolos.tipo_de_asignada:
+                        print("CORRECTO, LA OPERACION ES EL MISMO TIPO")
+                        
+                    else:
+                        print("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
+        
+        # la contunacion de la expresion
+        
+        
+        # SI NO HAY ALGO EN LA LISTA AVISAR ERROR
+        else:
+            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+            self._tabla_simbolos._error_in_current_method = True
+            self._tabla_simbolos._error_in_code = True
         
 
     # Exit a parse tree produced by Proy1Parser#metodo11.

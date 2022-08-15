@@ -1,18 +1,37 @@
 class TablaSimbolos():
     def __init__(self):
         self._simbolos = []
+        
+        # VARIABLE EN SEPARADO
+        # simbolo de variable
+        self._se_asigna_a_variable = False
+        
+        # tipo de variable asignada
+        self.tipo_de_asignada = None
+        
+        # nombre de variable asignada
+        self._variable_asiganda = None
+        
+        # ---------------------------------
+        
         # posicion en el array de simbolos de la clase donde estamos
         self.current_class = 0
+        
         # indicador de que estamos dentro de un metodo
         self._in_method = False
+        
         # identificador del nombre del metodo
         self._current_method = None
+        
         # in method object
         self._in_method_object = None
+        
         # offset
         self._offset = 0
+        
         #
         self._error_in_current_method = False
+        
         # error en codigo
         self._error_in_code = False
     
