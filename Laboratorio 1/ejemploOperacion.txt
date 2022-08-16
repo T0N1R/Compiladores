@@ -23,6 +23,15 @@ class A {
       )
    };
 
+   method3(num : Int) : C {  -- negate
+      (let x : Int in
+	 {
+            x <- ~num;
+	    (new C).set_var(x);
+	 }
+      )
+   };
+
    
 
 };

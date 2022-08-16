@@ -138,33 +138,41 @@ class MyListener(Proy1Listener):
         
         # Chequear que haya algo en la lista
         if len(tabla_posibles_id_a_asignar) > 0:
+            
+            posibles_correctos = []
+            
             for variable in tabla_posibles_id_a_asignar:
                 #POSIBLE
+                id_del_posible = variable['id']
                 tipo_del_posible = variable['tipo']
                 en_metodo_del_posible = variable['en_metodo']
                 ambito_del_posible = variable['ambito']
                 
+                print(f"id_del_posible: {id_del_posible}")
+                print(f"tipo_del_posible: {tipo_del_posible}")
+                print(f"en_metodo_del_posible: {en_metodo_del_posible}")
+                print(f"ambito_del_posible: {ambito_del_posible}")
+                
                 #ACTUAL
                 metodo_actual = self._tabla_simbolos._current_method
                 clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                
+                print(f"metodo_actual: {metodo_actual}")
+                print(f"clase_padre_actual: {clase_padre_actual}")
                     
                 # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
                 if en_metodo_del_posible == metodo_actual:
                     # SE DEFINIO EN EL MISMO METODO
                     print("se le puede asignar a la variable por estar en el mismo metodo")
+                    posibles_correctos.append(1)
                     verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
-                    
+                
                 # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                 elif ambito_del_posible == 'global':
                     print("se le puede asignar a la variable por ser una variable global")
+                    posibles_correctos.append(1)
                     verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
-
-                # HAY ERROR
-                else:
-                    print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
-                    self._tabla_simbolos._error_in_current_method = True
-                    self._tabla_simbolos._error_in_code = True
-                    
+        
         
         # SI NO HAY ALGO EN LA LISTA AVISAR ERROR
         else:
@@ -173,21 +181,20 @@ class MyListener(Proy1Listener):
             self._tabla_simbolos._error_in_code = True
         
         print("**********************")
-        
 
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_4.
     def exitTipo_correcto_4(self, ctx:Proy1Parser.Tipo_correcto_4Context):
         print("exit correcto 4")
-        print("RESET A _se_asigna_a_variable Y tipo_de_asignada")
-        self._tabla_simbolos._se_asigna_a_variable = False
-        self._tabla_simbolos.tipo_de_asignada = None
-
-
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_5.
-    def exitTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
-        print("correcto 5")
+        #print("RESET A _se_asigna_a_variable Y tipo_de_asignada")
+        #self._tabla_simbolos._se_asigna_a_variable = False
+        #self._tabla_simbolos.tipo_de_asignada = None
+        #self._variable_asiganda = None
+        
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_5.
+    def enterTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
+        print(" enter correcto 5")
         
         id_context = ctx.ID()
         operacion_context = ctx.operacion()
@@ -251,11 +258,15 @@ class MyListener(Proy1Listener):
             self._tabla_simbolos.return_same_ids(id_context[1].getText())
                     
         print("**********************")
-        
 
 
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_6.
-    def exitTipo_correcto_6(self, ctx:Proy1Parser.Tipo_correcto_6Context):
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_5.
+    def exitTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
+        pass
+    
+    
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_6.
+    def enterTipo_correcto_6(self, ctx:Proy1Parser.Tipo_correcto_6Context):
         print("correcto 6")
         
         id = ctx.ID().getText()
@@ -313,6 +324,11 @@ class MyListener(Proy1Listener):
             print(x)"""
             
         print("**********************")
+
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_6.
+    def exitTipo_correcto_6(self, ctx:Proy1Parser.Tipo_correcto_6Context):
+        pass
 
 
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_7.
@@ -420,10 +436,13 @@ class MyListener(Proy1Listener):
             #remover_contenido_de_metodo(self)
             
         else:
+            print(f"limpiar variable en separado")
             # definir que salimos del metodo 1
             self._tabla_simbolos._in_method = False
             self._tabla_simbolos._current_method = None
             self._tabla_simbolos._in_method_object = None
+            
+            
             
             
         print("**********************")
@@ -589,6 +608,10 @@ class MyListener(Proy1Listener):
             # agregar let_id como una variable privada
             self._tabla_simbolos.agregar_simbolo(let_tipo.getText(), let_id.getText(), None, None, 'variable', None, clase_padre['id'])
 
+            self._tabla_simbolos._se_asigna_a_variable = True
+            self._tabla_simbolos.tipo_de_asignada = let_tipo.getText()
+            self._variable_asiganda = let_id.getText()
+
             self.imprimir_tabla_simbolos()
             
             
@@ -738,6 +761,34 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo12.
     def enterMetodo12(self, ctx:Proy1Parser.Metodo12Context):
         print("metodo12")
+        print(f"en metodo12: {ctx.getText()}")
+        posible_id = ctx.ID()
+        posible_expr = ctx.expr()
+        
+        print(f"posible_id: {posible_id}")
+        print(f"posible_expr: {posible_expr}")
+        
+        
+        # si posible_expr es None, hay un ID
+        if posible_expr == None:
+            print(f"se tiene un ID")
+            print(f"posible_id: {posible_id.getText()}")
+            
+            si_hay_tablas = self._tabla_simbolos.id_en_tabla(posible_id.getText())
+            
+            if si_hay_tablas:
+                verificar_id_metodo_12(self, posible_id.getText(), self._tabla_simbolos.tipo_de_asignada)
+            else:
+                print(f"ERROR, LA VARIABLE NO SE ENCUENTRA EN LA TABLA DE SIMBOLOS")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
+        
+        # si posible_id es NOne, hay un ID
+        else:
+            print(f"se tiene una expr")
+            print(f"posible_expr: {posible_expr.getText()}")
+            
+        print("*************************")
 
     # Exit a parse tree produced by Proy1Parser#metodo12.
     def exitMetodo12(self, ctx:Proy1Parser.Metodo12Context):
