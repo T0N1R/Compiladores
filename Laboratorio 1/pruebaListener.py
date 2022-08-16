@@ -172,7 +172,9 @@ class MyListener(Proy1Listener):
                     print("se le puede asignar a la variable por ser una variable global")
                     posibles_correctos.append(1)
                     verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
-        
+
+            if len(posibles_correctos) == 0:
+                print("ERROR, esta variable no ha sido asignada")
         
         # SI NO HAY ALGO EN LA LISTA AVISAR ERROR
         else:
@@ -191,6 +193,8 @@ class MyListener(Proy1Listener):
         #self._tabla_simbolos._se_asigna_a_variable = False
         #self._tabla_simbolos.tipo_de_asignada = None
         #self._variable_asiganda = None
+        
+        print("**********************")
         
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_5.
     def enterTipo_correcto_5(self, ctx:Proy1Parser.Tipo_correcto_5Context):
@@ -527,9 +531,14 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo4.
     def enterMetodo4(self, ctx:Proy1Parser.Metodo4Context):
         print("metodo4")
+        expresiones_en_if = ctx.expr()
+        print(f"expresiones del if: {expresiones_en_if}")
+        print("**********************")
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo4.
     def exitMetodo4(self, ctx:Proy1Parser.Metodo4Context):
+        print("TERMINA METODO4")
         pass
 
 
@@ -674,6 +683,10 @@ class MyListener(Proy1Listener):
                     
                     # Chequear que haya algo en la lista
                     if len(tabla_posibles_valor1) > 0:
+                        
+                        posibles_correctos_v1 = []
+                        
+                        
                         for variable in tabla_posibles_valor1:
                             #POSIBLE
                             tipo_del_posible = variable['tipo']
@@ -688,21 +701,31 @@ class MyListener(Proy1Listener):
                             if en_metodo_del_posible == metodo_actual:
                                 # SE DEFINIO EN EL MISMO METODO
                                 print("se le puede asignar a la variable por estar en el mismo metodo")
+                                posibles_correctos_v1.append(1)
                                 tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                             elif ambito_del_posible == 'global':
                                 print("se le puede asignar a la variable por ser una variable global")
+                                posibles_correctos_v1.append(1)
                                 tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
 
                             # HAY ERROR
-                            else:
-                                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
-                                self._tabla_simbolos._error_in_current_method = True
-                                self._tabla_simbolos._error_in_code = True
+                            #else:
+                            #    print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                            #    self._tabla_simbolos._error_in_current_method = True
+                            #    self._tabla_simbolos._error_in_code = True
+                        
+                        if len(posibles_correctos_v1) == 0:
+                            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
                                 
                     # Chequear que haya algo en la lista
                     if len(tabla_posibles_valor2) > 0:
+                        
+                        posibles_correctos_v2 = []
+                        
                         for variable in tabla_posibles_valor2:
                             #POSIBLE
                             tipo_del_posible = variable['tipo']
@@ -717,18 +740,25 @@ class MyListener(Proy1Listener):
                             if en_metodo_del_posible == metodo_actual:
                                 # SE DEFINIO EN EL MISMO METODO
                                 print("se le puede asignar a la variable por estar en el mismo metodo")
+                                posibles_correctos_v2.append(1)
                                 tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                             elif ambito_del_posible == 'global':
                                 print("se le puede asignar a la variable por ser una variable global")
+                                posibles_correctos_v2.append(1)
                                 tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
 
                             # HAY ERROR
-                            else:
-                                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
-                                self._tabla_simbolos._error_in_current_method = True
-                                self._tabla_simbolos._error_in_code = True
+                            #else:
+                            #    print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                            #    self._tabla_simbolos._error_in_current_method = True
+                            #    self._tabla_simbolos._error_in_code = True
+                    
+                        if len(posibles_correctos_v2) == 0:
+                            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
                     
                     
                     print("/////////////////////")
@@ -751,6 +781,8 @@ class MyListener(Proy1Listener):
             print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
             self._tabla_simbolos._error_in_current_method = True
             self._tabla_simbolos._error_in_code = True
+            
+    print("*************************")
         
 
     # Exit a parse tree produced by Proy1Parser#metodo11.

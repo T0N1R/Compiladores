@@ -106,6 +106,9 @@ def remover_contenido_de_metodo(self):
     nueva_tabla = [x for x in tabla_simbolos if not x in lista_a_borrar]
 
 def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible):
+    
+    posibles_correctos = []
+    
     for asignable in tabla_posibles_asignable:
         tipo_del_asignable = asignable['tipo']
         en_metodo_del_asignable = asignable['en_metodo']
@@ -120,6 +123,7 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
                     if tipo_del_posible == self._tabla_simbolos.tipo_de_asignada:
                         print("el tipo es el mismo al de la tipo_se_ asignada, se pede hacer")
                         print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                        posibles_correctos.append(1)
                         return tipo_del_posible
                         
                     else:
@@ -139,6 +143,7 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
                     if tipo_del_posible == self._tabla_simbolos.tipo_de_asignada:
                         print("el tipo es el mismo al de la tipo_se_ asignada, se pede hacer")
                         print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
+                        posibles_correctos.append(1)
                         return tipo_del_posible
                         
                     else:
@@ -147,11 +152,11 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
             else:
                 print("ERROR, LAS VARIABLES TIENE DISTINTOS TIPOS")
             
-        else:
-            print("ERROR, ESTA VARIABLE NO HA SIGO ASIGNADA")
-            self._tabla_simbolos._error_in_current_method = True
-            self._tabla_simbolos._error_in_code = True
-            
+    if len(posibles_correctos) == 0:
+        print("ERROR, ESTA VARIABLE NO HA SIGO ASIGNADA")
+        self._tabla_simbolos._error_in_current_method = True
+        self._tabla_simbolos._error_in_code = True
+        
             
 # verificar que id ya existe en tabla
 def verificar_en_tabla(self, valor_id):
