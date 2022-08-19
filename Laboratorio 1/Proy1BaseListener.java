@@ -63,18 +63,6 @@ public class Proy1BaseListener implements Proy1Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBool(Proy1Parser.BoolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBool(Proy1Parser.BoolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterComa(Proy1Parser.ComaContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -2,6 +2,33 @@ class TablaSimbolos():
     def __init__(self):
         self._simbolos = []
         
+        # evaluar para agregar en correct temporal
+        # hay let temporal
+        self.hay_let_temporal = False
+        
+        """
+        {
+            'tipo': tipo,
+            'id': id,
+            'size': size,
+            'offset': offset,
+            'definicion': definicion,
+            'valor': valor,
+            'padre': padre,
+            'en_metodo': self._current_method,
+            'ambito': current_ambito
+        }
+        """
+        self.objeto_let_temporal = None
+        
+        # ---------------------------------
+        
+        self._en_condicion_if = False
+        
+        
+        
+        # ---------------------------------
+        
         # VARIABLE EN SEPARADO
         # simbolo de variable
         self._se_asigna_a_variable = False
@@ -34,6 +61,9 @@ class TablaSimbolos():
         
         # error en codigo
         self._error_in_code = False
+        
+        # lista de clases agregadas
+        self._added_classes = []
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         

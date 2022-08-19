@@ -257,3 +257,22 @@ def verificar_id_metodo_12(self, valor_id, tipo_id):
         print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
         self._tabla_simbolos._error_in_current_method = True
         self._tabla_simbolos._error_in_code = True
+        
+
+# Obtener los metodos que pertenecen a una clase espcifica
+# nombre_de_clase es el tipo en tabla de simbolos
+def obtener_metodos_de_una_clase(self, nombre_de_clase):
+    tabla_metodos = []
+    tabla_simbolos = copy.deepcopy(self._tabla_simbolos._simbolos)
+
+    # por cada elemento en la tabla de simbolos
+    for element in tabla_simbolos:
+        #si la definicion del elemento es un metodo
+        if element['definicion'] == "metodo":
+            #verificar si el padre del elemento es igual al nombre de clase
+            if element['padre'] == nombre_de_clase:
+                # si son iguales, agregar el ID del elemento a la lista
+                tabla_metodos.append(element['id'])
+                
+    return tabla_metodos
+            

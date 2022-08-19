@@ -49,16 +49,6 @@ public interface Proy1Listener extends ParseTreeListener {
 	 */
 	void exitFeature_clases(Proy1Parser.Feature_clasesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Proy1Parser#bool}.
-	 * @param ctx the parse tree
-	 */
-	void enterBool(Proy1Parser.BoolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link Proy1Parser#bool}.
-	 * @param ctx the parse tree
-	 */
-	void exitBool(Proy1Parser.BoolContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link Proy1Parser#coma}.
 	 * @param ctx the parse tree
 	 */

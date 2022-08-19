@@ -44,15 +44,6 @@ class Proy1Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by Proy1Parser#bool.
-    def enterBool(self, ctx:Proy1Parser.BoolContext):
-        pass
-
-    # Exit a parse tree produced by Proy1Parser#bool.
-    def exitBool(self, ctx:Proy1Parser.BoolContext):
-        pass
-
-
     # Enter a parse tree produced by Proy1Parser#coma.
     def enterComa(self, ctx:Proy1Parser.ComaContext):
         pass

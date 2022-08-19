@@ -41,7 +41,7 @@ clase   :       'class' ID ('inherits' tipoVariable)? '{' feature_clases '};' # 
 feature_clases  :   (declararAtributo | metodo)*
                 ;
 
-bool    :   'true'
+BOOL    :   'true'
         |   'false'
         ;
 
@@ -73,7 +73,7 @@ expr    :   ID
         |   STRING 
         |   declararAtributo
         |   metodo
-        |   bool 
+        |   BOOL 
         |   NUM
         |   self
         ;
@@ -103,7 +103,7 @@ metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':'
         |   '{' (expr)* '}'                                                                                                             #metodo7
         |   '(' (expr)* ')' (';')*                                                                                                      #metodo8
         |   (ID | STRING) punto metodo (punto metodo)* (';')?                                                                           #metodo9
-        |   'let' ID ':' (tipoVariable | expr) 'in' ( (expr)* | '{' (expr)* '}' | '(' (expr)* ')' ) (';')*                              #metodo10
+        |   'let' ID ':' (tipoVariable | ID '<-' expr) 'in' ( (expr)* | '{' (expr)* '}' | '(' (expr)* ')' ) (';')*                              #metodo10
         |   (ID | NUM) operacion (expr) (operacion expr)* (';')?                                                                        #metodo11
         |   '~' (ID | expr) (';')?                                                                                                      #metodo12
         |   'while' (expr)* 'loop' ('{')? (expr)* ('}')?                                                                                #metodo13
