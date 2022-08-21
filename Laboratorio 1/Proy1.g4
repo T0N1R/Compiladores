@@ -69,12 +69,12 @@ operacion       :       '+'
                 |       '<='
                 ;
 
-expr    :   ID 
-        |   STRING 
+expr    :   ID (';')?
+        |   STRING (';')?
         |   declararAtributo
         |   metodo
-        |   BOOL 
-        |   NUM
+        |   BOOL (';')?
+        |   NUM (';')?
         |   self
         ;
 
@@ -86,6 +86,7 @@ inicializar     :       'new' tipoVariable
                 ;
 
 declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (semicolon)?       #tipo_correcto_1
+                    |   ID '<-' ID (';')?                                   #tipo_correcto_2
                     |   ID '<-' inicializar (punto metodo)* (semicolon)?    #tipo_correcto_3
                     |   ID '<-' metodo (operacion metodo)* (semicolon)?     #tipo_correcto_4
                     |   ID '<-' ID (operacion metodo)* (semicolon)?   #tipo_correcto_5

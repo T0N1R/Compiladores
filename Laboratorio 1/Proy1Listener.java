@@ -131,6 +131,18 @@ public interface Proy1Listener extends ParseTreeListener {
 	 */
 	void exitTipo_correcto_1(Proy1Parser.Tipo_correcto_1Context ctx);
 	/**
+	 * Enter a parse tree produced by the {@code tipo_correcto_2}
+	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
+	 * @param ctx the parse tree
+	 */
+	void enterTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code tipo_correcto_2}
+	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
+	 * @param ctx the parse tree
+	 */
+	void exitTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx);
+	/**
 	 * Enter a parse tree produced by the {@code tipo_correcto_3}
 	 * labeled alternative in {@link Proy1Parser#declararAtributo}.
 	 * @param ctx the parse tree

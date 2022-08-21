@@ -116,6 +116,15 @@ class Proy1Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_2.
+    def enterTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
+        pass
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_2.
+    def exitTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
+        pass
+
+
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_3.
     def enterTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
         pass

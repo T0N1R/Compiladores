@@ -25,7 +25,7 @@ class TablaSimbolos():
         
         self._en_condicion_if = False
         
-        
+        self._en_condicion_while = False
         
         # ---------------------------------
         
@@ -64,6 +64,17 @@ class TablaSimbolos():
         
         # lista de clases agregadas
         self._added_classes = []
+        
+        # guardar variable de la que se opera (al .algo.algo * )
+        self._variable_que_se_opera = None
+        
+        self._class_inicializada = None
+        
+        # metodos permitidos
+        self._metodos_permitidos = ['abort', 'out_string', 'out_int']
+        
+        # lista con los errores
+        self._lista_errores = []
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         

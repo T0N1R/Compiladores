@@ -159,6 +159,18 @@ public class Proy1BaseListener implements Proy1Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTipo_correcto_2(Proy1Parser.Tipo_correcto_2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTipo_correcto_3(Proy1Parser.Tipo_correcto_3Context ctx) { }
 	/**
 	 * {@inheritDoc}

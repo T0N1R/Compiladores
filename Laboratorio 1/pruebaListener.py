@@ -72,10 +72,6 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_1.
     def enterTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
         print("enter correcto 1")
-            
-    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
-    def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
-        print("correcto 1")
         
         # tipos basicos
         allowed_types = ["Int", "String", "Bool"]
@@ -117,17 +113,35 @@ class MyListener(Proy1Listener):
                     print(x)"""
                     
                 if asigned_type in self._tabla_simbolos._added_classes:
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'class', None, clase_padre['id'])
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', None, clase_padre['id'])
             
             else:
-                print("ERROR este tipo de variable no es permitido")
-                self._tabla_simbolos._error_in_current_method = True
-                self._tabla_simbolos._error_in_code = True
+                clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+
+                self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', None, clase_padre['id'])
+                #print("ERROR este tipo de variable no es permitido")
+                #self._tabla_simbolos._error_in_current_method = True
+                #self._tabla_simbolos._error_in_code = True
                 
         self.imprimir_tabla_simbolos()
+        print("**********************")
+            
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
+    def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
+        print("correcto 1")
+        
+        
             
             
         print("**********************")
+        
+    # Enter a parse tree produced by Proy1Parser#tipo_correcto_2.
+    def enterTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
+        print("correcto 1")
+
+    # Exit a parse tree produced by Proy1Parser#tipo_correcto_2.
+    def exitTipo_correcto_2(self, ctx:Proy1Parser.Tipo_correcto_2Context):
+        pass
 
     # Enter a parse tree produced by Proy1Parser#tipo_correcto_3.
     def enterTipo_correcto_3(self, ctx:Proy1Parser.Tipo_correcto_3Context):
@@ -162,6 +176,7 @@ class MyListener(Proy1Listener):
                 tipo_del_posible = variable['tipo']
                 en_metodo_del_posible = variable['en_metodo']
                 ambito_del_posible = variable['ambito']
+                padre_del_posible = variable['padre']
                 
                 print(f"id_del_posible: {id_del_posible}")
                 print(f"tipo_del_posible: {tipo_del_posible}")
@@ -183,7 +198,7 @@ class MyListener(Proy1Listener):
                     verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
                 
                 # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
-                elif ambito_del_posible == 'global':
+                elif padre_del_posible == clase_padre_actual:
                     print("se le puede asignar a la variable por ser una variable global")
                     posibles_correctos.append(1)
                     verificacion_correcto_3_simple(self, tabla_posibles_id_a_asignar, metodo_actual, clase_padre_actual, tipo_del_posible)
@@ -255,7 +270,7 @@ class MyListener(Proy1Listener):
                         verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
                     
                     # VERIFICAR SI EL POSIBLE VARIABLE ES GLOBAL
-                    elif ambito_del_posible == 'global':
+                    elif padre_del_posible == clase_padre_actual:
                         print("se le puede asignar a la variable por ser una variable global")
                         
                         verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible)
@@ -293,11 +308,16 @@ class MyListener(Proy1Listener):
         expr = ctx.expr().getText()
         
         print(id, expr)
+        print(f"check_int(expr) {check_int(expr)}")
         
         # verificar si la variable ya fue inicializada
         if self._tabla_simbolos.id_en_tabla(id):
             
+            print("entramos")
+            
             id_object = self._tabla_simbolos.obtener_objeto(id)
+            
+            print(f"el id_object es: {id_object}")
             
             #Verificar que se asigna un Int a una variable String
             if '"' in expr and id_object['tipo'] == 'String':
@@ -305,12 +325,12 @@ class MyListener(Proy1Listener):
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
             
             #Verificar que se asigna un Int a una variable Int
-            if check_int(expr) and id_object['tipo'] == 'Int':
+            elif ctx.expr().NUM() != None and id_object['tipo'] == 'Int':
                 print("el valor es Int")
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
                 
             # Verificar que se asigna un Int 0 o 1 para una variable Bool
-            if check_int(expr) and id_object['tipo'] == 'Bool':
+            elif check_int(expr) and id_object['tipo'] == 'Bool':
                 print("usando Int para definir un Bool")
                 if expr == "1":
                     self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 'true')
@@ -319,7 +339,7 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 'false')
                     
             # Verificar que se asigna true/false para una variable Int
-            if expr in ['true', 'false'] and id_object['tipo'] == 'Int':
+            elif expr in ['true', 'false'] and id_object['tipo'] == 'Int':
                 print("el valor es Bool")
                 if expr == "true":
                     self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 1)
@@ -328,10 +348,15 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], 0)
                 
             # Verificar que se asigna true/false a una variable Bool
-            if expr in ['true', 'false'] and id_object['tipo'] == 'Bool':
+            elif expr in ['true', 'false'] and id_object['tipo'] == 'Bool':
                 print("el valor es Bool")
                 self._tabla_simbolos.editar_valor_en_tabla(id_object['id'], expr)
             
+            else:
+                print(f"ERROR : El tipo de la variable {id} NO es igual al tipo de {expr}")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
+                    
             
             self.imprimir_tabla_simbolos()
             
@@ -487,12 +512,14 @@ class MyListener(Proy1Listener):
         if metodos == None:
             # verificar que el metodo esta en la tabla de simbolos y que los parametros tambien
             print(f"PASANDO POR VERIFICAR EN TABLAAAAAAA")
-            verificar_en_tabla(self, nombre_metodo.getText())
+            verificar_en_tabla(self, nombre_metodo.getText(), nombre_metodo)
             
             print("antes del for")
             print("-------------------------------")
             
             for expresion in expresiones:
+                
+                print(f"la mera expresion: {expresion.getText()}")
                 
                 posible_string = expresion.STRING()
                 posible_num = expresion.NUM()
@@ -503,8 +530,16 @@ class MyListener(Proy1Listener):
                 print(f"posible_bool: {posible_bool}")
                 
                 print(f"expresion: {expresion.getText()}")
-                verificar_en_tabla(self, expresion.getText())
-            
+                
+                if posible_string == None and posible_num == None and posible_bool == None and expresion.getText() != "self":
+                    
+                    print(f"vamos a entrar con la info")
+                    print(f"expresion.getText(): {expresion.getText()}")
+                    print(f"nombre_metodo: {nombre_metodo}")
+                    verificar_en_tabla(self, expresion.getText(), nombre_metodo)
+
+                else:
+                    print("no se paso en verificar tabla para estos")
             
             
 
@@ -544,6 +579,9 @@ class MyListener(Proy1Listener):
                 if posible_metodo != None:
                     print(f"el metodo: {posible_metodo.getText()}")
                     print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
+                    
+                    self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                    
                     #self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
 
     
@@ -556,6 +594,8 @@ class MyListener(Proy1Listener):
 
     # Exit a parse tree produced by Proy1Parser#metodo3.
     def exitMetodo3(self, ctx:Proy1Parser.Metodo3Context):
+        print("exit metodo3")
+        self._tabla_simbolos._class_inicializada = None
         pass
 
 
@@ -571,6 +611,9 @@ class MyListener(Proy1Listener):
     # Exit a parse tree produced by Proy1Parser#metodo4.
     def exitMetodo4(self, ctx:Proy1Parser.Metodo4Context):
         print("TERMINA METODO4")
+        #print("self._tabla_simbolos._en_condicion_if = False")
+        #self._tabla_simbolos._en_condicion_if = False
+        print("**********************")
         pass
 
 
@@ -617,7 +660,20 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo9.
     def enterMetodo9(self, ctx:Proy1Parser.Metodo9Context):
         print("metodo9")
+        print(f"CONTENIDO METODO 9: {ctx.getText()}")
+        #print(f"VARIABLE DE LA QUE SE OPERA: {ctx.ID().getText()}")
+        
+        clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+        
+        variables_en_clase = obtener_variable_de_una_clase(self, clase_padre_actual)
+        
+        for var in variables_en_clase:
+            if ctx.ID() != None:
+                if var['id'] == ctx.ID().getText():
+                    self._tabla_simbolos._variable_que_se_opera = [ctx.ID().getText(), var['tipo']]
+        
         print("**********************")
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo9.
     def exitMetodo9(self, ctx:Proy1Parser.Metodo9Context):
@@ -728,9 +784,12 @@ class MyListener(Proy1Listener):
                     tipo_del_posible = variable['tipo']
                     en_metodo_del_posible = variable['en_metodo']
                     ambito_del_posible = variable['ambito']
+                    padre_del_posible = variable['padre']
                     
                     #ACTUAL
                     metodo_actual = self._tabla_simbolos._current_method
+                    clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+
                     
                     # VERIFICAR SI LA POSIBLE VARIABLE FUE DEFINIDA EN EL MISMO METODO
                     if en_metodo_del_posible == metodo_actual:
@@ -753,7 +812,7 @@ class MyListener(Proy1Listener):
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
                     
-                    elif ambito_del_posible == 'global':
+                    elif padre_del_posible == clase_padre_actual:
                         print("CORRECTO, se puede utilizar la variable por ser una variable global")
                         if tipo_del_posible == valor_del_tipo:
                             print("CORRECTO, se puede utilizar la variable por estar en el mismo metodo")
@@ -822,6 +881,7 @@ class MyListener(Proy1Listener):
         
         # ESTABA VIENDO ESTO
         if self._tabla_simbolos._en_condicion_if:
+                        
             if posible_id == None:
                 print("VALOR 1 EN IF ES NUMERO")
                 
@@ -847,6 +907,7 @@ class MyListener(Proy1Listener):
                         tipo_del_posible = variable['tipo']
                         en_metodo_del_posible = variable['en_metodo']
                         ambito_del_posible = variable['ambito']
+                        padre_del_posible = variable['padre']
                         
                         #ACTUAL
                         metodo_actual = self._tabla_simbolos._current_method
@@ -860,7 +921,7 @@ class MyListener(Proy1Listener):
                             tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible)
                             
                         # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
-                        elif ambito_del_posible == 'global':
+                        elif padre_del_posible == clase_padre_actual:
                             print("se le puede asignar a la variable por ser una variable global")
                             posible_correto_objeto_2.append(1)
                             tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible)
@@ -870,10 +931,48 @@ class MyListener(Proy1Listener):
                         self._tabla_simbolos._error_in_current_method = True
                         self._tabla_simbolos._error_in_code = True
                         
-
-                            
+            else:
                 
-                #sys.exit()
+                print("entramos en el else?")
+                
+                if len(posibles_operaciones) == 1:
+                    print(f"valor1: {posible_id}")
+                    print(f"valor2: {posibles_expr[0].getText()}")
+                
+                    valor1_en_tabla = self._tabla_simbolos.id_en_tabla(posible_id.getText())
+                    valor2_en_tabla = self._tabla_simbolos.id_en_tabla(posibles_expr[0].getText())                            
+                
+                    print("SE ENCUENTRA EN TABLA?")
+                    print(f"valor1_en_tabla: {valor1_en_tabla}")
+                    print(f"valor2_en_tabla: {valor2_en_tabla}")
+                    """for x in valor1_en_tabla:
+                        print(x)
+                        
+                    for y in valor2_en_tabla:
+                        print(y)"""
+                        
+                    if valor1_en_tabla == True and valor2_en_tabla == False:
+                        
+                        
+                        if check_int(posibles_expr[0].getText()):
+                            print(f"CORRECTO, el valor {posibles_expr[0].getText()} es un Int")
+                            
+                        else:
+                            print(f"ERROR : {posibles_expr[0].getText()} NO esta definido")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
+                        
+                    elif valor1_en_tabla == False and valor2_en_tabla == True:
+                        
+                        if check_int(posible_id):
+                            print(f"CORRECTO, el valor {posible_id} es un Int")
+                        
+                        else:
+                            print(f"ERROR : {posible_id} NO esta definido")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
+                
+                    #sys.exit()
         
         # si lo que se tiene es un id y no un num
         elif posible_id != None and posible_num == None:
@@ -911,6 +1010,7 @@ class MyListener(Proy1Listener):
                             tipo_del_posible = variable['tipo']
                             en_metodo_del_posible = variable['en_metodo']
                             ambito_del_posible = variable['ambito']
+                            padre_del_posible = variable['padre']
                             
                             #ACTUAL
                             metodo_actual = self._tabla_simbolos._current_method
@@ -924,7 +1024,7 @@ class MyListener(Proy1Listener):
                                 tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
-                            elif ambito_del_posible == 'global':
+                            elif padre_del_posible == clase_padre_actual:
                                 print("se le puede asignar a la variable por ser una variable global")
                                 posibles_correctos_v1.append(1)
                                 tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
@@ -950,6 +1050,7 @@ class MyListener(Proy1Listener):
                             tipo_del_posible = variable['tipo']
                             en_metodo_del_posible = variable['en_metodo']
                             ambito_del_posible = variable['ambito']
+                            padre_del_posible = variable['padre']
                             
                             #ACTUAL
                             metodo_actual = self._tabla_simbolos._current_method
@@ -963,7 +1064,7 @@ class MyListener(Proy1Listener):
                                 tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
-                            elif ambito_del_posible == 'global':
+                            elif padre_del_posible == clase_padre_actual:
                                 print("se le puede asignar a la variable por ser una variable global")
                                 posibles_correctos_v2.append(1)
                                 tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
@@ -991,10 +1092,54 @@ class MyListener(Proy1Listener):
                         print("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
                         self._tabla_simbolos._error_in_current_method = True
                         self._tabla_simbolos._error_in_code = True
+                       
+                if valor1_en_tabla and posibles_expr[0].NUM() != None:
+                    print("UN VALOR ESTA EN TABLA Y EL SEGUNDO ES UN NUMERO") 
+                    tabla_posibles_valor1 = self._tabla_simbolos.return_same_ids(posible_id.getText())
+                    current_variable = None
+                    clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+
+                    
+                    for valor in tabla_posibles_valor1:
+                        print(valor['padre'])
+                        print(valor['ambito'])
+                        print(valor['en_metodo'])
                         
+                        print(f"current_method: {self._tabla_simbolos._current_method}")
+                        print(f"clase actual: {clase_padre['id']}")
+                        
+                        if valor['en_metodo'] == self._tabla_simbolos._current_method:
+                            
+                            if valor['tipo'] == 'Int':
+                                print("CORRECTO, se encuentran en el mismo metodo")
+                                current_variable = True
+                            else:
+                                print(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                
+                        elif valor['padre'] == clase_padre['id']:
+                            
+                            if valor['tipo'] == 'Int':
+                                print("CORRECTO, se encuentran en la misma clase")
+                                current_variable = True
+                            else:
+                                print(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                
+                        else:
+                            print(f"ERROR, VARIABLE {valor['id']} NO DEFINIDA")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
+                        
+                    print(tabla_posibles_valor1)
+                    #verificar_valor_evaluado(self, tabla_posibles_valor1)
                 
                 else:
                     print(f"EL VALOR 1 CON ERROR ES: {valor1_en_tabla}")
+                    self._tabla_simbolos._error_in_current_method = True
+                    self._tabla_simbolos._error_in_code = True
         
         # la contunacion de la expresion
         
@@ -1053,10 +1198,18 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo13.
     def enterMetodo13(self, ctx:Proy1Parser.Metodo13Context):
         print("metodo13")
+        
+        print(f"expresiones en el while: {ctx.expr()}")
+        for x in ctx.expr():
+            print(x.getText())
+            
+        self._tabla_simbolos._en_condicion_while = True
 
     # Exit a parse tree produced by Proy1Parser#metodo13.
     def exitMetodo13(self, ctx:Proy1Parser.Metodo13Context):
-        pass
+        print("exit metodo13")
+        print("*************************")
+        self._tabla_simbolos._en_condicion_while = False
 
 
     # Enter a parse tree produced by Proy1Parser#metodo14.
