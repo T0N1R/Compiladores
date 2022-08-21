@@ -536,7 +536,13 @@ class MyListener(Proy1Listener):
                     print(f"vamos a entrar con la info")
                     print(f"expresion.getText(): {expresion.getText()}")
                     print(f"nombre_metodo: {nombre_metodo}")
-                    verificar_en_tabla(self, expresion.getText(), nombre_metodo)
+                    print(f"metodos permitidos:{self._tabla_simbolos._metodos_permitidos}")
+                    
+                    if nombre_metodo.getText() in self._tabla_simbolos._metodos_permitidos:
+                        print("correcto: metodo permitido")
+                    
+                    else:
+                        verificar_en_tabla(self, expresion.getText(), nombre_metodo)
 
                 else:
                     print("no se paso en verificar tabla para estos")
@@ -564,8 +570,61 @@ class MyListener(Proy1Listener):
         print(f"posible_expr: {posible_expr}")
         print(f"posible_metodo: {posible_metodo}")
 
+
+        if posible_metodo != True and posible_expr != None:
+            try:
+                verificar_metodos = []
+                el_inicializar = []
+                existe_un_punto_metodo = True
+                print("++++++++++++++++++++++++++++++++++++++++++")
+                print(f"el posible_expr: {posible_expr.getText()}")
+                print(f"posible_metodo: {posible_metodo.getText()}")
+                
+                print(f"metodos en posible_expr: {posible_expr.metodo().metodo().metodo().ID().getText()}")
+
+                el_pinche_posible_expr = posible_expr
+
+                while existe_un_punto_metodo:
+                    if el_pinche_posible_expr.metodo() != None:
+                        try:
+                            if el_pinche_posible_expr.metodo().inicializar() != None:
+                                el_inicializar.append(el_pinche_posible_expr.metodo().inicializar())
+                        except:
+                            pass
+                            
+                        
+                        if hasattr(el_pinche_posible_expr.metodo().metodo(), 'ID'):
+                            verificar_metodos.append(el_pinche_posible_expr.metodo().metodo().ID().getText()) 
+                            try:
+                                verificar_metodos.append(el_pinche_posible_expr.metodo().metodo().metodo().ID().getText())
+                            except:
+                                pass
+                            el_pinche_posible_expr = el_pinche_posible_expr.metodo().metodo()
+                            
+                        else:
+                            existe_un_punto_metodo = False
+
+                    else:
+                        existe_un_punto_metodo = False
+                        
+                try:                        
+                    print(f"verificar metodos")
+                    print(verificar_metodos)
+                    print(f"metodos en posible_metodo: {posible_metodo.ID().getText()}")
+                    print(posible_metodo.expr()[0].metodo().metodo().ID().getText())
+                    print(posible_metodo.expr()[0].metodo().metodo().metodo().ID().getText())
+                    
+                except:
+                    pass
         
-        if hay_not == None:
+            except:
+                pass
+
+        #sys.exit()
+        
+        
+        
+        elif hay_not == None:
             # Si el contexto de inicializar es None, se tiene una expresión, se deja pasar para que lo jale el siguiente listener
             if posible_inicializar == None:
                 print("HAY UNA EXPR")
@@ -577,10 +636,13 @@ class MyListener(Proy1Listener):
                 print(f"el inicializar: {posible_inicializar.getText()}")
                 
                 if posible_metodo != None:
-                    print(f"el metodo: {posible_metodo.getText()}")
-                    print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
+                    #print(f"el metodo: {posible_metodo.getText()}")
+                    #print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
                     
-                    self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                    try:
+                        self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                    except:
+                        pass
                     
                     #self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
 
@@ -1360,5 +1422,6 @@ if __name__ == "__main__":
         printerDecaf = MyListener()
         walker = ParseTreeWalker()
         walker.walk(printerDecaf, tree)
-
+        print("LISTA ERRORES")
+        print(printerDecaf._tabla_simbolos._lista_errores)
 

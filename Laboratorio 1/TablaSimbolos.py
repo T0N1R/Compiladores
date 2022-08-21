@@ -71,7 +71,7 @@ class TablaSimbolos():
         self._class_inicializada = None
         
         # metodos permitidos
-        self._metodos_permitidos = ['abort', 'out_string', 'out_int']
+        self._metodos_permitidos = ['abort', 'out_string', 'out_int', 'type_name', 'substr']
         
         # lista con los errores
         self._lista_errores = []
