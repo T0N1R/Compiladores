@@ -166,6 +166,8 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
     
     tabla_posibles_valores = self._tabla_simbolos.return_same_ids(valor_id)
         
+    print(f"Tabla posibles valores : {tabla_posibles_valores}")
+        
     # determinar si verifica para 1 de la tabla de posibles valores
     verificado = []
 
@@ -232,10 +234,21 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
     print(f"contenido en verificado: {verificado}")
     if len(verificado) == 0:
         
-        print("whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
+        print(F"whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy {nombre_metodo}")
         
-        if valor_id in self._tabla_simbolos._metodos_permitidos:
+        print(self._tabla_simbolos._current_method)
+        
+        if nombre_metodo == self._tabla_simbolos._current_method:
+            print("correcto")
+        
+        elif valor_id in self._tabla_simbolos._metodos_permitidos:
             print("CORRECTO : Es un metodo permitido")
+            
+        elif self._tabla_simbolos.id_en_tabla(nombre_metodo.getText()):
+            print("correcto")
+            
+        elif nombre_metodo.getText() == 'abort':
+            print("correcto")
             
         else:            
             # HAY ERROR

@@ -95,7 +95,7 @@ declararAtributo    :   ID ':' tipoVariable ('<-' expr)? (semicolon)?       #tip
                     |   self                                          #tipo_correcto_8
                     ;
 
-metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':' tipoVariable '{' ('{')?  (expr)*  ('}')? ('}' | '};')  #metodo1
+metodo  :   ID '(' (ID ':' tipoVariable  (coma ID ':' tipoVariable)*  )? ')' ':' tipoVariable '{' ('{')?  (declararAtributo|expr)*  ('}')? ('}' | '};')  #metodo1
         |   ID '(' (expr (coma expr)*)? ')' (punto metodo)? (';')*                                                                      #metodo2
         |   '(' (Not)? (inicializar | expr) ')' (punto metodo)? (';')*                                                                #metodo3
         |   'if' (expr)* 'then' (expr)* 'else' (expr)* ('fi')* (';')?                                                                   #metodo4
