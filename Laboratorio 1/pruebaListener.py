@@ -82,7 +82,7 @@ class MyListener(Proy1Listener):
     # Exit a parse tree produced by Proy1Parser#tipo_correcto_1.
     def exitTipo_correcto_1(self, ctx:Proy1Parser.Tipo_correcto_1Context):
         print("correcto 1")
-        print("argsregse")
+        print(ctx.getText())
         # tipos basicos
         allowed_types = ["Int", "String", "Bool"]
         print(f"nuevas clases agregadas: {self._tabla_simbolos._added_classes}")
@@ -96,11 +96,49 @@ class MyListener(Proy1Listener):
         
         # verificar si la variable ya fue inicializada
         if self._tabla_simbolos.id_en_tabla(asigned_id):
-            print("variable ya fue inicializada")
-            print(f"ERROR, variable {asigned_id} ya fue inicializada")
-            self._tabla_simbolos._error_in_current_method = True
-            self._tabla_simbolos._error_in_code = True
-            self._tabla_simbolos._lista_errores.append(f"ERROR, variable {asigned_id} ya fue inicializada")
+            #print("variable ya fue inicializada")
+            #print(f"ERROR, variable {asigned_id} ya fue inicializada")
+            
+            verificacion  = verificar_en_mismo_ambito(self, asigned_id)
+            
+            if verificacion:
+                print(f"verificacion es true, podemos agregar la variable {asigned_id}")
+            
+                print(f"asigned_type: {asigned_type}")
+            
+                if asigned_type in allowed_types or asigned_type in self._tabla_simbolos._added_classes:
+                    
+                    clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+                    
+                    if asigned_type == 'String':
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', "empty string", clase_padre['id'])
+                        #print("SE AGREGO A LA TABLA")
+                        
+                    if asigned_type == 'Int':
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', 0, clase_padre['id'])
+                        #print("SE AGREGO A LA TABLA")
+                        
+                    if asigned_type == 'Bool':
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', False, clase_padre['id'])
+                        #print("SE AGREGO A LA TABLA")
+                    
+                    """for x in self._tabla_simbolos._simbolos:
+                        print(x)"""
+                        
+                    if asigned_type in self._tabla_simbolos._added_classes:
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', None, clase_padre['id'])
+                
+                else:
+                    clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
+
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', None, clase_padre['id'])
+                
+            #sys.exit()
+            
+            
+            #self._tabla_simbolos._error_in_current_method = True
+            #self._tabla_simbolos._error_in_code = True
+            #self._tabla_simbolos._lista_errores.append(f"ERROR, variable {asigned_id} ya fue inicializada")
 
             
         # si no ha sido inicializada, se verifica el tipo de variable y se agrega a la tabla de simbolos
@@ -829,6 +867,7 @@ class MyListener(Proy1Listener):
                     
                     try:
                         self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                        self._tabla_simbolos._se_define_new = True
                     except:
                         pass
                     
@@ -846,6 +885,7 @@ class MyListener(Proy1Listener):
     def exitMetodo3(self, ctx:Proy1Parser.Metodo3Context):
         print("exit metodo3")
         self._tabla_simbolos._class_inicializada = None
+        self._tabla_simbolos._se_define_new = False
         pass
 
 
@@ -870,6 +910,7 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo5.
     def enterMetodo5(self, ctx:Proy1Parser.Metodo5Context):
         print("metodo5")
+        self._tabla_simbolos._en_while_cr5 = True
 
     # Exit a parse tree produced by Proy1Parser#metodo5.
     def exitMetodo5(self, ctx:Proy1Parser.Metodo5Context):
@@ -1061,6 +1102,8 @@ class MyListener(Proy1Listener):
                             print(f"ERROR, tipo con su variable referenciada no corresponde")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"ERROR, tipo con su variable referenciada no corresponde")
+
                     
                     elif padre_del_posible == clase_padre_actual:
                         print("CORRECTO, se puede utilizar la variable por ser una variable global")
@@ -1080,6 +1123,7 @@ class MyListener(Proy1Listener):
                             print(f"ERROR, tipo con su variable referenciada no corresponde")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"ERROR, tipo con su variable referenciada no corresponde")
                         
                 print(f"contenido en verificado: {verificado}")
                 if len(verificado) == 0:
@@ -1088,6 +1132,7 @@ class MyListener(Proy1Listener):
                     print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                     self._tabla_simbolos._error_in_current_method = True
                     self._tabla_simbolos._error_in_code = True
+                    self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                     
                     
 
@@ -1180,6 +1225,7 @@ class MyListener(Proy1Listener):
                         print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                         self._tabla_simbolos._error_in_current_method = True
                         self._tabla_simbolos._error_in_code = True
+                        self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                         
             else:
                 
@@ -1219,6 +1265,7 @@ class MyListener(Proy1Listener):
                             print(f"ERROR : {sin_semicolon} NO esta definido")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"ERROR : {sin_semicolon} NO esta definido")
                         
                     elif valor1_en_tabla == False and valor2_en_tabla == True:
                         
@@ -1229,6 +1276,8 @@ class MyListener(Proy1Listener):
                             print(f"ERROR : {posible_id} NO esta definido")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"ERROR : {posible_id} NO esta definido")
+
                 
                     #sys.exit()
         
@@ -1303,6 +1352,7 @@ class MyListener(Proy1Listener):
                             print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                                 
                     # Chequear que haya algo en la lista
                     if len(tabla_posibles_valor2) > 0:
@@ -1343,6 +1393,8 @@ class MyListener(Proy1Listener):
                             print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+
                     
                     
                     print("/////////////////////")
@@ -1356,6 +1408,8 @@ class MyListener(Proy1Listener):
                         print("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
                         self._tabla_simbolos._error_in_current_method = True
                         self._tabla_simbolos._error_in_code = True
+                        self._tabla_simbolos._lista_errores.append("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
+
                        
                 elif valor1_en_tabla and posibles_expr[0].NUM() != None:
                     print("UN VALOR ESTA EN TABLA Y EL SEGUNDO ES UN NUMERO") 
@@ -1381,6 +1435,8 @@ class MyListener(Proy1Listener):
                                 print(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
                                 self._tabla_simbolos._error_in_current_method = True
                                 self._tabla_simbolos._error_in_code = True
+                                self._tabla_simbolos._lista_errores.append(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
+
                                 
                         elif valor['padre'] == clase_padre['id']:
                             
@@ -1391,19 +1447,25 @@ class MyListener(Proy1Listener):
                                 print(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
                                 self._tabla_simbolos._error_in_current_method = True
                                 self._tabla_simbolos._error_in_code = True
+                                self._tabla_simbolos._lista_errores.append(f"ERROR, LA VARIABLE {valor['id']} tiene distinto tipo")
+
                                 
                         else:
                             print(f"ERROR, VARIABLE {valor['id']} NO DEFINIDA")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"ERROR, VARIABLE {valor['id']} NO DEFINIDA")
+
                         
                     print(tabla_posibles_valor1)
                     #verificar_valor_evaluado(self, tabla_posibles_valor1)
                 
                 else:
-                    print(f"EL VALOR 1 CON ERROR ES: {valor1_en_tabla}")
+                    print(f"EL VALOR CON ERROR ES: {valor1_en_tabla}")
                     self._tabla_simbolos._error_in_current_method = True
                     self._tabla_simbolos._error_in_code = True
+                    self._tabla_simbolos._lista_errores.append(f"EL VALOR CON ERROR ES: {valor1_en_tabla}")
+
         
         # la contunacion de la expresion
         
@@ -1446,6 +1508,8 @@ class MyListener(Proy1Listener):
                 print(f"ERROR, LA VARIABLE NO SE ENCUENTRA EN LA TABLA DE SIMBOLOS")
                 self._tabla_simbolos._error_in_current_method = True
                 self._tabla_simbolos._error_in_code = True
+                self._tabla_simbolos._lista_errores.append(f"ERROR, LA VARIABLE NO SE ENCUENTRA EN LA TABLA DE SIMBOLOS")
+
         
         # si posible_id es NOne, hay un ID
         else:
@@ -1488,6 +1552,7 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo15.
     def enterMetodo15(self, ctx:Proy1Parser.Metodo15Context):
         print("metodo15")
+        print(ctx.getText())
 
     # Exit a parse tree produced by Proy1Parser#metodo15.
     def exitMetodo15(self, ctx:Proy1Parser.Metodo15Context):
@@ -1567,6 +1632,9 @@ def ejecutar():
         printerDecaf = MyListener()
         walker = ParseTreeWalker()
         walker.walk(printerDecaf, tree)
+        print("LISTA ERRORES")
+        for err in printerDecaf._tabla_simbolos._lista_errores:
+            print(err)
     
         
 """    

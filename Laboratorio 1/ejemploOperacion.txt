@@ -2,29 +2,50 @@ class A {
    car: Int;
 };
 
-class Main inherits IO {
-
-   var : Int <- 0;
-
-   value() : Int { var };
-
+class B {
+   var: Int;
    set_var(num : Int) : SELF_TYPE {
       {
          var <- num;
          self;
       }
    };
+};
+
+class Main inherits IO {
+
+   var : Int <- 0;
+
+   value() : Int { var };
+
+   set_var(snum : Int) : SELF_TYPE {
+      {
+         var <- num;
+         self;
+      }
+   };
+
+   (new B).set_var(x);
 
    init(i : Int, rest : List) : List {
       {
 	 -- car <- pi;
 	 -- cdr <- rest;
-    var <- "holla"
+    var <- 3;
 	 self;
       }
    };
 
    main(): SELF_TYPE {
 	out_string("Hello, World.\n")
+   y : Int;
+   num: Int;
+   x: Int;
+   while y + num loop
+      {
+            x <- x * y;
+         y <- y + 1;
+      }
+   pool
    };
 };

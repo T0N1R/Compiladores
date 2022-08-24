@@ -167,95 +167,116 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
     tabla_posibles_valores = self._tabla_simbolos.return_same_ids(valor_id)
         
     print(f"Tabla posibles valores : {tabla_posibles_valores}")
+    
+    if self._tabla_simbolos._se_define_new:
+        verificado = []
         
-    # determinar si verifica para 1 de la tabla de posibles valores
-    verificado = []
+        lista_metodos = obtener_metodos_de_una_clase(self, self._tabla_simbolos._class_inicializada)
+        print(f"class inicializada: {self._tabla_simbolos._class_inicializada}")        
+        print(f'lista_metodos: {lista_metodos}')
+        print(f"nombre_metodo: {nombre_metodo}")
+        
+        if nombre_metodo.getText() in lista_metodos:
+            print(f"correcto, metodo esta en {self._tabla_simbolos._class_inicializada}")           
 
-    for variable in tabla_posibles_valores:
+        else:
+            print(f"ERROR: metodo {nombre_metodo.getText()} no esta en {self._tabla_simbolos._class_inicializada}")
                 
-        #POSIBLE
         
-        tipo_del_posible = variable['tipo']
-        en_metodo_del_posible = variable['en_metodo']
-        ambito_del_posible = variable['ambito']
-        padre_del_posible = variable['padre']
         
-        #ACTUAL
-        metodo_actual = self._tabla_simbolos._current_method
-        clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+    else:
+        # determinar si verifica para 1 de la tabla de posibles valores
+        verificado = []
+
+        for variable in tabla_posibles_valores:
+                    
+            #POSIBLE
             
-        # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
-        if en_metodo_del_posible == metodo_actual:
-            # SE DEFINIO EN EL MISMO METODO
-            print(f"debug 1")
-            print("CORRECTO, se puede utilizar la variable por estar en el mismo metodo")
-            verificado.append(1)   
-        
-        # VERIFICAR SI LA POSIBLE VARIABLE en la clase
-        elif padre_del_posible == clase_padre_actual:
-            print(f"debug 2")
-            print("CORRECTO, se puede utilizar la variable por ser una variable global")
-            verificado.append(1)
+            tipo_del_posible = variable['tipo']
+            en_metodo_del_posible = variable['en_metodo']
+            ambito_del_posible = variable['ambito']
+            padre_del_posible = variable['padre']
             
-        # EVALUAR SI HAY UN VALOR ASIGNADO EN _variable_que_se_opera
-        if self._tabla_simbolos._variable_que_se_opera != None:
-            print(f"valor en _variable_que_se_opera: {self._tabla_simbolos._variable_que_se_opera}")
+            #ACTUAL
+            metodo_actual = self._tabla_simbolos._current_method
+            clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+                
+            # VERIFICAR SI EL POSIBLE VARIABLE FUE DEFINIDO EN EL MISMO METODO
+            if en_metodo_del_posible == metodo_actual:
+                # SE DEFINIO EN EL MISMO METODO
+                print(f"debug 1")
+                print("CORRECTO, se puede utilizar la variable por estar en el mismo metodo")
+                verificado.append(1)   
             
-            var_que_se_opera = self._tabla_simbolos._variable_que_se_opera[0]
-            clase_en_que_se_opera = self._tabla_simbolos._variable_que_se_opera[1]            
-            lista_metodos = obtener_metodos_de_una_clase(self, clase_en_que_se_opera)
-            
-            print(f"var que se opera: {var_que_se_opera}")
-            print(f"clase_en_que_se_opera: {clase_en_que_se_opera}")
-            print(f"nombre_metodo: {nombre_metodo}")
-            print(f"lista_metodos: {lista_metodos}")
-            
-            if nombre_metodo.getText() in lista_metodos:
-                print(f"CORRECTO, el metodo se encuentra en la clase {clase_en_que_se_opera}")
+            # VERIFICAR SI LA POSIBLE VARIABLE en la clase
+            elif padre_del_posible == clase_padre_actual:
+                print(f"debug 2")
+                print("CORRECTO, se puede utilizar la variable por ser una variable global")
                 verificado.append(1)
-            else:
-                print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {clase_en_que_se_opera} definida en la variable {var_que_se_opera}")
-            
-        if self._tabla_simbolos._class_inicializada != None:
-            print(f"LA CLASE A LA QUE SE LE HIZO NEW: {self._tabla_simbolos._class_inicializada}")
-            print(f"nombre metodo: {nombre_metodo}")
-            lista_metodos = obtener_metodos_de_una_clase(self, self._tabla_simbolos._class_inicializada)
-            print(lista_metodos)
-            
-            if nombre_metodo.getText() in lista_metodos:
-                print(f"CORRECTO, el metodo se encuentra en la clase {self._tabla_simbolos._class_inicializada}")
-                verificado.append(1)
-            else:
-                print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {self._tabla_simbolos._class_inicializada} definida en la variable {var_que_se_opera}")
+                
+            # EVALUAR SI HAY UN VALOR ASIGNADO EN _variable_que_se_opera
+            if self._tabla_simbolos._variable_que_se_opera != None:
+                print(f"valor en _variable_que_se_opera: {self._tabla_simbolos._variable_que_se_opera}")
+                
+                var_que_se_opera = self._tabla_simbolos._variable_que_se_opera[0]
+                clase_en_que_se_opera = self._tabla_simbolos._variable_que_se_opera[1]            
+                lista_metodos = obtener_metodos_de_una_clase(self, clase_en_que_se_opera)
+                
+                print(f"var que se opera: {var_que_se_opera}")
+                print(f"clase_en_que_se_opera: {clase_en_que_se_opera}")
+                print(f"nombre_metodo: {nombre_metodo}")
+                print(f"lista_metodos: {lista_metodos}")
+                
+                if nombre_metodo.getText() in lista_metodos:
+                    print(f"CORRECTO, el metodo se encuentra en la clase {clase_en_que_se_opera}")
+                    verificado.append(1)
+                else:
+                    print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {clase_en_que_se_opera} definida en la variable {var_que_se_opera}")
+                
+            if self._tabla_simbolos._class_inicializada != None:
+                print(f"LA CLASE A LA QUE SE LE HIZO NEW: {self._tabla_simbolos._class_inicializada}")
+                print(f"nombre metodo: {nombre_metodo}")
+                lista_metodos = obtener_metodos_de_una_clase(self, self._tabla_simbolos._class_inicializada)
+                print(lista_metodos)
+                
+                if nombre_metodo.getText() in lista_metodos:
+                    print(f"CORRECTO, el metodo se encuentra en la clase {self._tabla_simbolos._class_inicializada}")
+                    verificado.append(1)
+                else:
+                    try:
+                        print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {self._tabla_simbolos._class_inicializada} definida en la variable {var_que_se_opera}")
+                    except:                
+                        print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {self._tabla_simbolos._class_inicializada}")
+                    #sys.exit()
 
 
+                
+                
+        print(f"contenido en verificado: {verificado}")
+        if len(verificado) == 0:
             
+            print(F"whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy {nombre_metodo}")
             
-    print(f"contenido en verificado: {verificado}")
-    if len(verificado) == 0:
-        
-        print(F"whyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy {nombre_metodo}")
-        
-        print(self._tabla_simbolos._current_method)
-        
-        if nombre_metodo == self._tabla_simbolos._current_method:
-            print("correcto")
-        
-        elif valor_id in self._tabla_simbolos._metodos_permitidos:
-            print("CORRECTO : Es un metodo permitido")
+            print(self._tabla_simbolos._current_method)
             
-        elif self._tabla_simbolos.id_en_tabla(nombre_metodo.getText()):
-            print("correcto")
+            if nombre_metodo == self._tabla_simbolos._current_method:
+                print("correcto")
             
-        elif nombre_metodo.getText() == 'abort':
-            print("correcto")
-            
-        else:            
-            # HAY ERROR
-            print("debug 3")
-            print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
-            self._tabla_simbolos._error_in_current_method = True
-            self._tabla_simbolos._error_in_code = True
+            elif valor_id in self._tabla_simbolos._metodos_permitidos:
+                print("CORRECTO : Es un metodo permitido")
+                
+            elif self._tabla_simbolos.id_en_tabla(nombre_metodo.getText()):
+                print("correcto")
+                
+            elif nombre_metodo.getText() == 'abort':
+                print("correcto")
+                
+            else:            
+                # HAY ERROR
+                print("debug 3")
+                print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
         
 
 def verificar_id_metodo_12(self, valor_id, tipo_id):
@@ -409,3 +430,26 @@ def verificar_valor_evaluado(self, tabla_posibles_valor1):
         print("ERROR, UNA EXPRESION DE LA OPERACION NO CONCUERDA CON LA VARIABLE A LA QUE SE ASIGNA")
         self._tabla_simbolos._error_in_current_method = True
         self._tabla_simbolos._error_in_code = True
+        
+def verificar_en_mismo_ambito(self, asigned_id):
+    posibles_en_tabla = self._tabla_simbolos.return_same_ids(asigned_id)
+    
+    existe = []
+    clase_padre_actual = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]['id']
+
+    
+    if len(posibles_en_tabla) > 0 :
+        for x in posibles_en_tabla:
+            if x['padre'] == clase_padre_actual:
+                print(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual}")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
+                self._tabla_simbolos._lista_errores.append(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual}")
+                return False
+                
+            else:
+                print(f" {asigned_id} existe pero no en esta clase")
+                existe.append(1)
+                
+    if len(existe) > 0:
+        return True

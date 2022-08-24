@@ -27,6 +27,8 @@ class TablaSimbolos():
         
         self._en_condicion_while = False
         
+        self._en_while_cr5 = False
+        
         # ---------------------------------
         
         # VARIABLE EN SEPARADO
@@ -75,6 +77,8 @@ class TablaSimbolos():
         
         # lista con los errores
         self._lista_errores = []
+        
+        self._se_define_new = False
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         
