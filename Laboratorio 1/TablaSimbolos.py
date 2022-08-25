@@ -79,6 +79,8 @@ class TablaSimbolos():
         self._lista_errores = []
         
         self._se_define_new = False
+        
+        self._ignora_new = False
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         

@@ -85,6 +85,8 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
         print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
         self._tabla_simbolos._error_in_current_method = True
         self._tabla_simbolos._error_in_code = True
+        self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+
             
 # si se encuentra un error dentro de un metodo, este metodo no se considera valido
 # se remueven los valores del metodo de la tabla de simbolos.
@@ -181,7 +183,10 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
 
         else:
             print(f"ERROR: metodo {nombre_metodo.getText()} no esta en {self._tabla_simbolos._class_inicializada}")
-                
+            self._tabla_simbolos._error_in_current_method = True
+            self._tabla_simbolos._error_in_code = True
+            self._tabla_simbolos._lista_errores.append(f"ERROR: metodo {nombre_metodo.getText()} no esta en {self._tabla_simbolos._class_inicializada}")
+
         
         
     else:
@@ -232,7 +237,10 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
                     verificado.append(1)
                 else:
                     print(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {clase_en_que_se_opera} definida en la variable {var_que_se_opera}")
-                
+                    self._tabla_simbolos._error_in_current_method = True
+                    self._tabla_simbolos._error_in_code = True
+                    self._tabla_simbolos._lista_errores.append(f"ERROR, el metodo {nombre_metodo} no se encuentra en clase {clase_en_que_se_opera} definida en la variable {var_que_se_opera}")
+
             if self._tabla_simbolos._class_inicializada != None:
                 print(f"LA CLASE A LA QUE SE LE HIZO NEW: {self._tabla_simbolos._class_inicializada}")
                 print(f"nombre metodo: {nombre_metodo}")
@@ -277,6 +285,8 @@ def verificar_en_tabla(self, valor_id, nombre_metodo):
                 print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                 self._tabla_simbolos._error_in_current_method = True
                 self._tabla_simbolos._error_in_code = True
+                self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+
         
 
 def verificar_id_metodo_12(self, valor_id, tipo_id):
@@ -335,6 +345,8 @@ def verificar_id_metodo_12(self, valor_id, tipo_id):
         print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
         self._tabla_simbolos._error_in_current_method = True
         self._tabla_simbolos._error_in_code = True
+        self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+
         
 
 # Obtener los metodos que pertenecen a una clase espcifica
@@ -418,6 +430,8 @@ def verificar_valor_evaluado(self, tabla_posibles_valor1):
             print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
             self._tabla_simbolos._error_in_current_method = True
             self._tabla_simbolos._error_in_code = True
+            self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+
             
     print("/////////////////////")
     print(f"tipo de asignada: {self._tabla_simbolos.tipo_de_asignada}")
@@ -441,11 +455,13 @@ def verificar_en_mismo_ambito(self, asigned_id):
     if len(posibles_en_tabla) > 0 :
         for x in posibles_en_tabla:
             if x['padre'] == clase_padre_actual:
-                print(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual}")
-                self._tabla_simbolos._error_in_current_method = True
-                self._tabla_simbolos._error_in_code = True
-                self._tabla_simbolos._lista_errores.append(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual}")
-                return False
+                
+                if x['en_metodo'] == self._tabla_simbolos._current_method:
+                    print(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual} y metodo {self._tabla_simbolos._current_method}")
+                    self._tabla_simbolos._error_in_current_method = True
+                    self._tabla_simbolos._error_in_code = True
+                    self._tabla_simbolos._lista_errores.append(f"ERROR: {asigned_id} ya fue inicializada en la clase {clase_padre_actual} y metodo {self._tabla_simbolos._current_method}")
+                    return False
                 
             else:
                 print(f" {asigned_id} existe pero no en esta clase")

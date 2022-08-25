@@ -2,7 +2,7 @@ class A {
    car: Int;
 };
 
-class B {
+class B inherits A{
    var: Int;
    set_var(num : Int) : SELF_TYPE {
       {
@@ -18,7 +18,7 @@ class Main inherits IO {
 
    value() : Int { var };
 
-   set_var(snum : Int) : SELF_TYPE {
+   set_var(num : Int) : SELF_TYPE {
       {
          var <- num;
          self;
@@ -31,7 +31,7 @@ class Main inherits IO {
       {
 	 -- car <- pi;
 	 -- cdr <- rest;
-    var <- 3;
+    var <- 3
 	 self;
       }
    };
@@ -41,7 +41,7 @@ class Main inherits IO {
    y : Int;
    num: Int;
    x: Int;
-   while y + num loop
+   while y <= num loop
       {
             x <- x * y;
          y <- y + 1;
