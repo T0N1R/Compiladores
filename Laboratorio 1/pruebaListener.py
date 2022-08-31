@@ -64,7 +64,7 @@ class MyListener(Proy1Listener):
     # Exit a parse tree produced by Proy1Parser#test_main.
     def exitTest_main(self, ctx:Proy1Parser.Test_mainContext):
         print("exitTest_main")
-        self.imprimir_tabla_simbolos()
+        #self.imprimir_tabla_simbolos()
         print(f"self._tabla_simbolos._error_in_code: {self._tabla_simbolos._error_in_code}")
         #print("TEST")
         lista_metodos = obtener_metodos_de_una_clase(self, "A")
@@ -175,7 +175,7 @@ class MyListener(Proy1Listener):
                 #self._tabla_simbolos._error_in_current_method = True
                 #self._tabla_simbolos._error_in_code = True
                 
-        self.imprimir_tabla_simbolos()
+        #self.imprimir_tabla_simbolos()
         
             
             
@@ -547,7 +547,7 @@ class MyListener(Proy1Listener):
                 self._tabla_simbolos._lista_errores.append(f"ERROR : El tipo de la variable {id} NO es igual al tipo de {expr}")
                     
             
-            self.imprimir_tabla_simbolos()
+            #self.imprimir_tabla_simbolos()
             
                 
         else:
@@ -638,7 +638,7 @@ class MyListener(Proy1Listener):
                 self._tabla_simbolos._error_in_current_method = False
                 self._tabla_simbolos._current_method = id_metodo
             
-                self.imprimir_tabla_simbolos()
+                #self.imprimir_tabla_simbolos()
                 
             else:
                 self._tabla_simbolos.agregar_simbolo(tipoMetodo, id_metodo, None, None, 'metodo', None, clase_padre['id'])
@@ -650,7 +650,7 @@ class MyListener(Proy1Listener):
                 self._tabla_simbolos._error_in_current_method = False
                 self._tabla_simbolos._current_method = id_metodo
             
-                self.imprimir_tabla_simbolos()
+                #self.imprimir_tabla_simbolos()
             
         # si no hay 1 - 1 es porque hay un parametro en el metodo
         else:
@@ -691,7 +691,7 @@ class MyListener(Proy1Listener):
                 
                 start_counter += 1
                 
-            self.imprimir_tabla_simbolos()
+            #self.imprimir_tabla_simbolos()
             
         
         print("**********************")
@@ -727,6 +727,9 @@ class MyListener(Proy1Listener):
         
         if self._tabla_simbolos._ignora_new:
             print(f"se ignora {ctx.getText()}")
+            
+        elif self._tabla_simbolos._ignora_new_15:
+            print(f"se ignora por el metodo15 {ctx.getText()}")
             
         else:
             
@@ -792,7 +795,7 @@ class MyListener(Proy1Listener):
         
         print(ctx.getText())
         
-        hay_not = ctx.Not()            
+        hay_not = ctx.Not()
         posible_inicializar = ctx.inicializar()
         posible_expr = ctx.expr()
         posible_metodo = ctx.metodo()
@@ -1016,7 +1019,7 @@ class MyListener(Proy1Listener):
             self._tabla_simbolos.tipo_de_asignada = let_tipo.getText()
             self._variable_asiganda = let_id[0].getText()
 
-            self.imprimir_tabla_simbolos()
+            #self.imprimir_tabla_simbolos()
             
         # si es none hay una expresion
         if let_tipo is None:
@@ -1044,7 +1047,7 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos.tipo_de_asignada = valor_del_tipo
                     self._variable_asiganda = valor_del_let
 
-                    self.imprimir_tabla_simbolos()
+                    #self.imprimir_tabla_simbolos()
                     
             if let_expr[0].STRING() != None:
                 if valor_del_tipo == "String":
@@ -1057,7 +1060,7 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos.tipo_de_asignada = valor_del_tipo
                     self._variable_asiganda = valor_del_let
 
-                    self.imprimir_tabla_simbolos()
+                    #self.imprimir_tabla_simbolos()
                     
                     
             if let_expr[0].BOOL() != None:
@@ -1071,7 +1074,7 @@ class MyListener(Proy1Listener):
                     self._tabla_simbolos.tipo_de_asignada = valor_del_tipo
                     self._variable_asiganda = valor_del_let
 
-                    self.imprimir_tabla_simbolos()
+                    #self.imprimir_tabla_simbolos()
                     
             if let_expr[0].ID() != None:
                 tabla_posibles_valores = self._tabla_simbolos.return_same_ids(let_expr[0].getText())
@@ -1107,7 +1110,7 @@ class MyListener(Proy1Listener):
                             self._tabla_simbolos.tipo_de_asignada = valor_del_tipo
                             self._variable_asiganda = valor_del_let
 
-                            self.imprimir_tabla_simbolos()
+                            #self.imprimir_tabla_simbolos()
                             
                         else:
                             print(f"ERROR, tipo con su variable referenciada no corresponde")
@@ -1128,7 +1131,7 @@ class MyListener(Proy1Listener):
                             self._tabla_simbolos.tipo_de_asignada = valor_del_tipo
                             self._variable_asiganda = valor_del_let
 
-                            self.imprimir_tabla_simbolos()
+                            #self.imprimir_tabla_simbolos()
                             
                         else:
                             print(f"ERROR, tipo con su variable referenciada no corresponde")
@@ -1579,10 +1582,52 @@ class MyListener(Proy1Listener):
     def enterMetodo15(self, ctx:Proy1Parser.Metodo15Context):
         print("metodo15")
         print(ctx.getText())
+        
+        hay_not = ctx.Not()
+        posible_inicializar = ctx.inicializar()
+        posible_expr = ctx.expr()
+        posible_metodo = ctx.metodo()
+        posible_id = ctx.ID()
+        
+        print(f"hay_not: {hay_not}")
+        print(f"posible_inicializar: {posible_inicializar}")
+        print(f"posible_id: {posible_id}")
+        print(f"posible_expr: {posible_expr}")
+        print(f"posible_metodo: {posible_metodo}")
+                
+        
+        #sys.exit()
+        
+        if posible_expr == None:
+            
+            print('IGNORAR TODO NEW')
+            #self._tabla_simbolos._ignora_new = True
+            
+            print("HAY UNA INICIALIZAR")
+            print(f"el inicializar: {posible_inicializar.getText()}")
+            
+            if posible_metodo != None:
+                print(f"el id/clase: {posible_id.getText()}")
+                print(f"el metodo: {posible_metodo[0].getText()}")
+                print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
+                
+                try:
+                    self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                    self._tabla_simbolos._se_define_new_15 = True
+                    self._tabla_simbolos._ignora_new_15 = True
+                except:
+                    pass
+                
+            #sys.exit()
+        
+        
 
     # Exit a parse tree produced by Proy1Parser#metodo15.
     def exitMetodo15(self, ctx:Proy1Parser.Metodo15Context):
-        pass
+        print("exit metodo15")
+        self._tabla_simbolos._class_inicializada = None
+        self._tabla_simbolos._se_define_new_15 = False
+        self._tabla_simbolos._ignora_new_15 = False
 
 
     # Enter a parse tree produced by Proy1Parser#metodo16.
@@ -1621,8 +1666,59 @@ class MyListener2(Proy1Listener):
         print(self._tabla_simbolos._class_inicializada)
         print(existe_el_new_en_tabla)
         print(self._tabla_simbolos)
-        self.imprimir_tabla_simbolos()
-        if existe_el_new_en_tabla:
+        #self.imprimir_tabla_simbolos()
+        
+        if self._tabla_simbolos._se_define_new_15:
+            print("estamos viendo un @")
+#            print(f"la class inicializada: {self._tabla_simbolos._class_inicializada}")
+ #           print(f"la class llamada: {self._tabla_simbolos._class_llamada}")
+            
+            objeto_de_la_clase = self._tabla_simbolos.obtener_objeto(self._tabla_simbolos._class_inicializada)
+            
+            clase_activa = self._tabla_simbolos._class_inicializada
+            
+            clase_heredada = objeto_de_la_clase['padre']
+            
+            clase_a_buscar = self._tabla_simbolos._class_llamada
+            
+            objeto_de_clase_a_buscar = self._tabla_simbolos.obtener_objeto(clase_a_buscar)
+            
+            print(f"la class activa: {clase_activa}")
+            print(f"la class heredada: {clase_heredada}")
+            print(f"clase a buscar: {clase_a_buscar}")
+            print(f"el objeto de la clase: {objeto_de_la_clase}")
+            
+            terminar_while = False
+            
+            if objeto_de_clase_a_buscar == None:
+                print(f"ERROR: {clase_a_buscar} no puede obtenerse de {self._tabla_simbolos._class_inicializada}")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
+                self._tabla_simbolos._lista_errores.append(f"ERROR: {clase_a_buscar} no puede obtenerse de {self._tabla_simbolos._class_inicializada}")
+                
+            else:
+                while terminar_while == False:
+                    if clase_activa == clase_a_buscar or clase_heredada == clase_a_buscar:
+                        print(f"CORRECTO: {self._tabla_simbolos._class_inicializada} hereda de la clase {clase_a_buscar}")
+                        terminar_while = True
+                    elif clase_heredada != "None":
+                        nuevo_objeto_activo = self._tabla_simbolos.obtener_objeto(clase_heredada)
+                        
+                        clase_activa = clase_heredada
+                        clase_heredada = nuevo_objeto_activo['padre']
+                        
+                    else:
+                        
+                        print(f"ERROR: la clase {clase_a_buscar} no puede obtenerse de la clase{self._tabla_simbolos._class_inicializada} ni de sus herencias")
+                        self._tabla_simbolos._error_in_current_method = True
+                        self._tabla_simbolos._error_in_code = True
+                        self._tabla_simbolos._lista_errores.append(f"ERROR: la clase {clase_a_buscar} no puede obtenerse de la clase{self._tabla_simbolos._class_inicializada} ni de sus herencias")
+                        terminar_while = True
+                    
+            #sys.exit()
+            self._tabla_simbolos._se_define_new_15 = False
+        
+        elif existe_el_new_en_tabla:
             
             print(f"{self._tabla_simbolos._class_inicializada} si existe en la tabla de simbolos")
             objeto_de_la_clase = self._tabla_simbolos.obtener_objeto(self._tabla_simbolos._class_inicializada)
@@ -1750,6 +1846,47 @@ class MyListener2(Proy1Listener):
         self._tabla_simbolos._se_define_new = False
         self._tabla_simbolos._ignora_new = False
         
+    # Enter a parse tree produced by Proy1Parser#metodo15.
+    def enterMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        print(f"metodo 15 segunda corrida")
+
+        print(ctx.getText())
+        
+        hay_not = ctx.Not()
+        posible_inicializar = ctx.inicializar()
+        posible_expr = ctx.expr()
+        posible_metodo = ctx.metodo()
+        posible_id = ctx.ID()
+        
+        #sys.exit()
+        
+        if posible_expr == None:
+            
+            print('IGNORAR TODO NEW')
+            #self._tabla_simbolos._ignora_new = True
+            
+            print("HAY UNA INICIALIZAR")
+            print(f"el inicializar: {posible_inicializar.getText()}")
+            
+            if posible_metodo != None:
+                print(f"el id/clase: {posible_id.getText()}")
+                print(f"el metodo: {posible_metodo[0].getText()}")
+                print(f"el tipo del inicializar: {posible_inicializar.tipoVariable().getText()}")
+                
+                try:
+                    self._tabla_simbolos._class_inicializada = posible_inicializar.tipoVariable().getText()
+                    self._tabla_simbolos._class_llamada = posible_id.getText()
+                    self._tabla_simbolos._se_define_new_15 = True
+                    self._tabla_simbolos._ignora_new_15 = True
+                except:
+                    pass
+                
+            #sys.exit()
+
+    # Exit a parse tree produced by Proy1Parser#metodo15.
+    def exitMetodo15(self, ctx:Proy1Parser.Metodo15Context):
+        print("exit metodo15 segunda corrida")
+        
 class ErrorHandler(ErrorListener):
     def __init__(self):
         self.errores = False
@@ -1813,12 +1950,50 @@ def ejecutar():
         printerDecaf = MyListener()
         walker = ParseTreeWalker()
         walker.walk(printerDecaf, tree)
+        
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+
+        
+        ### Segundo paso
+        secondPrinterDecaf = MyListener2()
+        secondPrinterDecaf._tabla_simbolos = printerDecaf._tabla_simbolos
+        secondPrinterDecaf._tabla_simbolos._error_in_code = printerDecaf._tabla_simbolos._error_in_code
+        secondPrinterDecaf._tabla_simbolos._lista_errores = printerDecaf._tabla_simbolos._lista_errores
+        
+        print(f"LA TABLA EN SEGUNDA CORRIDA")
+        
+        secondPrinterDecaf.imprimir_tabla_simbolos()
+        walker = ParseTreeWalker()
+        walker.walk(secondPrinterDecaf, tree)
+        
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        print("########################################################")
+        
+        print(f"self._tabla_simbolos._error_in_code: {secondPrinterDecaf._tabla_simbolos._error_in_code}")
+        
         print("LISTA ERRORES")
-        for err in printerDecaf._tabla_simbolos._lista_errores:
-            print(err)
+        for x in secondPrinterDecaf._tabla_simbolos._lista_errores:
+            print(x)
     
         
-""" 
+"""
 root = Tk()
 root.title('Text Editor')
 root.geometry("1200x660")
@@ -1848,6 +2023,7 @@ file_menu.add_command(label="Exit", command=root.quit)
 
 root.mainloop()
 """
+
 
 
 if __name__ == "__main__":
@@ -1914,4 +2090,3 @@ if __name__ == "__main__":
         print("LISTA ERRORES")
         for x in secondPrinterDecaf._tabla_simbolos._lista_errores:
             print(x)
-

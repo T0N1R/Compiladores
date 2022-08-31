@@ -81,6 +81,12 @@ class TablaSimbolos():
         self._se_define_new = False
         
         self._ignora_new = False
+        
+        self._se_define_new_15 = False
+        
+        self._ignora_new_15 = False
+        
+        self._class_llamada = None
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         

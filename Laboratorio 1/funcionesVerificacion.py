@@ -46,7 +46,7 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
                 
                    
                 
-                self.imprimir_tabla_simbolos()
+                #self.imprimir_tabla_simbolos()
                 
             else:
                 print("ERROR, LAS VARIABLES NO SON DEL MISMO TIPO")
@@ -69,7 +69,7 @@ def verificacion_correcto_3_simple(self, tabla_posibles_asignable, metodo_actual
                 
                 verificado.append(1)   
                 
-                self.imprimir_tabla_simbolos()
+                #self.imprimir_tabla_simbolos()
                 
             else:
                 print("ERROR, LAS VARIABLES NO SON DEL MISMO TIPO")
