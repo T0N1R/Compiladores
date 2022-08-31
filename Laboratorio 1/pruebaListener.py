@@ -1292,6 +1292,20 @@ class MyListener(Proy1Listener):
                             self._tabla_simbolos._error_in_code = True
                             self._tabla_simbolos._lista_errores.append(f"ERROR : {posible_id} NO esta definido")
 
+                    if self._tabla_simbolos._en_while_cr5:
+                        print("entramos a el _en_while_cr5")
+                        permitidos = ['>', '<', '==', '>=', '<=']
+                        if posibles_operaciones[0].getText() in permitidos:
+                            print(f"correcto")
+                            self._tabla_simbolos._en_while_cr5 = False
+
+                            
+                        else:
+                            print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un while ")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un while ")
+                            self._tabla_simbolos._en_while_cr5 = False
                 
                     #sys.exit()
         
@@ -1316,6 +1330,7 @@ class MyListener(Proy1Listener):
                 
                 
                 if self._tabla_simbolos._en_while_cr5:
+                    print("entramos a el _en_while_cr5")
                     permitidos = ['>', '<', '==', '>=', '<=']
                     if posibles_operaciones[0].getText() in permitidos:
                         print(f"correcto")

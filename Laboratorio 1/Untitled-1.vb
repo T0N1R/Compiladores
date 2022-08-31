@@ -106,7 +106,7 @@ el posible_expr: letx:Intin{x<-num1+num2;(newB).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA17100>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED355C9D40>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-num1+num2;(newB).set_var(x);}
@@ -137,7 +137,7 @@ contenido en verificado: [1]
 **********************
 metodo11
 expre en metodo11: num1+num2;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C344CF0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED35ED49E0>]
 numero de operaciones: 1
 posible id en operacion: num1
 posible_num en operacion: None
@@ -203,7 +203,7 @@ el posible_expr: letx:Intin{x<-~num;(newC).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C2DBF80>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED355C8D00>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-~num;(newC).set_var(x);}
@@ -299,11 +299,11 @@ id_metodo???????? : num1
 id_metodo???????? : num2
 **********************
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3DCF20>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3DCC10>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3DDAF0>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35F640B0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35F644A0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35F65A80>]
 **********************
 metodo11
 expre en metodo11: num2<num1
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C3DCC80>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED35F64350>]
 numero de operaciones: 1
 posible id en operacion: num2
 posible_num en operacion: None
@@ -327,7 +327,7 @@ el posible_expr: letx:Intin{x<-num1-num2;(newD).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C2CF500>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED35E810C0>]
 let_tipo: [339 72 229 72 252 72 188 45 41 28]
 let_expr
 {x<-num1-num2;(newD).set_var(x);}
@@ -388,7 +388,7 @@ contenido en verificado: [1]
 **********************
 metodo11
 expre en metodo11: num1-num2;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C3DC6D0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED35F649E0>]
 numero de operaciones: 1
 posible id en operacion: num1
 posible_num en operacion: None
@@ -429,7 +429,7 @@ el posible_expr: letx:Intin{x<-num2-num1;(newD).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA71300>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED355BE8C0>]
 let_tipo: [339 72 229 72 259 72 188 45 41 28]
 let_expr
 {x<-num2-num1;(newD).set_var(x);}
@@ -533,7 +533,7 @@ contenido en verificado: [1, 1]
 **********************
 metodo11
 expre en metodo11: num2-num1;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C3DD7E0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED35F65770>]
 numero de operaciones: 1
 posible id en operacion: num2
 posible_num en operacion: None
@@ -589,7 +589,7 @@ el posible_expr: letx:Int<-1in{(lety:Int<-1inwhiley<=numloop{x<-x*y;y<-y+1;}pool
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C51A580>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C51A680>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED3608CD00>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED3608C980>]
 let_tipo: None
 let_expr
 1
@@ -614,7 +614,7 @@ el posible_expr: lety:Int<-1inwhiley<=numloop{x<-x*y;y<-y+1;}pool
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA57400>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA56CC0>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED360B3600>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED360B3AC0>]
 let_tipo: None
 let_expr
 1
@@ -630,7 +630,7 @@ asignacion a la variable en let BOOL: None
 metodo5
 metodo11
 expre en metodo11: y<=num
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C492810>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED3605E7A0>]
 numero de operaciones: 1
 posible id en operacion: y
 posible_num en operacion: None
@@ -642,6 +642,8 @@ valor2: num
 SE ENCUENTRA EN TABLA?
 valor1_en_tabla: True
 valor2_en_tabla: True
+entramos a el _en_while_cr5
+correcto
 enter correcto 4
 contenido correcto 4: x<-x*y;
 id_a_asignar: x
@@ -724,7 +726,7 @@ contenido en verificado: [1]
 **********************
 metodo11
 expre en metodo11: x*y;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C493300>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED3605F290>]
 numero de operaciones: 1
 posible id en operacion: x
 posible_num en operacion: None
@@ -760,7 +762,7 @@ contenido en verificado: [1]
 **********************
 metodo11
 expre en metodo11: y+1;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C4936F0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED3605F680>]
 numero de operaciones: 1
 posible id en operacion: y
 posible_num en operacion: None
@@ -822,7 +824,7 @@ el posible_expr: letx:Intin{x<-num*num;(newE).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C2E1A80>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED35E5B1C0>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-num*num;(newE).set_var(x);}
@@ -906,7 +908,7 @@ contenido en verificado: [1, 1]
 **********************
 metodo11
 expre en metodo11: num*num;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C5C0660>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36124C80>]
 numero de operaciones: 1
 posible id en operacion: num
 posible_num en operacion: None
@@ -966,7 +968,7 @@ el posible_expr: letx:Intin{x<-~num;(newA).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA7CA40>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED35E93D40>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-~num;(newA).set_var(x);}
@@ -1090,7 +1092,7 @@ el posible_expr: letx:Intin{x<-num*num*num;(newE).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C29AF40>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED355C8340>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-num*num*num;(newE).set_var(x);}
@@ -1246,7 +1248,7 @@ contenido en verificado: [1, 1, 1]
 **********************
 metodo11
 expre en metodo11: num*num*num;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C5C1EE0>, <Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C5C20A0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36125E70>, <Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36126030>]
 numero de operaciones: 2
 posible id en operacion: num
 posible_num en operacion: None
@@ -1301,7 +1303,7 @@ el posible_expr: letx:Int<-numinifx<0thenmethod7(~x)elseif0=xthentrueelseif1=xth
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C4E5980>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C4E5900>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED36055B40>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED36054D40>]
 let_tipo: None
 let_expr
 num
@@ -1318,11 +1320,11 @@ CORRECTO, se puede utilizar la variable por estar en el mismo metodo
 contenido en verificado: [1]
 **********************
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66C200>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66C5F0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66C970>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D1C0>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FC190>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FC580>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FC900>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD150>]
 **********************
 metodo11
 expre en metodo11: x<0
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66C3C0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FC350>]
 numero de operaciones: 1
 posible id en operacion: x
 posible_num en operacion: None
@@ -1366,11 +1368,11 @@ contenido en verificado: [1]
 *************************
 exit metodo3
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D150>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D3F0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D5B0>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD0E0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD380>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD540>]
 **********************
 metodo11
 expre en metodo11: 0=x
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66D2A0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FD230>]
 numero de operaciones: 1
 posible id en operacion: None
 posible_num en operacion: 0
@@ -1386,11 +1388,11 @@ se le puede asignar a la variable por estar en el mismo metodo
 el tipo es el mismo al de la tipo_se_ asignada, se pede hacer
 CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D700>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D620>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D8C0>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD690>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD5B0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD850>]
 **********************
 metodo11
 expre en metodo11: 1=x
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66D770>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FD700>]
 numero de operaciones: 1
 posible id en operacion: None
 posible_num en operacion: 1
@@ -1406,11 +1408,11 @@ se le puede asignar a la variable por estar en el mismo metodo
 el tipo es el mismo al de la tipo_se_ asignada, se pede hacer
 CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66D9A0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66DA10>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66DD90>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66E180>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD930>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FD9A0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FDD20>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FE110>]
 **********************
 metodo11
 expre en metodo11: 2=x
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66DA80>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FDA10>]
 numero de operaciones: 1
 posible id en operacion: None
 posible_num en operacion: 2
@@ -1436,7 +1438,7 @@ el posible_expr: x-3
 **********************
 metodo11
 expre en metodo11: x-3
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66E1F0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FE180>]
 numero de operaciones: 1
 posible id en operacion: x
 posible_num en operacion: None
@@ -1490,7 +1492,7 @@ el posible_expr: letx:Intin{x<-num/8;(newA).set_var(x);}
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878C4A0C80>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED3600BFC0>]
 let_tipo: [339 72 229 72 188 45 41 28]
 let_expr
 {x<-num/8;(newA).set_var(x);}
@@ -1598,7 +1600,7 @@ contenido en verificado: [1, 1]
 **********************
 metodo11
 expre en metodo11: num/8;
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C66F060>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED361FEFF0>]
 numero de operaciones: 1
 posible id en operacion: num
 posible_num en operacion: None
@@ -1691,7 +1693,7 @@ el posible_expr: letx:Int<-numinifx<0thenis_even(~x)elseif0=xthentrueelseif1=xth
 metodo10
 ++++++++++++++++++++++++++++++++++++
 LET EXPR
-let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA42F40>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001878BA436C0>]
+let_id: [<antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED355D2900>, <antlr4.tree.Tree.TerminalNodeImpl object at 0x000001ED35E65DC0>]
 let_tipo: None
 let_expr
 num
@@ -1708,11 +1710,11 @@ CORRECTO, se puede utilizar la variable por estar en el mismo metodo
 contenido en verificado: [1]
 **********************
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E03C0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0200>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0510>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0660>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278350>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278190>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362784A0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362785F0>]
 **********************
 metodo11
 expre en metodo11: x<0
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C6E0120>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED362780B0>]
 numero de operaciones: 1
 posible id en operacion: x
 posible_num en operacion: None
@@ -1758,11 +1760,11 @@ contenido en verificado: [1]
 *************************
 exit metodo3
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0820>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E05F0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E09E0>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362787B0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278580>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278970>]
 **********************
 metodo11
 expre en metodo11: 0=x
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C6E0890>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36278820>]
 numero de operaciones: 1
 posible id en operacion: None
 posible_num en operacion: 0
@@ -1778,11 +1780,11 @@ se le puede asignar a la variable por estar en el mismo metodo
 el tipo es el mismo al de la tipo_se_ asignada, se pede hacer
 CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
 metodo4
-expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0A50>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0AC0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0CF0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E0D60>]
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362789E0>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278A50>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278C80>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36278CF0>]
 **********************
 metodo11
 expre en metodo11: 1=x
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C6E0BA0>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36278B30>]
 numero de operaciones: 1
 posible id en operacion: None
 posible_num en operacion: 1
@@ -1808,7 +1810,7 @@ el posible_expr: x-2
 **********************
 metodo11
 expre en metodo11: x-2
-lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001878C6E0E40>]
+lista de operaciones: [<Proy1Parser.Proy1Parser.OperacionContext object at 0x000001ED36278DD0>]
 numero de operaciones: 1
 posible id en operacion: x
 posible_num en operacion: None
@@ -1834,10 +1836,35 @@ limpiar variable en separado
 **********************
 **********************
 metodo1
-main():Object{{avar<-(newA);avar.set_var(2);avar<-(newC)@B.method5(avar.value());}};
+main():Object{{avar<-(newA);avar.set_var(2);out_int(avar.value());ifis_even(avar.value())thenout_string(" es par!\n")elseout_string(" es impar!\n")fi;a_var<-(newA).set_var(3);avar<-(newB).method2(avar.value(),a_var.value());out_int(avar.value());out_string("\n");avar<-(newC).method6(avar.value());out_int(avar.value());out_string("\n");a_var<-(newA).set_var(5);avar<-(newD).method4(avar.value(),a_var.value());out_int(avar.value());out_string("\n");avar.set_var(5);avar<-(newC)@A.method5(avar.value());out_int(avar.value());out_string("\n");avar.set_var(6);avar<-(newC)@B.method5(avar.value());out_int(avar.value());out_string("\n");}};
 los ids: 1
 los tipoVariables: 1
 el pinche id: avar.set_var(2);
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: ifis_even(avar.value())thenout_string(" es par!\n")elseout_string(" es impar!\n")fi;
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: out_string
+el pinche id: ("\n");
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: out_string
+el pinche id: ("\n");
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: out_string
+el pinche id: ("\n");
+el pinche id: avar.set_var(5);
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: out_string
+el pinche id: ("\n");
+el pinche id: avar.set_var(6);
+el pinche id: out_int
+el pinche id: (avar.value());
+el pinche id: out_string
+el pinche id: ("\n");
 exp_context
 [72 188 45 41 28]
 **********************
@@ -1874,7 +1901,7 @@ CONTENIDO METODO 9: avar.set_var(2);
 metodo2
 metodo2: set_var(2);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E2730>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3627BAE0>]
 metodos: None
 PASANDO POR VERIFICAR EN TABLAAAAAAA
 entramos?
@@ -1893,6 +1920,530 @@ posible_string: None
 posible_num: 2
 posible_bool: None
 expresion: 2
+no se paso en verificar tabla para estos
+exit metodo2
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo4
+expresiones del if: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F4B30>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F4A50>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F4F90>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F5230>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F6B90>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F68F0>]
+**********************
+metodo3
+(avar.value())
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 245 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+(" es par!\n")
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 252 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: " es par!\n"
+**********************
+exit metodo3
+metodo3
+(" es impar!\n")
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 259 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: " es impar!\n"
+**********************
+exit metodo3
+TERMINA METODO4
+**********************
+enter correcto 4
+contenido correcto 4: a_var<-(newA).set_var(3);
+id_a_asignar: a_var
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'a_var', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: a_var
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo3
+(newA).set_var(3);
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newA
+**********************
+metodo2
+se ignora set_var(3);
+exit metodo2
+exit metodo3
+exit correcto 4
+**********************
+enter correcto 4
+contenido correcto 4: avar<-(newB).method2(avar.value(),a_var.value());
+id_a_asignar: avar
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'avar', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: avar
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo3
+(newB).method2(avar.value(),a_var.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newB
+**********************
+metodo2
+se ignora method2(avar.value(),a_var.value());
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+se ignora value()
+exit metodo2
+metodo9
+CONTENIDO METODO 9: a_var.value()
+**********************
+metodo2
+se ignora value()
+exit metodo2
+exit metodo2
+exit metodo3
+exit correcto 4
+**********************
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+("\n");
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: "\n"
+**********************
+exit metodo3
+enter correcto 4
+contenido correcto 4: avar<-(newC).method6(avar.value());
+id_a_asignar: avar
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'avar', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: avar
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo3
+(newC).method6(avar.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newC
+**********************
+metodo2
+se ignora method6(avar.value());
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+se ignora value()
+exit metodo2
+exit metodo2
+exit metodo3
+exit correcto 4
+**********************
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+("\n");
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: "\n"
+**********************
+exit metodo3
+enter correcto 4
+contenido correcto 4: a_var<-(newA).set_var(5);
+id_a_asignar: a_var
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'a_var', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: a_var
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo3
+(newA).set_var(5);
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newA
+**********************
+metodo2
+se ignora set_var(5);
+exit metodo2
+exit metodo3
+exit correcto 4
+**********************
+enter correcto 4
+contenido correcto 4: avar<-(newD).method4(avar.value(),a_var.value());
+id_a_asignar: avar
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'avar', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: avar
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo3
+(newD).method4(avar.value(),a_var.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newD
+**********************
+metodo2
+se ignora method4(avar.value(),a_var.value());
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+se ignora value()
+exit metodo2
+metodo9
+CONTENIDO METODO 9: a_var.value()
+**********************
+metodo2
+se ignora value()
+exit metodo2
+exit metodo2
+exit metodo3
+exit correcto 4
+**********************
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+("\n");
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: "\n"
+**********************
+exit metodo3
+metodo9
+CONTENIDO METODO 9: avar.set_var(5);
+**********************
+metodo2
+metodo2: set_var(5);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632C820>]
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'A', 'id': 'set_var', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: set_var
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+la mera expresion: 5
+posible_string: None
+posible_num: 5
+posible_bool: None
+expresion: 5
+no se paso en verificar tabla para estos
+exit metodo2
+enter correcto 4
+contenido correcto 4: avar<-(newC)@A.method5(avar.value());
+id_a_asignar: avar
+tabla posible id a asignar: [{'tipo': 'A', 'id': 'avar', 'size': None, 'offset': None, 'definicion': 'variable', 'valor': None, 'padre': 'Main', 'en_metodo': None, 'ambito': 'global'}]
+id_del_posible: avar
+tipo_del_posible: A
+en_metodo_del_posible: None
+ambito_del_posible: global
+metodo_actual: main
+clase_padre_actual: Main
+se le puede asignar a la variable por ser una variable global
+CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE
+contenido en verificado: [1, 1]
+**********************
+metodo15
+(newC)@A.method5(avar.value());
+hay_not: None
+posible_inicializar: [446 122 187 45 41 28]
+posible_id: A
+posible_expr: None
+posible_metodo: [<Proy1Parser.Proy1Parser.Metodo2Context object at 0x000001ED3632C890>]
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newC
+el id/clase: A
+el metodo: method5(avar.value());
+el tipo del inicializar: C
+metodo2
+se ignora por el metodo15 method5(avar.value());
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+se ignora por el metodo15 value()
+exit metodo2
+exit metodo2
+exit metodo15
+exit correcto 4
+**********************
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+("\n");
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: "\n"
+**********************
+exit metodo3
+metodo9
+CONTENIDO METODO 9: avar.set_var(6);
+**********************
+metodo2
+metodo2: set_var(6);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632D3F0>]
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'A', 'id': 'set_var', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: set_var
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+la mera expresion: 6
+posible_string: None
+posible_num: 6
+posible_bool: None
+expresion: 6
 no se paso en verificar tabla para estos
 exit metodo2
 enter correcto 4
@@ -1915,7 +2466,7 @@ hay_not: None
 posible_inicializar: [446 122 187 45 41 28]
 posible_id: B
 posible_expr: None
-posible_metodo: [<Proy1Parser.Proy1Parser.Metodo2Context object at 0x000001878C6E2D50>]
+posible_metodo: [<Proy1Parser.Proy1Parser.Metodo2Context object at 0x000001ED3632D460>]
 IGNORAR TODO NEW
 HAY UNA INICIALIZAR
 el inicializar: newC
@@ -1934,6 +2485,47 @@ exit metodo2
 exit metodo15
 exit correcto 4
 **********************
+metodo3
+(avar.value());
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: avar.value()
+**********************
+metodo9
+CONTENIDO METODO 9: avar.value()
+**********************
+metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+PASANDO POR VERIFICAR EN TABLAAAAAAA
+entramos?
+Tabla posibles valores : [{'tipo': 'Int', 'id': 'value', 'size': None, 'offset': None, 'definicion': 'metodo', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}]
+valor en _variable_que_se_opera: ['avar', 'A']
+var que se opera: avar
+clase_en_que_se_opera: A
+nombre_metodo: value
+lista_metodos: ['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO, el metodo se encuentra en la clase A
+contenido en verificado: [1]
+antes del for
+-------------------------------
+exit metodo2
+exit metodo3
+metodo3
+("\n");
+hay_not: None
+posible_inicializar: None
+posible_expr: [229 72 188 45 41 28]
+posible_metodo: None
+++++++++++++++++++++++++++++++++++++++++++
+el posible_expr: "\n"
+**********************
+exit metodo3
 exitMetodo1
 limpiar variable en separado
 **********************
@@ -2022,11 +2614,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C347B50>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35ED7AE0>]
 metodos: None
 B
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 B si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'B', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}
@@ -2052,11 +2644,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3461F0>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35ED62D0>]
 metodos: None
 C
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 C si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
@@ -2084,11 +2676,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3DC350>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35F64D60>]
 metodos: None
 D
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 D si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'D', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
@@ -2116,11 +2708,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C3DD460>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED35F653F0>]
 metodos: None
 D
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 D si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'D', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
@@ -2151,11 +2743,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C493AE0>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3605FA00>]
 metodos: None
 E
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 E si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'E', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'D', 'en_metodo': None, 'ambito': 'global'}
@@ -2185,11 +2777,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C5C09E0>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36124900>]
 metodos: None
 E
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 E si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'E', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'D', 'en_metodo': None, 'ambito': 'global'}
@@ -2219,11 +2811,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C5C13F0>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361252A0>]
 metodos: None
 A
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 A si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'A', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': None, 'en_metodo': None, 'ambito': 'global'}
@@ -2249,11 +2841,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C5C2490>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED36126420>]
 metodos: None
 E
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 E si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'E', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'D', 'en_metodo': None, 'ambito': 'global'}
@@ -2292,11 +2884,11 @@ True
 **********************
 metodo2: set_var(x);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C66F3E0>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED361FF370>]
 metodos: None
 A
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 A si existe en la tabla de simbolos
 objeto de la clase
 {'tipo': 'class', 'id': 'A', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': None, 'en_metodo': None, 'ambito': 'global'}
@@ -2328,11 +2920,378 @@ el inicializar: newA
 exit metodo3
 metodo2: set_var(2);
 nombre metodo: set_var
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E2730>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3627BAE0>]
 metodos: None
 None
 False
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+exit metodo3
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo3
+HAY UNA INICIALIZAR
+(newA).set_var(3);
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+el inicializar: newA
+A
+True
+**********************
+metodo2: set_var(3);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F6420>]
+metodos: None
+A
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+A si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'A', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': None, 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: None
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+[]
+CORRECTO metodo se encuentra en clase A
+exit metodo2
+exit metodo3
+metodo3
+HAY UNA INICIALIZAR
+(newB).method2(avar.value(),a_var.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+el inicializar: newB
+B
+True
+**********************
+metodo2: method2(avar.value(),a_var.value());
+nombre metodo: method2
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F5E70>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F5930>]
+metodos: None
+B
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+B si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'B', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: A
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada A
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+B
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+B si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'B', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: A
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada A
+exit metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+B
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+B si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'B', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'A', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: A
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada A
+exit metodo2
+exit metodo2
+exit metodo3
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo3
+HAY UNA INICIALIZAR
+(newC).method6(avar.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+el inicializar: newC
+C
+True
+**********************
+metodo2: method6(avar.value());
+nombre metodo: method6
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F70D0>]
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+CORRECTO metodo se encuentra en clase C
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo2
+exit metodo3
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo3
+HAY UNA INICIALIZAR
+(newA).set_var(5);
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+el inicializar: newA
+A
+True
+**********************
+metodo2: set_var(5);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F7A00>]
+metodos: None
+A
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+A si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'A', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': None, 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: None
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+[]
+CORRECTO metodo se encuentra en clase A
+exit metodo2
+exit metodo3
+metodo3
+HAY UNA INICIALIZAR
+(newD).method4(avar.value(),a_var.value());
+hay_not: None
+posible_inicializar: [228 122 187 45 41 28]
+posible_expr: None
+posible_metodo: [234 122 187 45 41 28]
+el inicializar: newD
+D
+True
+**********************
+metodo2: method4(avar.value(),a_var.value());
+nombre metodo: method4
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F7D10>, <Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED362F7ED0>]
+metodos: None
+D
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+D si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'D', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method7']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+D
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+D si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'D', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method7']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+D
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+D si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'D', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method7']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo2
+exit metodo3
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo2: set_var(5);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632C820>]
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+exit metodo2
+metodo 15 segunda corrida
+(newC)@A.method5(avar.value());
+IGNORAR TODO NEW
+HAY UNA INICIALIZAR
+el inicializar: newC
+el id/clase: A
+el metodo: method5(avar.value());
+el tipo del inicializar: C
+metodo2: method5(avar.value());
+nombre metodo: method5
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632CBA0>]
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+estamos viendo un @
+la class activa: C
+la class heredada: B
+clase a buscar: A
+el objeto de la clase: {'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+CORRECTO: C hereda de la clase A
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo2
+exit metodo15 segunda corrida
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+metodo2: set_var(6);
+nombre metodo: set_var
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632D3F0>]
+metodos: None
+None
+False
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 exit metodo2
 metodo 15 segunda corrida
 (newC)@B.method5(avar.value());
@@ -2344,12 +3303,70 @@ el metodo: method5(avar.value());
 el tipo del inicializar: C
 metodo2: method5(avar.value());
 nombre metodo: method5
-expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001878C6E2C00>]
+expresiones: [<Proy1Parser.Proy1Parser.ExprContext object at 0x000001ED3632D700>]
 metodos: None
 C
 True
-<TablaSimbolos.TablaSimbolos object at 0x000001878C2E67A0>
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
 estamos viendo un @
-la class inicializada: C
+la class activa: C
+la class heredada: B
+clase a buscar: B
+el objeto de la clase: {'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+CORRECTO: C hereda de la clase B
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo2
+exit metodo15 segunda corrida
+metodo3
+**********************
+metodo2: value()
+nombre metodo: value
+expresiones: []
+metodos: None
+C
+True
+<TablaSimbolos.TablaSimbolos object at 0x000001ED35E89840>
+C si existe en la tabla de simbolos
+objeto de la clase
+{'tipo': 'class', 'id': 'C', 'size': None, 'offset': None, 'definicion': 'clase', 'valor': None, 'padre': 'B', 'en_metodo': None, 'ambito': 'global'}
+padre de la clase: B
+['method6', 'method5']
+['method5']
+['method5']
+['value', 'set_var', 'method1', 'method2', 'method3', 'method4', 'method5']
+CORRECTO metodo se encuentra en clase heredada B
+exit metodo2
+exit metodo3
+metodo3
+**********************
+exit metodo3
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+self._tabla_simbolos._error_in_code: False
+LISTA ERRORES
 
 C:\Users\toni\Desktop\COMPIS\git\Compiladores\Laboratorio 1>
