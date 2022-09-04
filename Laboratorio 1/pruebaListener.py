@@ -622,7 +622,7 @@ class MyListener(Proy1Listener):
             exp_context = ctx.expr()
             
             print("exp_context")
-            print(exp_context[0].getChild(0))
+            #print(exp_context[0].getChild(0))
             
             
             clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
@@ -909,6 +909,7 @@ class MyListener(Proy1Listener):
         expresiones_en_if = ctx.expr()
         print(f"expresiones del if: {expresiones_en_if}")
         self._tabla_simbolos._en_condicion_if = True
+        self._tabla_simbolos._minicondicion = True
         print("**********************")
         
 
@@ -917,6 +918,8 @@ class MyListener(Proy1Listener):
         print("TERMINA METODO4")
         #print("self._tabla_simbolos._en_condicion_if = False")
         #self._tabla_simbolos._en_condicion_if = False
+        #self._tabla_simbolos._minicondicion = False
+
         print("**********************")
         pass
 
@@ -1146,7 +1149,7 @@ class MyListener(Proy1Listener):
                     print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                     self._tabla_simbolos._error_in_current_method = True
                     self._tabla_simbolos._error_in_code = True
-                    self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                    self._tabla_simbolos._lista_errores.append(f"ERROR {let_expr[0].getText()} NO HA SIDO ASIGNADA")
                     
                     
 
@@ -1200,6 +1203,21 @@ class MyListener(Proy1Listener):
                 valor_num1 = posible_num
                 valor_num2 = None
                 
+                if len(posibles_operaciones) == 1:
+                    permitidos = ['>', '<', '==', '>=', '<=', '=']
+                    if posibles_operaciones[0].getText() in permitidos:
+                        print(f"correcto")
+                        self._tabla_simbolos._en_while_cr5 = False
+                        self._tabla_simbolos._minicondicion = False
+
+                        
+                    else:
+                        print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                        self._tabla_simbolos._error_in_current_method = True
+                        self._tabla_simbolos._error_in_code = True
+                        self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                        self._tabla_simbolos._en_while_cr5 = False
+                
                 if posibles_expr[0].ID() != None:
                     valor_num2 = posibles_expr[0].ID()
                     
@@ -1208,6 +1226,7 @@ class MyListener(Proy1Listener):
                     print(f"valor2: {valor_num2}")
                     
                     posible_objeto_2 = self._tabla_simbolos.return_same_ids(valor_num2.getText())
+                    print(posible_objeto_2)
                     
                     posible_correto_objeto_2 = []
                     
@@ -1227,19 +1246,20 @@ class MyListener(Proy1Listener):
                             # SE DEFINIO EN EL MISMO METODO
                             print("se le puede asignar a la variable por estar en el mismo metodo")
                             posible_correto_objeto_2.append(1)
-                            tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible)
+                            tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
                             
                         # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                         elif padre_del_posible == clase_padre_actual:
                             print("se le puede asignar a la variable por ser una variable global")
                             posible_correto_objeto_2.append(1)
-                            tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible)
+                            print("ble")
+                            tipo_valor_1 = verificacion_metodo_11(self, posible_objeto_2, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
                             
                     if len(posible_correto_objeto_2) == 0:
                         print("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
                         self._tabla_simbolos._error_in_current_method = True
                         self._tabla_simbolos._error_in_code = True
-                        self._tabla_simbolos._lista_errores.append("ERROR ESTA VARIABLE NO HA SIDO ASIGNADA")
+                        self._tabla_simbolos._lista_errores.append(f"ERROR {valor_num2.getText()} NO HA SIDO ASIGNADA")
                         
             else:
                 
@@ -1275,22 +1295,127 @@ class MyListener(Proy1Listener):
                         if check_int(sin_semicolon):
                             print(f"CORRECTO, el valor {sin_semicolon} es un Int")
                             
+                            mierda = self._tabla_simbolos.return_same_ids(posible_id.getText())
+                            
+                            objeto_mierda = self._tabla_simbolos.regresar_objeto_en_ambito(mierda)
+                            
+                            print(f"la mierda: {objeto_mierda}")
+                            
+                            if objeto_mierda["tipo"] == "Int":
+                                print("ambos son Int")
+                                
+                            else:
+                                print(f"Los tipos de valor no coinciden en {ctx.getText()} ")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                self._tabla_simbolos._lista_errores.append(f"Los tipos de valor no coinciden en {ctx.getText()} ")
+                        
+
+                            #sys.exit()
+                            
+                            if self._tabla_simbolos._minicondicion:
+                                permitidos = ['>', '<', '==', '>=', '<=', '=']
+                                if posibles_operaciones[0].getText() in permitidos:
+                                    print(f"correcto")
+
+                                    
+                                else:
+                                    print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                                    self._tabla_simbolos._error_in_current_method = True
+                                    self._tabla_simbolos._error_in_code = True
+                                    self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                            
+                            self._tabla_simbolos._minicondicion = False
+                            
                         else:
                             print(f"ERROR : {sin_semicolon} NO esta definido")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
                             self._tabla_simbolos._lista_errores.append(f"ERROR : {sin_semicolon} NO esta definido")
                         
+                            if self._tabla_simbolos._minicondicion:
+                                permitidos = ['>', '<', '==', '>=', '<=', '=']
+                                if posibles_operaciones[0].getText() in permitidos:
+                                    print(f"correcto")
+
+                                    
+                                else:
+                                    print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                                    self._tabla_simbolos._error_in_current_method = True
+                                    self._tabla_simbolos._error_in_code = True
+                                    self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                            
+                            self._tabla_simbolos._minicondicion = False
+                            
+                        
+                        
                     elif valor1_en_tabla == False and valor2_en_tabla == True:
                         
                         if check_int(posible_id):
                             print(f"CORRECTO, el valor {posible_id} es un Int")
+                            
+                            
+                            mierda = self._tabla_simbolos.return_same_ids(sin_semicolon)
+                            
+                            objeto_mierda = self._tabla_simbolos.regresar_objeto_en_ambito(mierda)
+                            
+                            print(f"la mierda: {objeto_mierda}")
+                            
+                            if objeto_mierda["tipo"] == "Int":
+                                print("ambos son Int")
+                                
+                            else:
+                                print(f"Los tipos de valor no coinciden en {ctx.getText()} ")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                self._tabla_simbolos._lista_errores.append(f"Los tipos de valor no coinciden en {ctx.getText()} ")
+                            
+                            if self._tabla_simbolos._minicondicion:
+                                permitidos = ['>', '<', '==', '>=', '<=', '=']
+                                if posibles_operaciones[0].getText() in permitidos:
+                                    print(f"correcto")
+
+                                    
+                                else:
+                                    print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                                    self._tabla_simbolos._error_in_current_method = True
+                                    self._tabla_simbolos._error_in_code = True
+                                    self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                            
+                            self._tabla_simbolos._minicondicion = False
                         
                         else:
                             print(f"ERROR : {posible_id} NO esta definido")
                             self._tabla_simbolos._error_in_current_method = True
                             self._tabla_simbolos._error_in_code = True
                             self._tabla_simbolos._lista_errores.append(f"ERROR : {posible_id} NO esta definido")
+
+                    
+                    if valor1_en_tabla == True and valor2_en_tabla == True:
+                        print("WUUUUUUUUUUUU")
+                        print(f"tenemos minicondicion: {self._tabla_simbolos._minicondicion}")
+                        
+                        if self._tabla_simbolos._minicondicion:
+                            permitidos = ['>', '<', '==', '>=', '<=', '=']
+                            if posibles_operaciones[0].getText() in permitidos:
+                                print(f"correcto")
+
+                                
+                            else:
+                                print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                                self._tabla_simbolos._error_in_current_method = True
+                                self._tabla_simbolos._error_in_code = True
+                                self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if ")
+                        
+                        self._tabla_simbolos._minicondicion = False
+                        """if self._tabla_simbolos._minicondicion:
+                            print("WUUUUUUUUUUUU MINICONDICION")
+                            print(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if")
+                            self._tabla_simbolos._error_in_current_method = True
+                            self._tabla_simbolos._error_in_code = True
+                            self._tabla_simbolos._lista_errores.append(f"La operacion {posibles_operaciones[0].getText()} no puede utilizarse en un if")
+                            self._tabla_simbolos._minicondicion = False"""
+
 
                     if self._tabla_simbolos._en_while_cr5:
                         print("entramos a el _en_while_cr5")
@@ -1378,13 +1503,13 @@ class MyListener(Proy1Listener):
                                 # SE DEFINIO EN EL MISMO METODO
                                 print("se le puede asignar a la variable por estar en el mismo metodo")
                                 posibles_correctos_v1.append(1)
-                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                             elif padre_del_posible == clase_padre_actual:
                                 print("se le puede asignar a la variable por ser una variable global")
                                 posibles_correctos_v1.append(1)
-                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                tipo_valor_1 = verificacion_metodo_11(self, tabla_posibles_valor1, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
 
                             # HAY ERROR
                             #else:
@@ -1419,13 +1544,13 @@ class MyListener(Proy1Listener):
                                 # SE DEFINIO EN EL MISMO METODO
                                 print("se le puede asignar a la variable por estar en el mismo metodo")
                                 posibles_correctos_v2.append(1)
-                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
                                 
                             # VERIFICAR SI LA POSIBLE VARIABLE ES GLOBAL
                             elif padre_del_posible == clase_padre_actual:
                                 print("se le puede asignar a la variable por ser una variable global")
                                 posibles_correctos_v2.append(1)
-                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible)
+                                tipo_valor_2 = verificacion_metodo_11(self, tabla_posibles_valor2, metodo_actual, clase_padre_actual, tipo_del_posible, ctx.getText())
 
                             # HAY ERROR
                             #else:

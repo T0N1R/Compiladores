@@ -108,7 +108,7 @@ def remover_contenido_de_metodo(self):
     #self._tabla_simbolos._simbolos = [x for x in tabla_simbolos if not x in lista_a_borrar]
     nueva_tabla = [x for x in tabla_simbolos if not x in lista_a_borrar]
 
-def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible):
+def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_padre_actual, tipo_del_posible, contexto):
     
     posibles_correctos = []
     
@@ -142,7 +142,9 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
             
             # verificar si los 2 tipos variables son del mismo tipo
             if tipo_del_posible == tipo_del_asignable:
-                if self._tabla_simbolos.tipo_de_asignada != None and self._se_asigna_a_variable != False:
+                print(self._tabla_simbolos.tipo_de_asignada)
+                print(self._tabla_simbolos._se_asigna_a_variable)
+                if self._tabla_simbolos.tipo_de_asignada != None and self._tabla_simbolos._se_asigna_a_variable != False:
                     if tipo_del_posible == self._tabla_simbolos.tipo_de_asignada:
                         print("el tipo es el mismo al de la tipo_se_ asignada, se pede hacer")
                         print("CONFIRMADO, SE PUEDE ASIGNAR ESTA VARIABLE")
@@ -150,10 +152,17 @@ def verificacion_metodo_11(self, tabla_posibles_asignable, metodo_actual, clase_
                         return tipo_del_posible
                         
                     else:
-                        print("ERROR, no conecuerda con tipo_de_asignada")
+                        print(f"Los tipos de valor no coinciden en {contexto}")
+                        self._tabla_simbolos._error_in_current_method = True
+                        self._tabla_simbolos._error_in_code = True
+                        self._tabla_simbolos._lista_errores.append(f"Los tipos de valor no coinciden en {contexto}")
+
                 
             else:
-                print("ERROR, LAS VARIABLES TIENE DISTINTOS TIPOS")
+                print(f"Los tipos de valor no coinciden en {contexto}")
+                self._tabla_simbolos._error_in_current_method = True
+                self._tabla_simbolos._error_in_code = True
+                self._tabla_simbolos._lista_errores.append(f"Los tipos de valor no coinciden en {contexto}")
             
     if len(posibles_correctos) == 0:
         print("ERROR, ESTA VARIABLE NO HA SIGO ASIGNADA")

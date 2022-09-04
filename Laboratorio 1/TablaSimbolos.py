@@ -87,6 +87,8 @@ class TablaSimbolos():
         self._ignora_new_15 = False
         
         self._class_llamada = None
+        
+        self._minicondicion = False
     
     def agregar_simbolo(self, tipo, id, size, offset, definicion, valor, padre):
         
@@ -155,3 +157,19 @@ class TablaSimbolos():
                 return_table.append(d)
         
         return return_table
+    
+    def regresar_objeto_en_ambito(self, posible_objeto):
+        for d in posible_objeto:
+            tipo_del_posible = d['tipo']
+            en_metodo_del_posible = d['en_metodo']
+            ambito_del_posible = d['ambito']
+            padre_del_posible = d['padre']
+            
+            metodo_actual = self._current_method
+            clase_padre_actual = self._simbolos[self.current_class]['id']
+            
+            if en_metodo_del_posible == metodo_actual:
+                return d
+            
+            elif padre_del_posible == clase_padre_actual:
+                return d
