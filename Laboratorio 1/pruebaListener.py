@@ -15,9 +15,11 @@ class MyListener(Proy1Listener):
     def __init__(self):
         self._tabla_simbolos = TablaSimbolos()
         
-        self._tabla_simbolos.agregar_simbolo("Int", "Int", None, None, None, None, None)
-        self._tabla_simbolos.agregar_simbolo("String", "String", None, None, None, None, None)
-        self._tabla_simbolos.agregar_simbolo("Bool", "Bool", None, None, None, None, None)
+        self._tabla_simbolos.agregar_simbolo("Int", "Int", 4, self._tabla_simbolos.agregar_offset(4), None, None, None)
+        self._tabla_simbolos.agregar_simbolo("String", "String", 5, self._tabla_simbolos.agregar_offset(5), None, None, None)
+        self._tabla_simbolos.agregar_simbolo("Bool", "Bool", 2, self._tabla_simbolos.agregar_offset(2), None, None, None)
+        self._tabla_simbolos.agregar_simbolo("out_string", "String", 6, self._tabla_simbolos.agregar_offset(6), "metodo", None, None)
+        self._tabla_simbolos.agregar_simbolo("out_int", "Int", 4, self._tabla_simbolos.agregar_offset(4), "metodo", None, None)
         
     def imprimir_tabla_simbolos(self):
         print("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s" %('TIPO', 'ID', 'SIZE', 'OFFSET', 'DEFINICION', 'VALOR', 'PADRE', 'EN METODO', 'AMBITO'))
@@ -42,7 +44,7 @@ class MyListener(Proy1Listener):
         
         if class_name == "Main":
             if inhty in allowed_for_main:
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
+                self._tabla_simbolos.agregar_simbolo('class', class_name, 3, self._tabla_simbolos.agregar_offset(3), 'clase', None, inhty)
                 self._tabla_simbolos._added_classes.append(class_name)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             else:
@@ -53,11 +55,11 @@ class MyListener(Proy1Listener):
             
         else:
             if inhty == "vacio":
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, None)
+                self._tabla_simbolos.agregar_simbolo('class', 3, self._tabla_simbolos.agregar_offset(3), None, 'clase', None, None)
                 self._tabla_simbolos._added_classes.append(class_name)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
             else:
-                self._tabla_simbolos.agregar_simbolo('class', class_name, None, None, 'clase', None, inhty)
+                self._tabla_simbolos.agregar_simbolo('class', 3, self._tabla_simbolos.agregar_offset(3), None, 'clase', None, inhty)
                 self._tabla_simbolos._added_classes.append(class_name)
                 self._tabla_simbolos.current_class = len(self._tabla_simbolos._simbolos) - 1
                 
@@ -110,15 +112,15 @@ class MyListener(Proy1Listener):
                     clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
                     
                     if asigned_type == 'String':
-                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', "empty string", clase_padre['id'])
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 5, self._tabla_simbolos.agregar_offset(5), 'variable', "empty string", clase_padre['id'])
                         #print("SE AGREGO A LA TABLA")
                         
                     if asigned_type == 'Int':
-                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', 0, clase_padre['id'])
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 4, self._tabla_simbolos.agregar_offset(4), 'variable', 0, clase_padre['id'])
                         #print("SE AGREGO A LA TABLA")
                         
                     if asigned_type == 'Bool':
-                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', False, clase_padre['id'])
+                        self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 2, self._tabla_simbolos.agregar_offset(2), 'variable', False, clase_padre['id'])
                         #print("SE AGREGO A LA TABLA")
                     
                     """for x in self._tabla_simbolos._simbolos:
@@ -150,15 +152,15 @@ class MyListener(Proy1Listener):
                 clase_padre = self._tabla_simbolos._simbolos[self._tabla_simbolos.current_class]
                 
                 if asigned_type == 'String':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', "empty string", clase_padre['id'])
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 5, self._tabla_simbolos.agregar_offset(5), 'variable', "empty string", clase_padre['id'])
                     #print("SE AGREGO A LA TABLA")
                     
                 if asigned_type == 'Int':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', 0, clase_padre['id'])
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 4, self._tabla_simbolos.agregar_offset(4), 'variable', 0, clase_padre['id'])
                     #print("SE AGREGO A LA TABLA")
                     
                 if asigned_type == 'Bool':
-                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, None, None, 'variable', False, clase_padre['id'])
+                    self._tabla_simbolos.agregar_simbolo(asigned_type, asigned_id, 2, self._tabla_simbolos.agregar_offset(2), 'variable', False, clase_padre['id'])
                     #print("SE AGREGO A LA TABLA")
                 
                 """for x in self._tabla_simbolos._simbolos:
@@ -630,7 +632,7 @@ class MyListener(Proy1Listener):
             
         
             if tipoMetodo == "SELF_TYPE":
-                self._tabla_simbolos.agregar_simbolo(clase_padre['id'], id_metodo, None, None, 'metodo', None, clase_padre['id'])
+                self._tabla_simbolos.agregar_simbolo(clase_padre['id'], id_metodo, 3, self._tabla_simbolos.agregar_offset(3), 'metodo', None, clase_padre['id'])
                 self._tabla_simbolos.agregar_in_method_object(clase_padre['id'], id_metodo, None, None, 'metodo', None, clase_padre['id'])
                 
                 # definir que estamos en un metodo
@@ -724,6 +726,7 @@ class MyListener(Proy1Listener):
     # Enter a parse tree produced by Proy1Parser#metodo2.
     def enterMetodo2(self, ctx:Proy1Parser.Metodo2Context):
         print("metodo2")
+        print(ctx.getText())
         
         if self._tabla_simbolos._ignora_new:
             print(f"se ignora {ctx.getText()}")

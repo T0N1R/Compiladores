@@ -1,13 +1,5 @@
-class Factorial {
-  	var: Int <- 0;
-  	n:String <- 0;
-  	factorial(m: Int) : Int {
-      {( let f : Int in
-      	 if 0=n then f<-0 else
-         if 1=n then f<-1 else
-        	 f<-n*factorial(n-1)
-         fi fi
-       );}
-    };
-  
-  };
+class Main inherits IO {
+   main(): SELF_TYPE {
+	out_string("Hello, World.\n")
+   };
+};

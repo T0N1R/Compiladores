@@ -73,7 +73,7 @@ class TablaSimbolos():
         self._class_inicializada = None
         
         # metodos permitidos
-        self._metodos_permitidos = ['abort', 'out_string', 'out_int', 'type_name', 'substr']
+        self._metodos_permitidos = ['abort', 'type_name', 'substr']
         
         # lista con los errores
         self._lista_errores = []
@@ -173,3 +173,14 @@ class TablaSimbolos():
             
             elif padre_del_posible == clase_padre_actual:
                 return d
+            
+    def agregar_offset(self, incremento):
+        if self._offset == 0:
+            self._offset = incremento
+            
+            return 0
+        
+        else:
+            old_offset = self._offset + 1
+            self._offset = self._offset + incremento
+            return old_offset
